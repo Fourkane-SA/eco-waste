@@ -1,14 +1,25 @@
-const functions = require('firebase-functions');
-const express = require('express');
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import * as express from 'express';
+//import * as bodyParser from 'body-parser';
+import * as fireorm from 'fireorm';
+
+admin.initializeApp();
 const cors = require('cors');
+
 const app = express();
 
+
+const userRoute = require('./routes/usersRoutes');
+
+const firestore = admin.firestore();
+fireorm.initialize(firestore);
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
+app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.end("test");
-});
+
+app.use('/users', userRoute);
 
 // Expose Express API as a single Cloud Function:
 exports.api = functions.region('europe-west1').https.onRequest(app);
