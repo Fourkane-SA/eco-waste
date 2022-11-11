@@ -1,9 +1,14 @@
-import * as functions from "firebase-functions";
+const functions = require('firebase-functions');
+const express = require('express');
+const cors = require('cors');
+const app = express();
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Automatically allow cross-origin requests
+app.use(cors({ origin: true }));
+
+app.get('/', (req, res) => {
+  res.end("test");
+});
+
+// Expose Express API as a single Cloud Function:
+exports.api = functions.region('europe-west1').https.onRequest(app);
