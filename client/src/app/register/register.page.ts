@@ -39,8 +39,4 @@ export class RegisterPage implements OnInit {
       this.errorMessage = e.response.data;
     })
   }
-
-  goToLogin() {
-    this.route.navigateByUrl("/login");
-  }
 }

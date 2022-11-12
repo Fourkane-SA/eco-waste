@@ -1,6 +1,9 @@
 <ion-content [fullscreen]="true">
-<div id="container" (click)="goToApp()">
+<div id="container">
     <strong>Eco Waste</strong>
-    <p>Cliquez pour acceder à l'application</p>
   </div>
 </ion-content>
+<ion-footer>
+  <ion-button (click)="goToRegister()" expand="block" >Inscription</ion-button>
+  <ion-button (click)="goToLogin()" expand="block" >Connexion</ion-button>
+</ion-footer>

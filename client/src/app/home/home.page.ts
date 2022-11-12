@@ -7,6 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+goToLogin() {
+  this.route.navigateByUrl("/login");
+}
+goToRegister() {
+  this.route.navigateByUrl("/register");
+}
   goToApp() {
     this.route.navigateByUrl("/login"); // TODO vérifier s'il n'est pas déjà connecté
   }

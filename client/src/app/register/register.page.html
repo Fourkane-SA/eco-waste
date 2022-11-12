@@ -1,5 +1,13 @@
+<ion-header id="head">
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="ion-padding">
-  <div class="ion-text-center" id="head">
+  <div class="ion-text-center" id="content">
     <strong>Bienvenue sur Eco Waste</strong>
   </div>
   <ion-list>
@@ -25,7 +33,6 @@
         <ion-textarea formControlName="description" placeholder="Entrez une description" [required]="true"></ion-textarea>
       </ion-item>
       <ion-button type="submit" expand="block" [disabled]="!form.valid">Inscription</ion-button>
-      <a (click)="goToLogin()">Déjà inscrit ?</a>
     </form>
   </ion-list>
   <ion-card color="danger">

@@ -14,9 +14,6 @@ export class LoginPage implements OnInit {
   error : boolean;
   errorMessage : string;
   
-  goToRegister() {
-    this.route.navigateByUrl('/register');
-  }
 
   constructor(private route: Router) { 
     this.form = new FormGroup({
