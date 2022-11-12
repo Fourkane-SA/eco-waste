@@ -13,10 +13,10 @@ goToLogin() {
 goToRegister() {
   this.route.navigateByUrl("/register");
 }
-  goToApp() {
-    this.route.navigateByUrl("/login"); // TODO vérifier s'il n'est pas déjà connecté
-  }
 
-  constructor(private route: Router) {}
+  constructor(private route: Router) {
+    if(localStorage.getItem('login') != undefined)
+      this.route.navigateByUrl("/articles");
+  }
 
 }

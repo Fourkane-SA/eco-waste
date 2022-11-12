@@ -27,7 +27,10 @@ export class LoginPage implements OnInit {
 
   login() {
     axios.post(environment.apiUrl + "users/login", this.form.value)
-    .then((res) => console.log(res)) // TODO
+    .then(() => {
+      localStorage.setItem('login', this.form.value.id)
+      this.route.navigateByUrl("/articles")
+    }) // TODO
     .catch(e => {
       this.error = true;
       this.errorMessage = e.response.data;
