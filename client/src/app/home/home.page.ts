@@ -16,7 +16,7 @@ goToRegister() {
 
   constructor(private route: Router) {
     if(localStorage.getItem('login') != undefined)
-      this.route.navigateByUrl("/articles");
+      window.location.pathname = "/articles"  
   }
 
 }
