@@ -1,0 +1,11 @@
+name: Deploy to Firebase functions on merge
+ 'on':
+   push:
+     branches:
+       - main
+ jobs:
+   deploy:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v2
+       - run: cd functions && npm deploy
