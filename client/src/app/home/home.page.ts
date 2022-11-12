@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  goToApp() {
+    this.route.navigateByUrl("/login"); // TODO vérifier s'il n'est pas déjà connecté
+  }
 
-  constructor() {}
+  constructor(private route: Router) {}
 
 }

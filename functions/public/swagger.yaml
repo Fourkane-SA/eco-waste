@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: API
+  description: 
+   Cette API permet la gestion des utilisateurs d'une application
+  version: 1.0.11
+servers:
+  - url: https://europe-west1-ecowaste-app.cloudfunctions.net/api
+tags:
+  - name: users
+    description: Gestion des utilisateurs
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Liste des utilisateurs
+      description: Retourne un tableau représentant l'ensemble des utilisateurs de la base de donnée sans leur mot de passe.
+      responses:
+        '200':
+          description: La requête a été effectuée avec succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Users'
+    post:
+      tags:
+        - users
+      summary: Ajoute un utilisateur
+      description: Permet d'ajouter un nouvel utilisateur dans la base de donnée
+      responses:
+        '201':
+          description: L'utilisateur a été créé
+        '401':
+          description: Ce pseudo est déjà pris
+        '400':
+          description: Tous les champs obligatoires doivent être remplis
+      requestBody:
+        description: Un utilisateur a ajouter
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Users'
+  /users/{id}:
+    get:
+      tags:
+        - users
+      summary: Recupere un utilisateur
+      description: Recupère un utilisateur avec son pseudo
+      parameters:
+        - name: id
+          in: path
+          description: "Le pseudo de l'utilisateur recherché"
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retourne l'utilisateur
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Users'
+        '404':
+          description: L'utilisateur n'existe pas
+    patch:
+      tags:
+        - users
+      summary: Modifie un utilisateur
+      description: Permet de modifier les champs d'un utilisateur dans la base de donnée
+      parameters:
+        - name: id
+          in: path
+          description: "Le pseudo de l'utilisateur à modifier"
+          required: true
+          schema:
+            type: string
+        - name: login
+          in: header
+          description: "Le pseudo de l'utilisateur connecté"
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Utilisateur modifié avec succès
+        '404':
+          description: L'utilisateur n'existe pas
+        '401':
+          description: Vous ne pouvez pas modifier cet utilisateur
+      requestBody:
+        description: Un utilisateur à modifier
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Users'
+    delete:
+      tags:
+        - users
+      summary: Supprime un utilisateur
+      description: Supprime un utilisateur
+      parameters:
+        - name: id
+          in: path
+          description: "Le pseudo de l'utilisateur à supprimer"
+          required: true
+          schema:
+            type: string
+        - name: login
+          in: header
+          description: "Le pseudo de l'utilisateur connecté"
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: L'utilisateur a été supprimé
+        '400':
+          description: L'utilisateur n'existe pas
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Gere l'authentification d'un utilisateur
+      description: Verifie que le mot de passe et le nom d'utilisateur correspondent à un utulisateur de la base de donnée
+      requestBody:
+        description: Le login et le mot de passe
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                  id:
+                    type: string
+                    example: user
+                  password:
+                    type: string
+                    example: mdp
+      responses:
+        '200':
+          description: La connexion a marché
+        '401':
+          description: La connexion a échoué
+        '404':
+          description: L'utilisateur n'existe pas
+          
+
+components:
+  schemas:
+    Users:
+      type: object
+      properties:
+        id:
+          type: string
+          example: admin
+        password:
+          type: string
+          example: unmdp
+        firstName:
+          type: string
+          example: Louis
+        lastName:
+          type: string
+          example: Dae
+        description:
+          type: string
+          example: Le compte administrateur
+      xml:
+        name: users

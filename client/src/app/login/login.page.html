@@ -1,0 +1,25 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center" id="head">
+    <strong>Bienvenue sur Eco Waste</strong>
+  </div>
+  <ion-list>
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <ion-item>
+        <ion-label position="stacked">Login</ion-label>
+        <ion-input formControlName="id" placeholder="Entrez votre login" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Mot de passe</ion-label>
+        <ion-input formControlName="password" placeholder="Entrez votre mot de passe" type="password" [required]="true"></ion-input>
+      </ion-item>
+      <p>Mot de passe oublié ?</p>
+      <ion-button type="submit" expand="block" [disabled]="!form.valid">Se connecter</ion-button>
+      <a (click)="goToRegister()">Pas encore inscrit ?</a>
+    </form>
+  </ion-list>
+  <ion-card color="danger">
+    <ion-card-content [hidden]="!error">
+      {{errorMessage}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

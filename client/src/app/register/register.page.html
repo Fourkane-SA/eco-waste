@@ -1,0 +1,36 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center" id="head">
+    <strong>Bienvenue sur Eco Waste</strong>
+  </div>
+  <ion-list>
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <ion-item>
+        <ion-label position="stacked">Login</ion-label>
+        <ion-input formControlName="id" placeholder="Entrez votre login" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Mot de passe</ion-label>
+        <ion-input formControlName="password" placeholder="Entrez votre mot de passe" type="password" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Prenom</ion-label>
+        <ion-input formControlName="firstName" placeholder="Entrez votre prénom" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nom</ion-label>
+        <ion-input formControlName="lastName" placeholder="Entrez votre nom" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea formControlName="description" placeholder="Entrez une description" [required]="true"></ion-textarea>
+      </ion-item>
+      <ion-button type="submit" expand="block" [disabled]="!form.valid">Inscription</ion-button>
+      <a (click)="goToLogin()">Déjà inscrit ?</a>
+    </form>
+  </ion-list>
+  <ion-card color="danger">
+    <ion-card-content [hidden]="!error">
+      {{errorMessage}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
