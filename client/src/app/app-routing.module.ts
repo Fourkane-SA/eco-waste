@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'articles',
     loadChildren: () => import('./articles/articles.module').then( m => m.ArticlesPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
 ];
 
 @NgModule({

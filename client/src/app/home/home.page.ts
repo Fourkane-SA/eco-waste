@@ -16,7 +16,7 @@ goToRegister() {
 
   constructor(private route: Router) {
     if(localStorage.getItem('login') != undefined)
-      window.location.pathname = "/articles"  
+      window.location.pathname = "/chat"  
   }
 
 }

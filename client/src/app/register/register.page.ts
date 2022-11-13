@@ -32,7 +32,8 @@ export class RegisterPage implements OnInit {
     const user = this.form.value;
     axios.post(environment.apiUrl + "users", user)
     .then(() => {
-      this.route.navigateByUrl("/login");
+      localStorage.setItem('login', user.id)
+      this.route.navigateByUrl("/chat");
     })
     .catch(e => {
       this.error = true;
