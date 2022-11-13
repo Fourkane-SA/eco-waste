@@ -9,6 +9,8 @@ servers:
 tags:
   - name: users
     description: Gestion des utilisateurs
+  - name: conversations
+    description : Gestion du chat
 paths:
   /users:
     get:
@@ -157,7 +159,107 @@ paths:
           description: La connexion a échoué
         '404':
           description: L'utilisateur n'existe pas
-          
+  /conversations:
+    get:
+      tags:
+        - conversations
+      summary : Recupere la liste des conversations
+      description: Affiche la liste des derniers messagers d'un utilisateur
+      parameters:
+        - name: login
+          schema:
+            type: string
+          in : header
+          required: true
+          description: le login de l'utilisateur
+      responses:
+        '200':
+          description: La liste des conversations
+    post:
+      tags:
+        - conversations
+      summary: Crée une nouvelle conversation
+      description: Permet de créer une conversation entre deux utilisateurs
+      requestBody:
+        description: Les deux utilisateurs de la conversation
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                  pseudo1:
+                    type: string
+                    example: test
+                  pseudo2:
+                    type: string
+                    example: admin
+      responses:
+        '200':
+          description: La conversation a été créé
+  /conversations/{pseudo1}/{pseudo2}:
+    get:
+      tags:
+        - conversations
+      summary: recupere une conversation
+      description: affiche une conversation
+      parameters:
+        - name: pseudo1
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: pseudo2
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: La conversation a été créé
+  /conversations/message:
+    post:
+      tags:
+        - conversations
+      summary: Ajoute un message
+      description: affiche un message dans une conversation
+      requestBody:
+        description: Les deux utilisateurs de la conversation
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                  pseudo1:
+                    type: string
+                    example: test
+                  pseudo2:
+                    type: string
+                    example: admin
+      responses:
+        '200':
+          description: Le message a été envoyé
+  /conversations/read:
+    patch:
+      tags:
+        - conversations
+      summary: Change le status de lecture d'une conversation
+      description: Change le status des messages d'un utilisateur dans une conversation
+      requestBody:
+        description: Les deux utilisateurs de la conversation
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                  pseudo1:
+                    type: string
+                    example: test
+                  pseudo2:
+                    type: string
+                    example: admin
+      responses:
+        '200':
+          description: Les messages ont été lus
 
 components:
   schemas:
@@ -170,10 +272,10 @@ components:
         password:
           type: string
           example: unmdp
-        firstName:
+        firstname:
           type: string
           example: Louis
-        lastName:
+        lastname:
           type: string
           example: Dae
         description:

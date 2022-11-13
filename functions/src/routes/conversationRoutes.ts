@@ -10,8 +10,8 @@ fireorm.initialize(firestore);
 const ConversationsRepository = getRepository(Conversation);
 const db = admin.firestore();
 
-conversationRouter.get('/:id', async (req, res) => {
-    let id = req.body.pseudo1 + ',' + req.body.pseudo2;
+conversationRouter.get('/:pseudo1/:pseudo2', async (req, res) => {
+    let id = req.params.pseudo1 + ',' + req.params.pseudo2;
     let conversation : Conversation = await ConversationsRepository.findById(id);
     if(conversation != null) {
         let messages = [];
@@ -26,7 +26,7 @@ conversationRouter.get('/:id', async (req, res) => {
         return
     }
         
-    id = req.body.pseudo2 + ',' + req.body.pseudo1;
+    id = req.params.pseudo2 + ',' + req.params.pseudo1;
     conversation = await ConversationsRepository.findById(id)
     if(conversation != null) {
         let messages = [];
@@ -70,7 +70,7 @@ conversationRouter.post('/message', async (req, res) => {
     res.status(StatusCodes.NOT_FOUND).send("La conversation n'existe pas");
 })
 
-conversationRouter.post('/read', async (req, res) => {
+conversationRouter.patch('/read', async (req, res) => {
     let id = req.body.pseudo1 + ',' + req.body.pseudo2;
     let conversation : Conversation = await ConversationsRepository.findById(id);
     if(conversation != null) {
@@ -112,7 +112,7 @@ conversationRouter.get('/', async (req, res) => {
         i++;
         console.log(i, a.length)
         if(i === a.length) {
-            await new Promise(f => setTimeout(f, 50));
+            await new Promise(f => setTimeout(f, 100));
             res.status(StatusCodes.OK).send(messages)
         }
             
@@ -120,6 +120,5 @@ conversationRouter.get('/', async (req, res) => {
     })
 })
 
-//function callback (req, res, messages) { console.log('m3 : ', messages); }
 
 module.exports = conversationRouter;

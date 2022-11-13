@@ -17,8 +17,8 @@ export class RegisterPage implements OnInit {
   constructor(private route: Router) { 
     this.form = new FormGroup({
       id : new FormControl(),
-      firstName : new FormControl(),
-      lastName : new FormControl(),
+      firstname : new FormControl(),
+      lastname : new FormControl(),
       password : new FormControl(),
       description : new FormControl()
     });

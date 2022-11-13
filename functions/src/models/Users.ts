@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 
 @Collection()
 export class Users {
-    private firstName : string;
-    private lastName : string;
+    private firstname : string;
+    private lastname : string;
     private password : string;
     private description : string;
     public id : string;
@@ -12,32 +12,32 @@ export class Users {
     /**
      * Initialize a user and encrypt the password
      */
-    init(id : string, firstName : string, lastName : string, password : string, description : string) {
+    init(id : string, firstname : string, lastname : string, password : string, description : string) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.password = bcrypt.hashSync(password,5);
         this.description = description;
     }
 
     getFirstName() : string {
-        return this.firstName;
+        return this.firstname;
     }
 
-    getLastName() : string {
-        return this.lastName;
+    getLastname() : string {
+        return this.lastname;
     }
 
     getDescription() : string {
         return this.description;
     }
 
-    setFirstName(firstName : string) {
-        this.firstName = firstName;
+    setFirstname(firstname : string) {
+        this.firstname = firstname;
     }
 
-    setLastName(lastName : string) {
-        this.lastName = lastName;
+    setLastname(lastname : string) {
+        this.lastname = lastname;
     }
 
     setDescription(description : string) {
@@ -51,9 +51,9 @@ export class Users {
         return bcrypt.compareSync(password, this.password!);
     }
 
-    update(firstName : string, lastName : string, description : string) {
-        if(firstName != undefined) this.firstName = firstName;
-        if(lastName != undefined) this.lastName = lastName;
+    update(firstname : string, lastname : string, description : string) {
+        if(firstname != undefined) this.firstname = firstname;
+        if(lastname != undefined) this.lastname = lastname;
         if(description != undefined) this.description = description;
     }
 }

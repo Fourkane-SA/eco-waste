@@ -22,11 +22,11 @@ userRouter.get('/', async (req, res) => {
 userRouter.post('/', async (req, res) => {
     const user = new Users();
     const r = req.body;
-    user.init(r.id, r.firstName, r.lastName, r.password, r.description);
+    user.init(r.id, r.firstname, r.lastname, r.password, r.description);
     UsersRepository.create(user)
         .then(() => res.status(StatusCodes.CREATED).send("L'utilisateur a été créé"))
         .catch(() => {
-            if(r.id === undefined || r.firstName === undefined || r.lastName === undefined || r.password === undefined || r.description === undefined) {
+            if(r.id === undefined || r.firstbame === undefined || r.lastbame === undefined || r.password === undefined || r.description === undefined) {
                 res.status(StatusCodes.BAD_REQUEST).send("Tous les champs obligatoires doivent être remplis")
             } else {
                 res.status(StatusCodes.UNAUTHORIZED).send("Ce pseudo est déjà pris")
@@ -76,7 +76,7 @@ userRouter.patch('/:id', async (req, res) => {
     let user : Users = await UsersRepository.findById(req.params.id)
     if(user === null)
         res.status(StatusCodes.NOT_FOUND).send("L'utilisateur n'existe pas")
-    user.update(req.body.firstName, req.body.lastName, req.body.description)
+    user.update(req.body.firstname, req.body.lastname, req.body.description)
     await UsersRepository.update(user)
     res.status(StatusCodes.OK).send("Utilisateur modifié avec succès")
         
