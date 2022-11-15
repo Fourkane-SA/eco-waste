@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
+import { ServiceUsers } from '../services/serviceUsers';
 import { AuthenticationService } from "../shared/authentication-service";
 @Component({
   selector: 'app-login',
@@ -11,24 +13,38 @@ export class LoginPage implements OnInit {
   form : FormGroup;
   error : boolean;
   errorMessage : string;
+  serviceUsers: ServiceUsers = new ServiceUsers(this.db);
 
   constructor(
     public authService: AuthenticationService,
-    public router: Router
+    public router: Router,
+    private db: AngularFireDatabase
   ) {
     this.form = new FormGroup({
-      email : new FormControl(),
+      login : new FormControl(),
       password : new FormControl()
     })
   }
   ngOnInit() {}
   login() {
-    this.authService.SignIn(this.form.value.email, this.form.value.password)
-      .then((res) => {
-          console.log(res)
-          this.router.navigate(['articles']);
-      }).catch((error) => {
-        window.alert(error.message)
-      })
+    let login = this.form.value.login;
+    let password = this.form.value.password;
+    this.serviceUsers.get(login)
+    .then(u => {
+      if(u != null) {
+        if(password == u.password) {
+          localStorage.setItem('login', login)
+          this.router.navigateByUrl('/articles')
+        } else {
+          this.error = true;
+          this.errorMessage = "Le mot de passe est incorrect"
+        }
+      } else {
+        this.error = true;
+        this.errorMessage = "L'utilisateur n'existe pas"
+      }
+      
+    })
+
   }
 }

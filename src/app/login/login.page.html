@@ -11,8 +11,8 @@
   <ion-list>
     <form [formGroup]="form" (ngSubmit)="login()">
       <ion-item>
-        <ion-label position="stacked">Adresse mail</ion-label>
-        <ion-input formControlName="email" placeholder="Entrez votre addresse mail" [required]="true"></ion-input>
+        <ion-label position="stacked">Nom d'utilisateur</ion-label>
+        <ion-input formControlName="login" placeholder="Entrez votre nom d'utilisateur" [required]="true"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Mot de passe</ion-label>
