@@ -2,8 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
-import { ServiceUsers } from '../services/serviceUsers';
-import { AuthenticationService } from "../shared/authentication-service";
+import { ServiceUsers } from '../../services/serviceUsers';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,7 +15,6 @@ export class LoginPage implements OnInit {
   serviceUsers: ServiceUsers = new ServiceUsers(this.db);
 
   constructor(
-    public authService: AuthenticationService,
     public router: Router,
     private db: AngularFireDatabase
   ) {
@@ -43,7 +41,7 @@ export class LoginPage implements OnInit {
         this.error = true;
         this.errorMessage = "L'utilisateur n'existe pas"
       }
-      
+
     })
 
   }

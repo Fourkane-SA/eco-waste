@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
-import { User } from '../models/Users';
-import { ServiceUsers } from '../services/serviceUsers';
-import { AuthenticationService } from "../shared/authentication-service";
+import { User } from '../../models/Users';
+import { ServiceUsers } from '../../services/serviceUsers';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.page.html',
@@ -17,7 +16,6 @@ export class RegistrationPage implements OnInit {
   serviceUsers : ServiceUsers = new ServiceUsers(this.db);
 
   constructor(
-    public authService: AuthenticationService,
     public router: Router,
     private db: AngularFireDatabase
   ) {
