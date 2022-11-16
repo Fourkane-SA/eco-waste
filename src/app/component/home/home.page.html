@@ -1,9 +1,14 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <strong>Eco Waste</strong>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3"></ion-col>
+        <ion-col size="6">
+          <ion-progress-bar [value]="progress"></ion-progress-bar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
   </div>
 </ion-content>
-<ion-footer class="ion-padding">
-  <ion-button (click)="goToRegister()" expand="block">Inscription</ion-button>
-  <ion-button (click)="goToLogin()" expand="block">Connexion</ion-button>
-</ion-footer>

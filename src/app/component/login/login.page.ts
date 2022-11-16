@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -9,6 +10,7 @@ import { ServiceUsers } from '../../services/serviceUsers';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+goToRegister() {location.pathname="/registration"}
   form : FormGroup;
   error : boolean;
   errorMessage : string;
@@ -16,23 +18,40 @@ export class LoginPage implements OnInit {
 
   constructor(
     public router: Router,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    public ngFireAuth: AngularFireAuth
   ) {
     this.form = new FormGroup({
-      login : new FormControl(),
+      email : new FormControl(),
       password : new FormControl()
     })
   }
   ngOnInit() {}
   login() {
-    let login = this.form.value.login;
+    
+    let email = this.form.value.email;
     let password = this.form.value.password;
-    this.serviceUsers.get(login)
+    this.ngFireAuth.signInWithEmailAndPassword(email, password)
+    .then((u) => {
+      localStorage.setItem('uid', u.user.uid)
+          this.router.navigateByUrl('/tab/accueil')
+    })
+    .catch(e => {
+      if(e.message.includes("(auth/wrong-password)"))
+        this.errorMessage = "Mot de passe incorrect"
+      else if (e.message.includes("(auth/user-not-found)"))
+        this.errorMessage = "Aucun compte n'est associée à cette adresse mail"
+      else if (e.message.includes("(auth/invalid-email)"))
+        this.errorMessage = "Veuillez entrer un mot de passe valide"
+      else
+        this.errorMessage = "Erreur lors de la connexion avec le serveur"
+      this.error = true;
+    })
+    /*this.serviceUsers.get(login)
     .then(u => {
       if(u != null) {
         if(password == u.password) {
-          localStorage.setItem('login', login)
-          this.router.navigateByUrl('/articles')
+          
         } else {
           this.error = true;
           this.errorMessage = "Le mot de passe est incorrect"
@@ -42,7 +61,8 @@ export class LoginPage implements OnInit {
         this.errorMessage = "L'utilisateur n'existe pas"
       }
 
-    })
+    })*/
 
   }
+  
 }

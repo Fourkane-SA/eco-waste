@@ -69,3 +69,7 @@ www/
 .angular
 
 src/environments/
+
+ios
+.idea
+.vscode

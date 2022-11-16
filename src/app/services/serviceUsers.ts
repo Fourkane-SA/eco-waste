@@ -6,16 +6,16 @@ export class ServiceUsers {
 
     constructor(private db: AngularFireDatabase) {}
 
-    create(user : User) {
-        this.db.object('users/' + user.pseudo).set(user)
+    create(user : User, uid : string) {
+        this.db.object('users/' + uid).set(user)
     }
 
-    async get(pseudo : string) : Promise<any>{
-        return (await this.db.database.ref("users/" + pseudo).get()).val()
+    async get(uid : string) : Promise<any>{
+        return (await this.db.database.ref("users/" + uid).get()).val()
     }
 
-    async exist(pseudo : string) : Promise<boolean> {
-        let user = await this.get(pseudo);
+    async exist(uid : string) : Promise<boolean> {
+        let user = await this.get(uid);
         return(user != null)
     }
 }

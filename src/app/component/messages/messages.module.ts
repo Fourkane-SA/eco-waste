@@ -7,8 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { MessagesPageRoutingModule } from './messages-routing.module';
 
 import { MessagesPage } from './messages.page';
-import {MenuComponent} from "../menu/menu.component";
-import {TabsComponent} from "../tabs/tabs.component";
 
 @NgModule({
   imports: [
@@ -17,6 +15,6 @@ import {TabsComponent} from "../tabs/tabs.component";
     IonicModule,
     MessagesPageRoutingModule
   ],
-  declarations: [MessagesPage, MenuComponent, TabsComponent]
+  declarations: [MessagesPage]
 })
 export class MessagesPageModule {}

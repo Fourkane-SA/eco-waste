@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -10,6 +11,7 @@ import { ServiceUsers } from '../../services/serviceUsers';
   styleUrls: ['./registration.page.scss'],
 })
 export class RegistrationPage implements OnInit {
+goToLogin() {location.pathname="/login"}
   form : FormGroup;
   error : boolean;
   errorMessage : string;
@@ -17,15 +19,13 @@ export class RegistrationPage implements OnInit {
 
   constructor(
     public router: Router,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+     public ngFireAuth: AngularFireAuth
   ) {
     this.form = new FormGroup({
       email : new FormControl(),
-      firstname : new FormControl(),
-      lastname : new FormControl(),
       password : new FormControl(),
-      description : new FormControl(),
-      pseudo : new FormControl()
+      password2 : new FormControl()
     });
     this.error = false;
   }
@@ -35,23 +35,27 @@ export class RegistrationPage implements OnInit {
 
 
   inscription(){
-      this.serviceUsers.exist(this.form.value.pseudo)
-      .then(isNotAvailable => {
-        if(!isNotAvailable) { // L'utilisateur n'existe pas
-          let u : User = new User(this.form.value.email
-            ,this.form.value.firstname
-            ,this.form.value.lastname
-            ,"todo" // image de profil
-            ,this.form.value.description
-            ,this.form.value.pseudo,
-            this.form.value.password)
-          this.serviceUsers.create(u);
-          this.router.navigateByUrl("/login")
-        } else {
-          this.error = true;
-          this.errorMessage = "L'utilisateur existe déjà"
-        }
+    if(this.form.value.password === this.form.value.password2) {
+      this.ngFireAuth.createUserWithEmailAndPassword(this.form.value.email, this.form.value.password)
+      .then(u => {
+        let user : User = new User(this.form.value.email)
+        this.serviceUsers.create(user, u.user.uid)
+        this.router.navigateByUrl("/login")
       })
+      .catch(e => {
+        if(e.code == "auth/email-already-in-use")
+          this.errorMessage = "Cette adresse mail est déjà utiilsée"
+        else if (e.code == "auth/weak-password")
+          this.errorMessage = "Le mot de passe doit contenir au moins 6 caractères"
+        else
+          this.errorMessage = "Une erreur a eu lieu lors de la connexion avec le serveur"
+        this.error = true
+      })
+    } else {
+      this.error = true;
+      this.errorMessage = "Les mots de passe ne correspondent pas"
+    }
+    
   }
 
 

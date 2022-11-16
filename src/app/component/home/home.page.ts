@@ -7,16 +7,21 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-goToLogin() {
-  this.route.navigateByUrl("/login");
-}
-goToRegister() {
-  this.route.navigateByUrl("/registration");
-}
+
+  public progress: number = 0;
+  
 
   constructor(private route: Router) {
-    if(localStorage.getItem('login') != undefined)
-      window.location.pathname = "/articles"
+    let intervalID = setInterval(() => {
+    this.progress += 0.01;
+    if (this.progress > 1.05) {
+      if(localStorage.getItem('uid') != undefined)
+        this.route.navigateByUrl("/tab/accueil")
+       else
+        this.route.navigateByUrl("/login")
+        clearInterval(intervalID)
+    }
+  }, 50);
   }
 
 }

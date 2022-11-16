@@ -1,0 +1,68 @@
+
+
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>EcoWaste</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item nav-clear menu-close (click)="goToPosterAnnonce()">Poster une annonce</ion-item>
+        <ion-item nav-clear menu-close (click)="goToVoirMesAnnonces()">Voir mes annonces</ion-item>
+        <ion-item nav-clear menu-close (click)="goToMessages()">Messages</ion-item>
+        <ion-item nav-clear menu-close (click)="goToFavoris()">Mes favoris</ion-item>
+        <ion-item nav-clear menu-close (click)="goToMesVendeurs()">Noter mes vendeurs</ion-item>
+        <ion-item nav-clear menu-close (click)="goToAide()">Aide</ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+  </ion-content>
+
+  <ion-footer class="bar-stable"> 
+    <ion-item nav-clear menu-close (click)="logout()"
+      style="left:0;right:0;margin:0; width: 100%;position: fixed;bottom:0;">Déconnexion
+    </ion-item>
+  </ion-footer>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header> 
+    <ion-toolbar>
+      
+      <ion-buttons slot="start">
+        
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      
+        <ion-title class="ion-text-center">EcoWaste</ion-title>
+        <ion-avatar slot="end" >
+          <img class="image" (click)="goToEditProfil()" alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+    </ion-toolbar>
+    
+  </ion-header>
+
+
+
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="recette">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Recette</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="accueil">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Accueil</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="mes-courses">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Mes courses</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>

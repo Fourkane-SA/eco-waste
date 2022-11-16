@@ -1,43 +1,43 @@
 <ion-content class="ion-padding">
-  <ion-toolbar color="blue">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" text="Accueil"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-  <div class="ion-text-center" id="content">
-    <strong>Bienvenue sur Eco Waste</strong>
+  <div class="ion-text-center" style="margin-top: 5%; margin-bottom: 7%">
+    <h1>Créer un compte</h1>
   </div>
+  
   <ion-list>
     <form [formGroup]="form" (ngSubmit)="inscription()">
+      <p style="text-align: left; padding-left: 5%;">Champs obligatoires*</p>
       <ion-item>
-        <ion-label position="stacked">Nom d'utilisateur</ion-label>
-        <ion-input type="email" formControlName="pseudo" placeholder="Entrez votre nom d'utilisateur" [required]="true"></ion-input>
+        <ion-label position="stacked"></ion-label>
+        <ion-input type="email" formControlName="email" placeholder="Email*" [required]="true"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Adresse mail</ion-label>
-        <ion-input type="email" formControlName="email" placeholder="Entrez votre adresse mail" [required]="true"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Mot de passe</ion-label>
-        <ion-input formControlName="password" placeholder="Entrez votre mot de passe" type="password" [required]="true">
+        <ion-label position="stacked"></ion-label>
+        <ion-input formControlName="password" placeholder="Mot de passe*" type="password" [required]="true">
         </ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Prenom</ion-label>
-        <ion-input formControlName="firstname" placeholder="Entrez votre prénom" [required]="true"></ion-input>
+        <ion-label position="stacked"></ion-label>
+        <ion-input formControlName="password2" placeholder="Confirmer le mot de passe*" type="password" [required]="true">
+        </ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Nom</ion-label>
-        <ion-input formControlName="lastname" placeholder="Entrez votre nom" [required]="true"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Description</ion-label>
-        <ion-textarea formControlName="description" placeholder="Entrez une description" [required]="true">
-        </ion-textarea>
-      </ion-item>
-      <ion-button type="submit" expand="block" [disabled]="!form.valid">Inscription</ion-button>
+      <ion-button type="submit" [disabled]="!form.valid">Créer</ion-button>
     </form>
   </ion-list>
+  <p style="text-align: center;">Vous avez déjà un compte ? <strong (click)="goToLogin()">Connectez-vous</strong></p>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3"></ion-col>
+      <ion-col size="2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tramway_de_Québec_%281897%29_-_Cercle_blanc.svg" />
+      </ion-col>
+      <ion-col size="2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tramway_de_Québec_%281897%29_-_Cercle_blanc.svg" />
+      </ion-col>
+      <ion-col size="2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tramway_de_Québec_%281897%29_-_Cercle_blanc.svg" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-card color="danger">
     <ion-card-content [hidden]="!error">
       {{errorMessage}}
