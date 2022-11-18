@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab',
@@ -15,7 +15,20 @@ export class TabPage implements OnInit {
   goToVoirMesAnnonces() {this.route.navigateByUrl('/tab/mes-annonces')}
   goToPosterAnnonce() {this.route.navigateByUrl('/tab/poster-annonce')}
 
-  constructor(private route: Router) { }
+  constructor(private route: Router) { 
+    this.route.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        document.getElementById("recette").setAttribute('name', "restaurant-outline")
+        document.getElementById("home").setAttribute('name', "home-outline")
+        document.getElementById("basket").setAttribute('name', "basket-outline")
+        if(route.url == "/tab/accueil")
+          document.getElementById("home").setAttribute('name', "home")
+        if(route.url == "/tab/recette")
+          document.getElementById("recette").setAttribute('name', "restaurant")
+      }if(route.url == "/tab/mes-courses")
+          document.getElementById("basket").setAttribute('name', "basket")
+    })
+  }
 
   ngOnInit() {
     if(localStorage.getItem('uid') == null)

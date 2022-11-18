@@ -10,6 +10,7 @@ import { ServiceUsers } from '../../services/serviceUsers';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+goToMdpOublie() {location.pathname="/mot-de-passe-oublie"}
 goToRegister() {location.pathname="/registration"}
   form : FormGroup;
   error : boolean;
@@ -26,7 +27,9 @@ goToRegister() {location.pathname="/registration"}
       password : new FormControl()
     })
   }
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
   login() {
     
     let email = this.form.value.email;

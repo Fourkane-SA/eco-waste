@@ -1,0 +1,44 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center" style="margin-top: 5%; margin-bottom: 7%">
+    <h1>Mot de passe oublié ?</h1>
+  </div>
+  <ion-list>
+    <form [formGroup]="form" (ngSubmit)="update()" style="margin-bottom: 3%">
+      <ion-item>
+        <ion-label position="stacked"></ion-label>
+        <ion-input type="password" formControlName="password" placeholder="Nouveau mot de passe*" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"></ion-label>
+        <ion-input type="password" formControlName="password2" placeholder="Confirmer le mot de passe" [required]="true"></ion-input>
+      </ion-item>
+      <ion-button type="submit" class="center" [disabled]="false">Modifier</ion-button>
+    </form>
+  </ion-list>
+  <p class="ion-text-center">Vous avez déjà un compte ? <strong (click)="goToLogin()"> Connectez vous!</strong></p>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3"></ion-col>
+      <ion-col size="2">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tramway_de_Québec_%281897%29_-_Cercle_blanc.svg" />
+      </ion-col>
+      <ion-col size="2">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tramway_de_Québec_%281897%29_-_Cercle_blanc.svg" />
+      </ion-col>
+      <ion-col size="2">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tramway_de_Québec_%281897%29_-_Cercle_blanc.svg" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card color="danger">
+    <ion-card-content [hidden]="!error">
+      {{errorMessage}}
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

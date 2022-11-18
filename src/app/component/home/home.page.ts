@@ -21,7 +21,7 @@ export class HomePage {
         this.route.navigateByUrl("/login")
         clearInterval(intervalID)
     }
-  }, 50);
+  }, 20);
   }
 
 }
