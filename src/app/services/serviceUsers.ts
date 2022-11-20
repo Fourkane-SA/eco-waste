@@ -1,5 +1,4 @@
 import { AngularFireDatabase} from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
 import { User } from '../models/Users';
 
 export class ServiceUsers {
@@ -17,5 +16,9 @@ export class ServiceUsers {
     async exist(uid : string) : Promise<boolean> {
         let user = await this.get(uid);
         return(user != null)
+    }
+
+    async update(user : any, uid : string) {
+        this.db.object('users/' + uid).update(user)
     }
 }

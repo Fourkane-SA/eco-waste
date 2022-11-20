@@ -4,6 +4,7 @@ export class User {
    lastname: string;
    photoURL: string;
    description: string;
+   
 
    constructor(email: string, firstname: string = "", lastname: string ="", photoURL: string = "", description: string = "") {
     this.email = email;

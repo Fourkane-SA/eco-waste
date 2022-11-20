@@ -16,10 +16,10 @@ goToLogin() {this.router.navigateByUrl('/login')}
   update() {
     this.ngFireAuth.confirmPasswordReset(this.code, this.form.value.password)
     .then(() => {
-      console.log('TODO')
+      console.log('TODO') //TODO confirmation mot de passe modifié
     })
     .catch(e => {
-      console.log(e)
+      console.log(e) //TODO gestion des erreurs
       
     })
   }

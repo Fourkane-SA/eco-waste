@@ -15,10 +15,10 @@ errorMessage: any;
 reset() {
   this.ngFireAuth.sendPasswordResetEmail(this.form.value.email)
   .then(res => {
-    console.log(res) // TODO
+    console.log(res) // TODO afficher quelque chose pour dire qu'un mail a été envoyé
   })
    .catch(e => {
-    console.log(e)
+    console.log(e) // TODO gestion des erreurs
    })
 }
 form: any;

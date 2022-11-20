@@ -50,21 +50,6 @@ goToRegister() {location.pathname="/registration"}
         this.errorMessage = "Erreur lors de la connexion avec le serveur"
       this.error = true;
     })
-    /*this.serviceUsers.get(login)
-    .then(u => {
-      if(u != null) {
-        if(password == u.password) {
-          
-        } else {
-          this.error = true;
-          this.errorMessage = "Le mot de passe est incorrect"
-        }
-      } else {
-        this.error = true;
-        this.errorMessage = "L'utilisateur n'existe pas"
-      }
-
-    })*/
 
   }
   

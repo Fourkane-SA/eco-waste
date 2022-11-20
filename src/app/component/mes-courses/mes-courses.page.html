@@ -1,4 +1,9 @@
 <br><br><br>
 <ion-content class="ion-padding">
-  <ion-title>TODO mes courses</ion-title>
+  <h1>Mes courses</h1>
+  <div *ngFor="let product of products">
+    <app-produit image="{{product[1].image}}" count="{{user.products[product[0]].count}}" expires="{{user.products[product[0]].expires}}" name="{{product[0]}}"></app-produit>
+  </div>
+  <p>Me notifier avant <strong contenteditable="true" class="editDays" id="notifyDaysBeforeExpires">{{user.notifyDaysBeforeExpires}}</strong> jours <ion-button (click)="confirm()">Valider</ion-button></p>
+  <ion-button (click)="reset()">Réinitialiser la liste</ion-button>
 </ion-content>
