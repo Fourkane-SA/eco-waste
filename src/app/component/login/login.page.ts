@@ -10,8 +10,8 @@ import { ServiceUsers } from '../../services/serviceUsers';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-goToMdpOublie() {location.pathname="/mot-de-passe-oublie"}
-goToRegister() {location.pathname="/registration"}
+goToMdpOublie() {this.router.navigateByUrl("/mot-de-passe-oublie")}
+goToRegister() {this.router.navigateByUrl("/registration")}
   form : FormGroup;
   error : boolean;
   errorMessage : string;

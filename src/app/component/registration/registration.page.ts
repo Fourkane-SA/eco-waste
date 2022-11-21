@@ -11,7 +11,7 @@ import { ServiceUsers } from '../../services/serviceUsers';
   styleUrls: ['./registration.page.scss'],
 })
 export class RegistrationPage implements OnInit {
-goToLogin() {location.pathname="/login"}
+goToLogin() {this.router.navigateByUrl("/login")}
   form : FormGroup;
   error : boolean;
   errorMessage : string;

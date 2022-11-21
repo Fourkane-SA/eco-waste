@@ -1,8 +1,67 @@
+@import "../../../theme/variables.scss";
+
+
 ion-item {
-    margin: 5%;
+    margin-bottom: 5%;
+    border: solid #EF445D;
+    border-radius: 10px;
 }
+
 
 ion-list {
     background-color: rgba($color: #000000, $alpha: 0.0);
     text-align: center;
+    padding-top: 0px;
+}
+
+h1,
+strong {
+    color: #EF445D;
+}
+
+ion-input {
+    color: #EF445D;
+    border-bottom-color: transparent;
+}
+
+
+
+ion-button {
+    color: #EF445D;
+    --border-color: #EF445D;
+
+}
+
+img {
+    border-radius: 50%;
+    padding: 15px;
+    border: solid #EF445D;
+}
+
+svg {
+    margin: 5px;
+    width: 40px;
+    border-radius: 50%;
+    padding: 7px;
+    border: solid #007CBE;
+    fill: #007CBE;
+}
+
+.logo {
+    text-align: center;
+}
+
+// Enleve la barre rouge / verte sur les input
+.item-interactive.ion-valid,
+.item-interactive.ion-invalid {
+    --highlight-background: rgba(0, 0, 0, 0);
+}
+
+.pommy {
+    padding: 0;
+    margin: 0;
+    border: none;
+    text-align: left;
+    margin-bottom: -11px;
+
 }
