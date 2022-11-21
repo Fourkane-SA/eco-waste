@@ -50,10 +50,14 @@ goToLogin() {this.router.navigateByUrl("/login")}
         else
           this.errorMessage = "Une erreur a eu lieu lors de la connexion avec le serveur"
         this.error = true
+        document.querySelector('h1').className = "error";
+        document.querySelectorAll('strong').forEach(res => res.className += " error")
       })
     } else {
       this.error = true;
       this.errorMessage = "Les mots de passe ne correspondent pas"
+      document.querySelector('h1').className = "error";
+      document.querySelectorAll('strong').forEach(res => res.className += " error")
     }
     
   }

@@ -1,6 +1,5 @@
 @import "../../../theme/variables.scss";
 
-
 ion-item {
     margin-bottom: 5%;
     border: solid #EF445D;
@@ -58,7 +57,18 @@ svg {
     padding: 0;
     margin: 0;
     border: none;
-    text-align: left;
     margin-bottom: -11px;
     
+}
+
+.badpommy {
+    border: none;
+    text-align: right;
+    margin-bottom: -16px;
+    float: right;
+
+}
+
+.error {
+    color: #00AF54;
 }

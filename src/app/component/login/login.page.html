@@ -1,11 +1,18 @@
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <ion-content class="ion-padding">
   <div class="ion-text-center" style="margin-top: 5%; margin-bottom: 7%">
     <h1>Bienvenue</h1>
   </div>
   <p>EcoWaste est une application mobile luttant contre le gaspillage alimentaire. Vous pouvez récupérer ou donner
   gratuitement des aliments, mais aussi rencontrez des personnes partageant votre combat.</p>
-  <img class="pommy" src="/assets/images/Pommy 1.png">
-  <ion-list>
+  <img *ngIf="!error" class="pommy" src="/assets/images/Pommy 1.png">
+  
+  <img *ngIf="error" class="badpommy" src="/assets/images/Pommy 4 1.png">
+  <p class="error" *ngIf="error" style="margin-top: 60px;">{{errorMessage}}</p>
+  <ion-list style="clear: right;">
     <form [formGroup]="form" (ngSubmit)="login()" style="margin-bottom: 3%">
       <ion-item>
         <ion-label position="stacked"></ion-label>
@@ -41,10 +48,5 @@
         fill-rule="evenodd" />
     </svg>
 </div>
-  <ion-card color="danger">
-    <ion-card-content [hidden]="!error">
-      {{errorMessage}}
-    </ion-card-content>
-  </ion-card>
   
 </ion-content>

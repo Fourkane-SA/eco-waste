@@ -2,10 +2,25 @@
     cursor: pointer;
 }
 
-img {
-    width: 50%;
-    height: 50%;
-    margin-right: 25%;
-    margin-top: 25%;
-    border: solid red;
+
+
+ion-toolbar, ion-tab-bar {
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        height: 50%;
+    }
+
+    ion-avatar {
+        img {
+            margin-top: 25%;
+        }
+    }
+    --background: #EF445D;
+}
+
+ion-icon, ion-label {
+    color: white;
 }

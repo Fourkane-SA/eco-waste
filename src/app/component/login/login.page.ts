@@ -45,10 +45,13 @@ goToRegister() {this.router.navigateByUrl("/registration")}
       else if (e.message.includes("(auth/user-not-found)"))
         this.errorMessage = "Aucun compte n'est associée à cette adresse mail"
       else if (e.message.includes("(auth/invalid-email)"))
-        this.errorMessage = "Veuillez entrer un mot de passe valide"
+        this.errorMessage = "Veuillez entrer une adresse mail valide"
       else
         this.errorMessage = "Erreur lors de la connexion avec le serveur"
       this.error = true;
+      document.querySelector('h1').className = "error";
+      document.querySelectorAll('strong').forEach(res => res.className += " error")
+      //document.querySelectorAll('ion-item').forEach(res => res.className += " animate__animated animate__headShake")
     })
 
   }

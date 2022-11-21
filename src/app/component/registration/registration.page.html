@@ -8,7 +8,10 @@
       <ion-grid style="margin-bottom: -8px; padding-bottom: 0px;">
         <ion-row>
           <ion-col size="9">
-            <p style="text-align: left; padding-left: 5%;">Champs obligatoires*</p>
+            <p style="text-align: left; padding-left: 5%;">
+              <strong> Champs obligatoires* </strong>
+              <br *ngIf="error"><strong class="error">{{errorMessage}} </strong>
+            </p>
           </ion-col>
           <ion-col>
             <img class="pommy" src="/assets/images/Pommy 5.png">
