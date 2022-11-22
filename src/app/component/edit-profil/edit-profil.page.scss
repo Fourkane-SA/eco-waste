@@ -18,8 +18,13 @@ ion-avatar {
 
 .content {
     margin-top: 40px;
+    background-image: url("/assets/images/Background.svg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 ion-list {
     text-align: center;
+    
 }

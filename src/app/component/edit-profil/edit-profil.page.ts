@@ -36,7 +36,6 @@ export class EditProfilPage implements OnInit {
 
   async ngOnInit() {
     let user = await this.serviceUser.get(localStorage.getItem('uid'))
-    console.log(user)
     if(user.firstname != undefined)
       this.prenom = user.firstname
     if(user.lastname != undefined)
@@ -69,7 +68,6 @@ export class EditProfilPage implements OnInit {
       u.bnews = this.form.value.bnews
       u.bhonor = this.form.value.bhonor
       u.bdata = this.form.value.bdata
-      console.log(u)
       this.serviceUser.update(u, localStorage.getItem('uid'))
     })
   }
