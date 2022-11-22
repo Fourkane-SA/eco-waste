@@ -9,13 +9,13 @@ ion-toolbar, ion-tab-bar {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        height: 50%;
+        width: auto;
+        height: 50px;
     }
 
     ion-avatar {
         img {
-            margin-top: 25%;
+            margin-top: 10%;
         }
     }
     --background: #EF445D;
@@ -24,3 +24,5 @@ ion-toolbar, ion-tab-bar {
 ion-icon, ion-label {
     color: white;
 }
+
+    

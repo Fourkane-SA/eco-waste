@@ -10,7 +10,6 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
 })
 export class MesCoursesPage implements OnInit {
 verifyDays() {
-  console.log("f")
   if(isNaN(this.user.notifyDaysBeforeExpires))
     this.user.notifyDaysBeforeExpires = 0
 }

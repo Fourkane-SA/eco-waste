@@ -14,7 +14,8 @@
             </p>
           </ion-col>
           <ion-col>
-            <img class="pommy" src="/assets/images/Pommy 5.png">
+            <img class="pommy" src="/assets/images/Pommy 5.png" *ngIf="!error">
+            <img class="pommy" src="/assets/images/Pommy 4 1.png" *ngIf="error">
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -56,9 +57,4 @@
         fill-rule="evenodd" />
     </svg>
   </div>
-  <ion-card color="danger">
-    <ion-card-content [hidden]="!error">
-      {{errorMessage}}
-    </ion-card-content>
-  </ion-card>
 </ion-content>

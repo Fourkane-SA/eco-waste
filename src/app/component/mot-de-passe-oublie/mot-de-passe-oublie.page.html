@@ -2,9 +2,10 @@
   <div class="ion-text-center" style="margin-top: 5%; margin-bottom: 7%">
     <h1>Mot de passe oublié ?</h1>
   </div>
-  
-  <ion-list>
-    <img class="pommy" src="/assets/images/Pommy 8.png">
+  <img *ngIf="error" class="badpommy" src="/assets/images/Pommy 4 1.png">
+  <p class="error" *ngIf="error" style="margin-top: 60px;">{{errorMessage}}</p>
+  <ion-list style="clear: right;">
+    <img class="pommy" *ngIf="!error" src="/assets/images/Pommy 8.png">
     <form [formGroup]="form" (ngSubmit)="reset()" style="margin-bottom: 3%">
       <ion-item>
         <ion-label position="stacked"></ion-label>
@@ -34,12 +35,4 @@
         fill-rule="evenodd" />
     </svg>
   </div>
-
-  <ion-card color="danger">
-    <ion-card-content [hidden]="!error">
-      {{errorMessage}}
-    </ion-card-content>
-  </ion-card>
-
-
 </ion-content>
