@@ -1,7 +1,6 @@
 .header {
     width: 100%;
     height: 150px;
-    background-color: aqua;
 }
 
 ion-buttons {
@@ -27,4 +26,17 @@ ion-avatar {
 ion-list {
     text-align: center;
     
+}
+
+ion-list {
+    background-color: transparent;
+}
+
+ion-item {
+    color: #EF445D;
+    --background: transparent;
+}
+
+p {
+    color: red;
 }
