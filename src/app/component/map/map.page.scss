@@ -2,3 +2,54 @@
     margin-top: 64px;
     height: 100%;
 }
+
+ion-popover::part(content) {
+    width: 90%;
+}
+
+ion-list {
+    margin-top: 5%;
+}
+
+
+.filter {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 75px;
+    right: 5px;
+    z-index: 1000000;
+}
+
+.back {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 75px;
+    left: 5px;
+    z-index: 1000000;
+}
+
+ion-popover ion-content {
+    --background: transparent;
+    border: solid #FBB13C;
+    border-width: 2px;
+    
+}
+ion-popover {
+    --background: rgba(40, 173, 218, 0);
+    --backdrop-opacity: 0.6;
+    --width: 300px;
+}
+
+strong, ion-input, ion-label {
+    color: #FBB13C;
+}
+
+ion-item ion-label {
+    --color: #FBB13C;
+}
+
+ion-button {
+    --background: #FBB13C;
+}
