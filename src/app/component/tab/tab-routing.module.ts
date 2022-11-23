@@ -48,6 +48,10 @@ const routes: Routes = [
         path: 'edit-profil',
         loadChildren: () => import('../edit-profil/edit-profil.module').then( m => m.EditProfilPageModule)
       },
+      {
+        path: 'map',
+        loadChildren: () => import('../map/map.module').then( m => m.MapPageModule)
+      },
     ]
   },
     
