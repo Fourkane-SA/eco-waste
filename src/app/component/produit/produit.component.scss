@@ -1,5 +1,4 @@
 div {
-    height: 40px;
     text-align: center;
     
     img {
@@ -25,4 +24,8 @@ div {
         top: 10px;
         position: relative;
     }
+}
+
+ion-datetime-button {
+    margin-top: 20px;
 }

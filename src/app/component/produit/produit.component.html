@@ -1,7 +1,30 @@
 <div>
-  <img src="{{image}}" />
-  <ion-button fill="outline" size="small" (click)="decrement()">-</ion-button>
-  <ion-button fill="outline" size="medium" disabled="true" [id]="'count '+name">{{count}}</ion-button>
-  <ion-button fill="outline" size="small" (click)="increment()">+</ion-button>
-  <strong>Expire le : </strong><strong contenteditable="true" [id]="name">{{expires}}</strong>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="{{image}}" />
+      
+        <ion-button fill="outline" size="small" (click)="decrement()">-</ion-button>
+        <ion-button fill="outline" size="medium" disabled="true" [id]="'count '+name">{{count}}</ion-button>
+        <ion-button fill="outline" size="small" (click)="increment()">+</ion-button>
+        
+      </ion-col>
+      <ion-col>
+        <!-- <strong contenteditable="true" [id]="name">{{expires}}</strong> -->
+        <ion-datetime-button datetime="{{name}}" ></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime  presentation="date" id="{{name}}" value="{{birth}}" required="true"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  
+  
+  
+  
+   
+  
 </div>

@@ -40,17 +40,26 @@ goToRegister() {this.router.navigateByUrl("/registration")}
           this.router.navigateByUrl('/tab/accueil')
     })
     .catch(e => {
-      if(e.message.includes("(auth/wrong-password)"))
+      if(e.message.includes("(auth/wrong-password)")) {
         this.errorMessage = "Mot de passe incorrect"
-      else if (e.message.includes("(auth/user-not-found)"))
+        document.getElementById('password').className+= " animate__animated animate__headShake"
+      }
+      else if (e.message.includes("(auth/user-not-found)")) {
         this.errorMessage = "Aucun compte n'est associée à cette adresse mail"
-      else if (e.message.includes("(auth/invalid-email)"))
+        document.getElementById('email').className+= " animate__animated animate__headShake"
+      }
+      else if (e.message.includes("(auth/invalid-email)")) {
         this.errorMessage = "Veuillez entrer une adresse mail valide"
-      else
+        document.getElementById('email').className+= " animate__animated animate__headShake"
+      }
+      else {
         this.errorMessage = "Erreur lors de la connexion avec le serveur"
+      }
+        
       this.error = true;
       document.querySelector('h1').className = "error";
       document.querySelectorAll('strong').forEach(res => res.className += " error")
+      
       //document.querySelectorAll('ion-item').forEach(res => res.className += " animate__animated animate__headShake")
     })
 

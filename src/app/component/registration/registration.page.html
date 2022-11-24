@@ -1,3 +1,7 @@
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <ion-content class="ion-padding">
   <div class="ion-text-center" style="margin-top: 5%; margin-bottom: 7%">
     <h1>Créer un compte</h1>
@@ -19,17 +23,17 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-item style="margin-top: 0px;">
+      <ion-item style="margin-top: 0px;" id="email">
         <ion-label position="stacked"></ion-label>
         <ion-input type="email" formControlName="email" placeholder="Email*" [required]="true"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked"></ion-label>
+        <ion-label position="stacked" id="password"></ion-label>
         <ion-input formControlName="password" placeholder="Mot de passe*" type="password" [required]="true">
         </ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked"></ion-label>
+        <ion-label position="stacked" id="password2"></ion-label>
         <ion-input formControlName="password2" placeholder="Confirmer le mot de passe*" type="password" [required]="true">
         </ion-input>
       </ion-item>

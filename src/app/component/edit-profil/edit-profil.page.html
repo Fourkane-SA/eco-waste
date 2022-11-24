@@ -1,14 +1,12 @@
 
 <ion-content>
-  <div class="header">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/tab/accueil"></ion-back-button>
-      </ion-buttons>
-      <ion-avatar>
-        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-  </div>
   <div class="ion-padding content">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil"></ion-back-button>
+    </ion-buttons>
+    <ion-avatar>
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
     <p>Champs obligatoires* </p>
     <ion-list>
       <form [formGroup]="form" (ngSubmit)="update()">
@@ -19,7 +17,12 @@
           <ion-input formControlName="lastname" placeholder="Nom*" value="{{nom}}" required="true"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input formControlName="age" placeholder="Age*" value="{{age}}" required="true"></ion-input>
+          <ion-datetime-button datetime="datetime" ></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime formControlName="birth" presentation="date" id="datetime" value="{{birth}}" required="true"></ion-datetime>
+            </ng-template>
+          </ion-modal>
         </ion-item>
         <ion-item>
           <ion-input formControlName="postalCode" placeholder="Ville* (code postal)" value="{{ville}}" required="true"></ion-input>

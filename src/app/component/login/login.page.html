@@ -14,11 +14,11 @@
   <p class="error" *ngIf="error" style="margin-top: 60px;">{{errorMessage}}</p>
   <ion-list style="clear: right;">
     <form [formGroup]="form" (ngSubmit)="login()" style="margin-bottom: 3%">
-      <ion-item>
+      <ion-item id="email">
         <ion-label position="stacked"></ion-label>
         <ion-input formControlName="email" placeholder="Email" [required]="true"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item id="password">
         <ion-label position="stacked"></ion-label>
         <ion-input formControlName="password" placeholder="Mot de passe" type="password" [required]="true" >
         </ion-input>

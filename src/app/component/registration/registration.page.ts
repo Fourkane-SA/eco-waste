@@ -43,10 +43,16 @@ goToLogin() {this.router.navigateByUrl("/login")}
         this.router.navigateByUrl("/login")
       })
       .catch(e => {
-        if(e.code == "auth/email-already-in-use")
+        if(e.code == "auth/email-already-in-use") {
+          document.getElementById('email').className+= " animate__animated animate__headShake"
           this.errorMessage = "Cette adresse mail est déjà utiilsée"
-        else if (e.code == "auth/weak-password")
+        }
+          
+        else if (e.code == "auth/weak-password") {
           this.errorMessage = "Le mot de passe doit contenir au moins 6 caractères"
+          document.getElementById('password').className+= " animate__animated animate__headShake"
+        }
+          
         else
           this.errorMessage = "Une erreur a eu lieu lors de la connexion avec le serveur"
         this.error = true
@@ -56,8 +62,10 @@ goToLogin() {this.router.navigateByUrl("/login")}
     } else {
       this.error = true;
       this.errorMessage = "Les mots de passe ne correspondent pas"
-      document.querySelector('h1').className = "error";
+      document.querySelector('h1').className = "error"
       document.querySelectorAll('strong').forEach(res => res.className += " error")
+      document.getElementById('password').className+= " animate__animated animate__headShake"
+      document.getElementById('password2').className+= " animate__animated animate__headShake"
     }
     
   }

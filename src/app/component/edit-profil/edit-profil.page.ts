@@ -13,7 +13,7 @@ export class EditProfilPage implements OnInit {
   serviceUser : ServiceUsers =  new ServiceUsers(this.db)
   prenom: string;
   nom: string;
-  age: string;
+  birth: any;
   ville: string;
   bio: string;
   bmessages: boolean;
@@ -24,7 +24,7 @@ export class EditProfilPage implements OnInit {
     this.form = new FormGroup({
       firstname: new FormControl(),
       lastname: new FormControl(),
-      age: new FormControl(),
+      birth: new FormControl(),
       postalCode: new FormControl(),
       bio: new FormControl(),
       bmessages: new FormControl(),
@@ -40,8 +40,8 @@ export class EditProfilPage implements OnInit {
       this.prenom = user.firstname
     if(user.lastname != undefined)
       this.nom = user.lastname
-    if(user.age != undefined)
-      this.age = user.age
+    if(user.birth != undefined)
+      this.birth = user.birth
     if(user.postalCode != undefined)
       this.ville = user.postalCode
     if(user.bio != undefined)
@@ -57,11 +57,12 @@ export class EditProfilPage implements OnInit {
   }
 
   update() {
+    console.log(this.form.value.birth)
     this.serviceUser.get(localStorage.getItem('uid'))
     .then(u => {
       u.firstname = this.form.value.firstname
       u.lastname = this.form.value.lastname
-      u.age = this.form.value.age
+      u.birth = this.form.value.birth
       u.postalCode = this.form.value.postalCode
       u.bio = this.form.value.bio
       u.bmessages = this.form.value.bmessages
