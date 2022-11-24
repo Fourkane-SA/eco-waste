@@ -38,7 +38,7 @@
       
         <img src="/assets/images/Logo 1.png">
         <ion-avatar slot="end" >
-          <img class="image" (click)="goToEditProfil()" alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          <img class="image" (click)="goToEditProfil()" src="{{url}}" />
         </ion-avatar>
     </ion-toolbar>
     
@@ -51,17 +51,17 @@
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="recette">
         <ion-icon name="restaurant-outline" id="recette"></ion-icon>
-        <ion-label>Recette</ion-label>
+        <ion-label></ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="accueil">
         <ion-icon name="home" id="home"></ion-icon>
-        <ion-label>Accueil</ion-label>
+        <ion-label></ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="mes-courses">
         <ion-icon name="basket-outline" id="basket"></ion-icon>
-        <ion-label>Mes courses</ion-label>
+        <ion-label></ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

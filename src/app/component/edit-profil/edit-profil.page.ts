@@ -65,8 +65,8 @@ export class EditProfilPage implements OnInit {
       this.bdonnees = true
 
       this.storage.ref(`profile/${localStorage.getItem('uid')}`).getDownloadURL()
-      .toPromise().then(e => this.url = e)
-      .catch(() => this.url = "https://ionicframework.com/docs/img/demos/avatar.svg")
+      .subscribe(e => this.url = e)
+      
   }
 
   update() {

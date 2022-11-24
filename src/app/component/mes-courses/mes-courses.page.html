@@ -4,8 +4,8 @@
   <div *ngFor="let product of products">
     <app-produit image="{{product[1].image}}" count="{{user.products[product[0]].count}}" expires="{{user.products[product[0]].expires}}" name="{{product[0]}}"></app-produit>
   </div>
-  <p>Me notifier avant <strong contenteditable="true" class="editDays" id="notifyDaysBeforeExpires">{{user.notifyDaysBeforeExpires}}</strong> jours <ion-button (click)="confirm()">Valider</ion-button></p>
-  <ion-button (click)="reset()">Réinitialiser la liste</ion-button>
+  <p>Me notifier avant <strong contenteditable="true" class="editDays" id="notifyDaysBeforeExpires">{{user.notifyDaysBeforeExpires}}</strong> jours <ion-button (click)="confirm()" style="--background:#EF445D">Valider</ion-button></p>
+  <ion-button (click)="reset()" style="--background: #FBB13C;">Réinitialiser la liste</ion-button>
   </div>
   
 </ion-content>

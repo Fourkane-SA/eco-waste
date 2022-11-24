@@ -7,14 +7,21 @@ div {
         object-position: 100% 10%;
         width: 40px;
         height: 40px;
+        border: solid #FBB13C;
+        border-radius: 50%;
+        padding: 6px;
+        //background-color: white;
     }
     ion-input {
-        --color: pink;
-        --border: red;
+        --color: #EF445D;
+        --border: #EF445D;
+        
     }
     ion-button {
-        --border-color: red;
-        --color: red;
+        --border-color: #EF445D;
+        --color: red*{
+        --background: white;
+    };
         margin-left: 10 px;
     }
     ion-button[size="small"] {
@@ -28,4 +35,6 @@ div {
 
 ion-datetime-button {
     margin-top: 20px;
+    
+    
 }

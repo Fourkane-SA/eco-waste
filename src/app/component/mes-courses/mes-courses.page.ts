@@ -30,7 +30,7 @@ verifyDays() {
   }
   async reset() {
     for(let p of this.nameProducts) {
-      this.user.products[p].expires = "JJ/MM/AAAA"
+      this.user.products[p].expires = "2023-01-01T11:14:00+02:00"
       this.user.products[p].count = 0
     }
     this.user.notifyDaysBeforeExpires = 0
@@ -64,7 +64,7 @@ verifyDays() {
         if(this.user.products[a] === undefined) {
           this.user.products[a] = {}
           this.user.products[a].count = 0
-          this.user.products[a].expires = undefined
+          this.user.products[a].expires = "2023-01-01T11:14:00+02:00"
         }
       }
     })
