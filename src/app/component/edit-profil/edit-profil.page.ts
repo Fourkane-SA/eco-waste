@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { ServiceUsers } from 'src/app/services/serviceUsers';
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: 'app-edit-profil',
@@ -9,6 +12,7 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
   styleUrls: ['./edit-profil.page.scss'],
 })
 export class EditProfilPage implements OnInit {
+
   form: FormGroup;
   serviceUser : ServiceUsers =  new ServiceUsers(this.db)
   prenom: string;
@@ -20,7 +24,11 @@ export class EditProfilPage implements OnInit {
   bactus: boolean;
   bhonneur: boolean;
   bdonnees: boolean;
-  constructor(private db: AngularFireDatabase,) { 
+  selectedFile: File = null;
+  fb;
+  downloadURL: Observable<string>;
+  url: string;
+  constructor(private db: AngularFireDatabase,private storage: AngularFireStorage) { 
     this.form = new FormGroup({
       firstname: new FormControl(),
       lastname: new FormControl(),
@@ -30,7 +38,8 @@ export class EditProfilPage implements OnInit {
       bmessages: new FormControl(),
       bnews: new FormControl(),
       bhonor: new FormControl(),
-      bdata: new FormControl()
+      bdata: new FormControl(),
+      img: new FormControl()
     })
   }
 
@@ -54,10 +63,13 @@ export class EditProfilPage implements OnInit {
       this.bhonneur = true
     if(user.bdata)
       this.bdonnees = true
+
+      this.storage.ref(`profile/${localStorage.getItem('uid')}`).getDownloadURL()
+      .toPromise().then(e => this.url = e)
+      .catch(() => this.url = "https://ionicframework.com/docs/img/demos/avatar.svg")
   }
 
   update() {
-    console.log(this.form.value.birth)
     this.serviceUser.get(localStorage.getItem('uid'))
     .then(u => {
       u.firstname = this.form.value.firstname
@@ -69,7 +81,35 @@ export class EditProfilPage implements OnInit {
       u.bnews = this.form.value.bnews
       u.bhonor = this.form.value.bhonor
       u.bdata = this.form.value.bdata
+      console.log(this.form.value.img)
       this.serviceUser.update(u, localStorage.getItem('uid'))
     })
+  }
+
+  
+  onFileSelected(event) {
+    const file = event.target.files[0];
+    const filePath = `profile/${localStorage.getItem('uid')}`
+    const fileRef = this.storage.ref(filePath);
+    
+    const task = this.storage.upload(`profile/${localStorage.getItem('uid')}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
+            }
+            console.log(this.fb);
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
   }
 }

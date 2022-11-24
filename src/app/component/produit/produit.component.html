@@ -11,20 +11,13 @@
       </ion-col>
       <ion-col>
         <!-- <strong contenteditable="true" [id]="name">{{expires}}</strong> -->
-        <ion-datetime-button datetime="{{name}}" ></ion-datetime-button>
+        <ion-datetime-button id="dt{{name}}" color="danger" datetime="{{name}}" ></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime  presentation="date" id="{{name}}" value="{{birth}}" required="true"></ion-datetime>
+              <ion-datetime  presentation="date" id="{{name}}" value="{{expires}}" required="true"></ion-datetime>
             </ng-template>
           </ion-modal>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
-  
-  
-  
-  
-   
-  
 </div>

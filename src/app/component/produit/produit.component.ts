@@ -11,9 +11,13 @@ export class ProduitComponent implements OnInit {
   @Input() count : number = 0
   @Input() expires : string = ""
   @Input() name : string = ""
-  constructor() { }
+  constructor() { 
+    
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   increment() {
     this.count++

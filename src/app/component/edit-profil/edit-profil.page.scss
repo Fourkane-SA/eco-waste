@@ -39,3 +39,30 @@ p {
 ion-datetime {
     color: #EF445D;
 }
+
+.add {
+    text-align: center;
+    font-size: 30px;
+    color: #007CBE;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    left: 50%;
+    position: relative;
+}
+
+svg {
+    width: 40px;
+    color: #007CBE;
+    position: relative;
+    left: 50%;
+    top: -15px;
+    background-color: white;
+    border-radius: 50%;
+    border: solid #EF445D;
+}
+
+input[type="file"] {
+    color: #EF445D;
+}

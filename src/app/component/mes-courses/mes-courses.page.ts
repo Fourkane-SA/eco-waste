@@ -21,7 +21,7 @@ verifyDays() {
     else {
       this.user.notifyDaysBeforeExpires = Number(element.innerHTML)
       for(let p of this.nameProducts) {
-        this.user.products[p].expires = document.getElementById(p).innerHTML
+        this.user.products[p].expires = document.getElementById(p).children[0].getAttribute('value')
         this.user.products[p].count = document.getElementById('count '+p).innerHTML
       }
       await this.serviceUser.update(this.user, localStorage.getItem('uid'))
@@ -58,12 +58,17 @@ verifyDays() {
     .then(res => {
       this.user = res
       for(let a of this.nameProducts) {
+        if(this.user.products === undefined) {
+          this.user.products = {}
+        }
         if(this.user.products[a] === undefined) {
+          this.user.products[a] = {}
           this.user.products[a].count = 0
-          this.user.products[a].expires = "JJ/MM/AAAA"
+          this.user.products[a].expires = undefined
         }
       }
     })
+    
   }
 
 }

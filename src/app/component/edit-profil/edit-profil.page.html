@@ -4,12 +4,23 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tab/accueil"></ion-back-button>
     </ion-buttons>
+    
     <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <img alt="Silhouette of a person's head" src="{{url}}" />
     </ion-avatar>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+      <title>Add</title>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+        d="M256 112v288M400 256H112" />
+    </svg>
     <p>Champs obligatoires* </p>
+    
     <ion-list>
       <form [formGroup]="form" (ngSubmit)="update()">
+        <ion-item>
+          <label for="file">Photo de profil</label>
+          <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
+        </ion-item>
         <ion-item>
           <ion-input formControlName="firstname" placeholder="Prénom*" value="{{prenom}}" required="true"></ion-input>
         </ion-item>
