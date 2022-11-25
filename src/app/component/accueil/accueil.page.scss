@@ -1,9 +1,5 @@
 .content {
     margin-top: 60px;
-    background-image: url("/assets/images/Background.svg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .location {
@@ -14,4 +10,7 @@
 
 ion-searchbar {
     color: #EF445D;
+}
+ion-content {
+    --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
 }

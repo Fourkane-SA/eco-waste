@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PosterAnnoncePageRoutingModule } from './poster-annonce-routing.module';
 
 import { PosterAnnoncePage } from './poster-annonce.page';
+import { AlimentButtonComponent } from '../aliment-button/aliment-button.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PosterAnnoncePage } from './poster-annonce.page';
     IonicModule,
     PosterAnnoncePageRoutingModule
   ],
-  declarations: [PosterAnnoncePage]
+  declarations: [PosterAnnoncePage, AlimentButtonComponent]
 })
 export class PosterAnnoncePageModule {}

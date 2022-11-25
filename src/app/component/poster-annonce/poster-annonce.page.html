@@ -1,4 +1,25 @@
-<br><br><br>
-<ion-content class="ion-padding">
-  <ion-title>TODO poster une annonce</ion-title>
+<ion-content>
+  <div class="content" style="padding-top: 60px;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg"></ion-back-button>
+    </ion-buttons>
+    <div class="body">
+      <h1>Vous souhaitez poster une annonce ?</h1>
+      <p>Sélectionnez le type d'aliment que vous souhaitez distribuer</p>
+      <ion-progress-bar value="100" color="danger"></ion-progress-bar>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let aliment of aliments" size="4">
+            <img src="{{aliment.image}}">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-input type="file" ></ion-input>
+      <ion-button disabled="true">Prendre une photo</ion-button>
+      <ion-textarea rows="7" placeholder="Description obligatoire" required="true"></ion-textarea>
+      <div style="height: 250px; width: 100%; border: solid #EF445D; border-radius: 10px;" id="map"></div>
+      <ion-button>Poster</ion-button>
+    </div>
+  </div>
 </ion-content>

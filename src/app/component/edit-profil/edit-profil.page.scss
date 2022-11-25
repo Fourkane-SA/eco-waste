@@ -12,11 +12,8 @@ ion-avatar {
 }
 
 
-.content {
-    background-image: url("/assets/images/Background.svg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+ion-content {
+    --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
 }
 
 ion-list {

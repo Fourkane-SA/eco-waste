@@ -4,19 +4,14 @@ ion-content {
 
 div {
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 10px;
 }
 
 
-.editDays {
-    border: solid #EF445D;
-    width: 10%;
-    height: 10%;
+ion-content {
+    --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
 }
-.content {
-    background-image: url("/assets/images/Background.svg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+h1 {
+    color: #EF445D;
 }
