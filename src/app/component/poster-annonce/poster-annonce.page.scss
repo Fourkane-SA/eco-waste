@@ -9,9 +9,9 @@ ion-progress-bar {
     height: 1px;
 }
 
-/*ion-content {
+ion-content {
     --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
-}*/
+}
 
 ion-col {
     img {
@@ -28,4 +28,12 @@ ion-textarea {
     --placeholder-opacity: 1;
     border-radius: 10px;
     border: solid #EF445D;
+}
+
+div {
+    margin-top: 10px;
+}
+
+ion-button, ion-input {
+    padding-top: 5px;
 }

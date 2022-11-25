@@ -9,17 +9,43 @@
       <ion-progress-bar value="100" color="danger"></ion-progress-bar>
       <ion-grid>
         <ion-row>
+          <ion-radio-group (ionChange)="updateRadioValue($event)" value="aliments">
           <ion-col *ngFor="let aliment of aliments" size="4">
             <img src="{{aliment.image}}">
-            <ion-checkbox></ion-checkbox>
+            <ion-radio value="{{aliment.name}}"></ion-radio>
           </ion-col>
+          </ion-radio-group>
         </ion-row>
       </ion-grid>
-      <ion-input type="file" ></ion-input>
+      <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
       <ion-button disabled="true">Prendre une photo</ion-button>
-      <ion-textarea rows="7" placeholder="Description obligatoire" required="true"></ion-textarea>
+      <ion-textarea rows="7" placeholder="Description obligatoire" required="true" [(ngModel)]="description"></ion-textarea>
       <div style="height: 250px; width: 100%; border: solid #EF445D; border-radius: 10px;" id="map"></div>
-      <ion-button>Poster</ion-button>
-    </div>
+      <p>Point relais : </p>
+      <p>{{point}}</p>
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>Filtre</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-input placeholder="Entrez une adresse"></ion-input>
+            <ion-item>
+              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-label>Elargir à 5 km</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-label>Elargir à 10 km</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-label>Elargir à 15 km</ion-label>
+            </ion-item>
+          </div>
+        </ion-accordion>
+        </ion-accordion-group>
+        <ion-button (click)="poster()">Poster</ion-button>
+      </div>
   </div>
 </ion-content>

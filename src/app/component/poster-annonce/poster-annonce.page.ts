@@ -2,6 +2,10 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { serviceProduits } from 'src/app/services/serviceProduits';
 import * as L from 'leaflet';
+import { Annonce } from 'src/app/models/Annonce';
+import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-poster-annonce',
@@ -9,8 +13,16 @@ import * as L from 'leaflet';
   styleUrls: ['./poster-annonce.page.scss'],
 })
 export class PosterAnnoncePage implements AfterViewInit {
+  downloadURL: any;
+  fb: any;
+  
+  updateRadioValue($event: any) {
+    this.aliment = $event.detail.value
+  }
+  
 
   sp : serviceProduits = new serviceProduits(this.db)
+  sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   aliments : any
   private map : L.Map;
   posX : number = 45.7663;
@@ -18,12 +30,11 @@ export class PosterAnnoncePage implements AfterViewInit {
   isOpen: boolean = false
   relaiPoint: L.LatLng[] = []
   icon : L.Icon
-  @ViewChild('popover') popover;
-  
-  openPopOver(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
+  point: string = undefined
+  id : string = ""
+  description: string;
+  aliment : string = undefined
+  photoSend: boolean = false;
 
   setPosition(position) {
     
@@ -63,18 +74,22 @@ export class PosterAnnoncePage implements AfterViewInit {
         icon: this.icon,
         title: data.val().name
       })
-      .on('click',clickMarker)
+      .on('click',(evt) => {
+        this.point = evt.target.options.title
+      })
       .addTo(this.map)
     }))
 
 
-    function clickMarker() {
-      alert(this.options.title)
-    }
-
   }
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for(let i = 0; i < 20; i++) {
+      this.id += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    console.log(this.id)
+   }
 
   async ngAfterViewInit() {
     let aliments = await this.sp.getAll()
@@ -82,5 +97,46 @@ export class PosterAnnoncePage implements AfterViewInit {
     this.initMap();
   }
 
+  poster() {
+    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point)
+    if(this.aliment === undefined) {
+      alert("Veuillez choisir un aliment")
+    } else if (this.description === undefined) {
+      alert("Veuillez entrer une description")
+    } else if (!this.photoSend) {
+      alert("Veuillez choisir une photo")
+    } else if (this.point === undefined) {
+      alert("Veuillez choisir un point relais")
+    } else{
+      this.sa.create(annonce, this.id)
+    }
+  }
+
+  onFileSelected(event) {
+    const file = event.target.files[0];
+    const filePath = `annonce/${this.id}`
+    const fileRef = this.storage.ref(filePath);
+    
+    const task = this.storage.upload(`annonce/${this.id}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
+              this.photoSend = true
+            }
+            console.log(this.fb);
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
 
 }
