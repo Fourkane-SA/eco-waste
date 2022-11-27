@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MesCoursesPageRoutingModule } from './mes-courses-routing.module';
 
 import { MesCoursesPage } from './mes-courses.page';
-import { ProduitComponent } from 'src/app/component/produit/produit.component';
+import { ProduitComponent } from 'src/app/components/produit/produit.component';
 
 @NgModule({
   imports: [

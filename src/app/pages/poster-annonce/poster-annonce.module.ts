@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PosterAnnoncePageRoutingModule } from './poster-annonce-routing.module';
 
 import { PosterAnnoncePage } from './poster-annonce.page';
-import { AlimentButtonComponent } from '../aliment-button/aliment-button.component';
+import { AlimentButtonComponent } from 'src/app/components/aliment-button/aliment-button.component';
 
 @NgModule({
   imports: [
