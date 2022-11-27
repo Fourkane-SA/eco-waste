@@ -10,9 +10,8 @@
       <ion-grid>
         <ion-row>
           <ion-radio-group (ionChange)="updateRadioValue($event)" value="aliments">
-          <ion-col *ngFor="let aliment of aliments" size="4">
-            <img src="{{aliment.image}}">
-            <ion-radio value="{{aliment.name}}"></ion-radio>
+          <ion-col *ngFor="let aliment of aliments">
+            <app-aliment-button image="{{aliment.image}}" name="{{aliment.name}}" ></app-aliment-button>
           </ion-col>
           </ion-radio-group>
         </ion-row>

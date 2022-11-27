@@ -29,11 +29,13 @@ export class MapPage implements AfterViewInit {
   icon : L.Icon
   @ViewChild('popover') popover;
   
+  // Permet l'ouverture de la fenetre des 
   openPopOver(e: Event) {
     this.popover.event = e;
     this.isOpen = true;
   }
 
+  // Met à jour la position sur la map
   setPosition(position) {
     
     this.posX = position.coords.latitude
@@ -42,6 +44,7 @@ export class MapPage implements AfterViewInit {
     
   }
 
+  // Initialise la map
   private initMap(): void {
     var x = 45.7663
     var y = 4.8883

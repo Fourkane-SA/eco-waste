@@ -43,19 +43,19 @@
         </ion-item>
         <ion-item>
           <ion-label>Notifications messages</ion-label>
-          <ion-checkbox formControlName="bmessages" checked="{{bmessages}}"></ion-checkbox>
+          <ion-toggle formControlName="bmessages" checked="{{bmessages}}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label>Notifications actualités</ion-label>
-          <ion-checkbox formControlName="bnews" checked="{{bactus}}"></ion-checkbox>
+          <ion-toggle formControlName="bnews" checked="{{bactus}}"></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label>Engagement sur l'honneur</ion-label>
-          <ion-checkbox formControlName="bhonor" checked="{{bhonneur}}"></ion-checkbox>
+          <ion-toggle formControlName="bhonor" checked="{{bhonneur}}"></ion-toggle>
         </ion-item>
         <ion-item >
           <ion-label text-wrap>Vos données peuvent être récoltées pour que nous puissions les analyser et cconnaître nos performances.</ion-label>
-          <ion-checkbox formControlName="bdata" checked="{{bdonnees}}"></ion-checkbox>
+          <ion-toggle formControlName="bdata" checked="{{bdonnees}}"></ion-toggle>
         </ion-item>
         <ion-button type="submit" class="center" [disabled]="!form.valid">Enregistrer</ion-button>
       </form>

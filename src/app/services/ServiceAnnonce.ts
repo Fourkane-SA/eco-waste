@@ -8,4 +8,8 @@ export class ServiceAnnonce {
     create(annonce : Annonce, id : string) {
         this.db.object('annonce/' + id).set(annonce)
     }
+
+    async get(id : string) {
+        return (await this.db.database.ref("annonce/" + id).get()).val()
+    }
 }

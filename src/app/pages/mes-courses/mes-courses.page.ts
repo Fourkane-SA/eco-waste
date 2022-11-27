@@ -13,6 +13,8 @@ verifyDays() {
   if(isNaN(this.user.notifyDaysBeforeExpires))
     this.user.notifyDaysBeforeExpires = 0
 }
+
+  // met à jour le nombre de jours avant d'avoir une notification
   async confirm() {
     let element : HTMLElement = document.getElementById("notifyDaysBeforeExpires")
     if(isNaN(Number(element.innerHTML))) {
@@ -28,9 +30,10 @@ verifyDays() {
       // TODO vérifier que les dates d'expiration sont corrects
     } 
   }
+
   async reset() {
     for(let p of this.nameProducts) {
-      this.user.products[p].expires = "2023-01-01T11:14:00+02:00"
+      this.user.products[p].expires = null
       this.user.products[p].count = 0
     }
     this.user.notifyDaysBeforeExpires = 0
@@ -64,7 +67,7 @@ verifyDays() {
         if(this.user.products[a] === undefined) {
           this.user.products[a] = {}
           this.user.products[a].count = 0
-          this.user.products[a].expires = "2023-01-01T11:14:00+02:00"
+          this.user.products[a].expires = null
         }
       }
     })

@@ -29,7 +29,7 @@ export class EditProfilPage implements OnInit {
   downloadURL: Observable<string>;
   url: string;
   constructor(private db: AngularFireDatabase,private storage: AngularFireStorage) { 
-    this.form = new FormGroup({
+    this.form = new FormGroup({ // Initialise les variables du formulaire
       firstname: new FormControl(),
       lastname: new FormControl(),
       birth: new FormControl(),
@@ -43,6 +43,7 @@ export class EditProfilPage implements OnInit {
     })
   }
 
+  // recupère les informations de l'utulisateur connecté et remplis les champs déjà présents dans la base de donnée
   async ngOnInit() {
     let user = await this.serviceUser.get(localStorage.getItem('uid'))
     if(user.firstname != undefined)
@@ -69,6 +70,7 @@ export class EditProfilPage implements OnInit {
       
   }
 
+  // Mets à jour l'utilisateur
   update() {
     this.serviceUser.get(localStorage.getItem('uid'))
     .then(u => {
@@ -81,12 +83,11 @@ export class EditProfilPage implements OnInit {
       u.bnews = this.form.value.bnews
       u.bhonor = this.form.value.bhonor
       u.bdata = this.form.value.bdata
-      console.log(this.form.value.img)
       this.serviceUser.update(u, localStorage.getItem('uid'))
     })
   }
 
-  
+  //Permet l'upload d'un fichier
   onFileSelected(event) {
     const file = event.target.files[0];
     const filePath = `profile/${localStorage.getItem('uid')}`
@@ -102,7 +103,6 @@ export class EditProfilPage implements OnInit {
             if (url) {
               this.fb = url;
             }
-            console.log(this.fb);
           });
         })
       )

@@ -13,6 +13,7 @@ goToLogin() {this.router.navigateByUrl('/login')}
   error: any;
   errorMessage: any;
   code : string;
+  
   update() {
     this.ngFireAuth.confirmPasswordReset(this.code, this.form.value.password)
     .then(() => {

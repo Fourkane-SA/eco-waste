@@ -52,6 +52,10 @@ const routes: Routes = [
         path: 'map',
         loadChildren: () => import('../map/map.module').then( m => m.MapPageModule)
       },
+      {
+        path: 'annonce/:id',
+        loadChildren: () => import('../annonce/annonce.module').then( m => m.AnnoncePageModule)
+      },
     ]
   },
     

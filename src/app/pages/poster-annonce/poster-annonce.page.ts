@@ -6,6 +6,7 @@ import { Annonce } from 'src/app/models/Annonce';
 import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-poster-annonce',
@@ -36,14 +37,15 @@ export class PosterAnnoncePage implements AfterViewInit {
   aliment : string = undefined
   photoSend: boolean = false;
 
+  //Met à joru la position
   setPosition(position) {
-    
     this.posX = position.coords.latitude
     this.posY = position.coords.longitude
     this.map.flyTo(L.latLng(this.posX, this.posY))
     
   }
 
+  // Initialise la map
   private initMap(): void {
     var x = 45.7663
     var y = 4.8883
@@ -83,20 +85,22 @@ export class PosterAnnoncePage implements AfterViewInit {
 
   }
 
-  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {
+  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage,public router: Router) {
+    // Génération aléatoire de l'identifiant de l'annonce
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for(let i = 0; i < 20; i++) {
       this.id += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
-    console.log(this.id)
    }
 
   async ngAfterViewInit() {
+    // Initialise la liste des aliments et la map
     let aliments = await this.sp.getAll()
     this.aliments = Object.values(aliments)
     this.initMap();
   }
 
+  //Vérifie que tous les champs obligatoires ont été postés et crée une nouvelle annonce
   poster() {
     let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point)
     if(this.aliment === undefined) {
@@ -108,10 +112,12 @@ export class PosterAnnoncePage implements AfterViewInit {
     } else if (this.point === undefined) {
       alert("Veuillez choisir un point relais")
     } else{
-      this.sa.create(annonce, this.id)
+      this.sa.create(annonce, this.id) // Crée une nouvelle annonce
+      this.router.navigate(['tab', 'annonce', this.id]) // redirige vers la nouvelle annonce
     }
   }
 
+  // permet d'upload une image
   onFileSelected(event) {
     const file = event.target.files[0];
     const filePath = `annonce/${this.id}`
