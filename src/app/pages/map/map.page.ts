@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import '@geoman-io/leaflet-geoman-free';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 
 
-export class MapPage implements AfterViewInit {
+export class MapPage implements AfterViewInit, OnDestroy   {
   goToHome() {
     this.router.navigateByUrl('/tab/accueil')
   }
@@ -56,7 +56,6 @@ export class MapPage implements AfterViewInit {
       zoom: 13,
       zoomControl: false
     });
-
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       minZoom: 3,
@@ -100,6 +99,9 @@ export class MapPage implements AfterViewInit {
   constructor(public router: Router,private db: AngularFireDatabase) { 
     this.posX = 45.7663
     this.posY = 4.8883
+  }
+  ngOnDestroy(): void {
+    console.log("destroy")
   }
 
   ngAfterViewInit() {

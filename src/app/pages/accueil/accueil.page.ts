@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
+import { Annonce } from 'src/app/models/Annonce';
+import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 
 @Component({
   selector: 'app-articles',
@@ -8,13 +11,18 @@ import { Router } from '@angular/router';
 })
 export class AccueilPage implements OnInit {
   goToMap() {
-    this.router.navigateByUrl('/tab/map')
+    window.location.pathname = '/tab/map'
   }
 
-  constructor(public router: Router,) { }
+  sa : ServiceAnnonce = new ServiceAnnonce(this.db)
+  annonces : Annonce[] = []
+
+  constructor(public router: Router,private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    
+    this.sa.getAll()
+    .then(res =>  {
+      this.annonces = Object.values(res)
+  })
   }
-
 }

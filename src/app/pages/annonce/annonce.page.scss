@@ -1,6 +1,6 @@
 ion-avatar {
     margin: auto;
-    margin-top: -40px;
+    //margin-top: -40px;
     width: 120px;
     height: 120px;
     outline: solid #EF445D;
@@ -12,4 +12,56 @@ ion-avatar {
     margin-top: -60px;
     background-repeat: no-repeat;
     background-position: center center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
+}
+
+h1 {
+    color: #EF445D;
+}
+
+p {
+    img {
+        border: solid 1px #FBB13C;
+        border-radius: 50%;
+        margin: 7px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.profilLink {
+    color: #EF445D;
+    position: absolute;
+    right: 60px;
+    top: 150px;
+}
+
+.pommy {
+    color: #EF445D;
+    position: absolute;
+    left: 60px;
+    top: 106px;
+}
+
+
+.content {
+    background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
+}
+
+.aliment {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 28px;
+    top: 369px;
+    border: solid 1px #FBB13C;
+    margin: 7px;
+    border-radius: 50%;
+}
+
+.favoris {
+    position: absolute;
+    right: 28px;
+    top: 369px;
 }

@@ -12,4 +12,8 @@ export class ServiceAnnonce {
     async get(id : string) {
         return (await this.db.database.ref("annonce/" + id).get()).val()
     }
+
+    async getAll() {
+        return (await this.db.database.ref('annonce/').get()).val()
+    }
 }
