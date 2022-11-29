@@ -18,6 +18,7 @@ export class EditProfilPage implements OnInit {
   prenom: string;
   nom: string;
   birth: any;
+  birthFormat : string = "";
   ville: string;
   bio: string;
   bmessages: boolean;
@@ -50,8 +51,15 @@ export class EditProfilPage implements OnInit {
       this.prenom = user.firstname
     if(user.lastname != undefined)
       this.nom = user.lastname
-    if(user.birth != undefined)
+    if(user.birth != undefined) {
       this.birth = user.birth
+      
+      //TODO faire un eventListener
+      setInterval(() => {
+        this.birthFormat = new Date(this.form.value.birth).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+      },10)
+    }
+      
     if(user.postalCode != undefined)
       this.ville = user.postalCode
     if(user.bio != undefined)

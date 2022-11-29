@@ -4,23 +4,21 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
     </ion-buttons>
-    
     <ion-avatar>
       <img src="{{url}}" />
     </ion-avatar>
-    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-      <title>Add</title>
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-        d="M256 112v288M400 256H112" />
-    </svg>
-    <p>Champs obligatoires* </p>
+    <label>
+      <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" style="display:none;" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+        <title>Modifier la photo de profil</title>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+          d="M256 112v288M400 256H112" />
+      </svg>
+    </label>
+    <p><strong>Champs obligatoires* </strong></p>
     
     <ion-list>
       <form [formGroup]="form" (ngSubmit)="update()">
-        <ion-item>
-          <label for="file">Photo de profil</label>
-          <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
-        </ion-item>
         <ion-item>
           <ion-input formControlName="firstname" placeholder="Prénom*" value="{{prenom}}" required="true"></ion-input>
         </ion-item>
@@ -28,8 +26,9 @@
           <ion-input formControlName="lastname" placeholder="Nom*" value="{{nom}}" required="true"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-datetime-button datetime="datetime" ></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
+          <ion-button id="date">{{birthFormat}}</ion-button>
+          <ion-datetime-button datetime="datetime" hidden="true"></ion-datetime-button>
+          <ion-modal trigger="date" [keepContentsMounted]="true">
             <ng-template>
               <ion-datetime formControlName="birth" presentation="date" id="datetime" value="{{birth}}" required="true"></ion-datetime>
             </ng-template>
@@ -53,11 +52,11 @@
           <ion-label>Engagement sur l'honneur</ion-label>
           <ion-toggle formControlName="bhonor" checked="{{bhonneur}}"></ion-toggle>
         </ion-item>
-        <ion-item >
+        <ion-item style="margin-top: 60px;">
           <ion-label text-wrap>Vos données peuvent être récoltées pour que nous puissions les analyser et cconnaître nos performances.</ion-label>
           <ion-toggle formControlName="bdata" checked="{{bdonnees}}"></ion-toggle>
         </ion-item>
-        <ion-button type="submit" class="center" [disabled]="!form.valid">Enregistrer</ion-button>
+        <ion-button  type="submit" class="center enregistrer" [disabled]="!form.valid">Enregistrer</ion-button>
       </form>
     </ion-list>
   </div>

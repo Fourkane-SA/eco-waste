@@ -30,8 +30,8 @@ ion-item {
     --background: transparent;
 }
 
-p {
-    color: red;
+strong {
+    color: #EF445D;
 }
 
 ion-datetime {
@@ -68,4 +68,13 @@ input[type="file"] {
 ion-toggle {
     --background-checked: #00AF54;
     --background: #EF445D;
+}
+
+#date {
+    --background:#EF445D;
+}
+
+.enregistrer {
+    margin-top: 20px;
+    --background:#EF445D;
 }
