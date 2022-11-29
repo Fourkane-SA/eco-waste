@@ -17,9 +17,8 @@ div {
     }
     ion-button {
         --border-color: #EF445D;
-        --color: red*{
+        --color: red
         --background: white;
-    };
         margin-left: 10 px;
     }
     ion-button[size="small"] {
@@ -35,4 +34,10 @@ ion-datetime-button {
     margin-top: 10px;
     
     
+}
+
+
+.date, .date:hover {
+    --background: #EF445D;
+    color: white;
 }

@@ -11,12 +11,7 @@
       </ion-row>
     </ion-grid>
     <div style="text-align: center;" *ngFor="let annonce of annonces">
-      <div routerLink="/tab/annonce/{{annonce.id}}">
-        <p>aliment : {{annonce.aliment}}</p>
-        <p>user id : {{annonce.uid}} (photo TODO)</p>
-        <p>id : {{annonce.id}}</p>
-        <p></p>
-      </div>
+      <app-annonce-home annonceId="{{annonce.id}}"></app-annonce-home>
     </div>
   </div>
 </ion-content>

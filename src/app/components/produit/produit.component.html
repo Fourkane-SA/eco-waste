@@ -3,17 +3,16 @@
     <ion-row>
       <ion-col style="text-align: right;">
         <img src="{{image}}" />
-      
         <ion-button fill="outline" size="small" (click)="decrement()">-</ion-button>
         <ion-button fill="outline" size="medium" disabled="true" [id]="'count '+name">{{count}}</ion-button>
         <ion-button fill="outline" size="small" (click)="increment()">+</ion-button>
-        
       </ion-col>
-      <ion-col>
-        <ion-datetime-button id="dt{{name}}" color="danger" datetime="{{name}}" style="top: 0; position:absolute"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
+      <ion-col style="text-align: left;">
+        <ion-button id="modal{{name}}" class="date">{{dateFormat}}</ion-button>
+        <ion-datetime-button hidden id="dt{{name}}" color="danger" datetime="{{name}}" style="top: 0; position:absolute"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true" trigger="modal{{name}}">
             <ng-template>
-              <ion-datetime  presentation="date" id="{{name}}" value="{{expires}}" required="true"></ion-datetime>
+              <ion-datetime  presentation="date" id="{{name}}" value="{{expires}}" required="true" [(ngModel)]="expires"></ion-datetime>
             </ng-template>
           </ion-modal>
       </ion-col>

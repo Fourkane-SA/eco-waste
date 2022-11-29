@@ -1,9 +1,10 @@
 <ion-content>
   <div class="content" style="padding-top: 60px;">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg"></ion-back-button>
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
     </ion-buttons>
     <h1 >Mes courses</h1>
+  <img src="/assets/images/Pommy 3.svg" *ngIf="products.length > 0">
   <div *ngFor="let product of products">
     <app-produit image="{{product[1].image}}" count="{{user.products[product[0]].count}}" expires="{{user.products[product[0]].expires}}" name="{{product[0]}}"></app-produit>
   </div>

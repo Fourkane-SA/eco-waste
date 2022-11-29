@@ -1,24 +1,27 @@
- <div class="content" style="padding-top: 60px;">
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
-  </ion-buttons>
-  <div class="ion-padding" style="text-align: center;">
-    <ion-avatar>
-      <img src="{{userPhoto}}">
-    </ion-avatar>
-    <img class="pommy" src="/assets/images/Pommy 1.png">
-    <p class="profilLink" >Voir le profil</p>
-    <div style="background-image: url({{annoncePhoto}});" class="photo">
+<div class="content" style="padding-top: 75px;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
+    </ion-buttons>
+    <div class="ion-padding" style="text-align: center;">
+      <ion-avatar>
+        <img src="{{userPhoto}}">
+      </ion-avatar>
+      <div style="text-align: left; margin-top: -140px;">
+        <p class="profilLink" style="text-align: right;">Voir le profil</p>
+        <img class="pommy" src="/assets/images/Pommy 1.png">
+        
+      </div>
+      <div style="background-image: url({{annoncePhoto}});" class="photo">
+      </div>
+      <img class="aliment" src="{{alimentPhoto}}">
+      <img class="favoris" src="/assets/images/heart.svg">
+      <h1>TODO ajouter un titre</h1>
+      <p style="text-align: left; color: #EF445D;">{{annonce.description}}</p>
+      <p style="text-align: left; color: #FBB13C;">
+        <img src="/assets/images/bxs_message-alt.svg"> Envoyer un message
+      </p>
+      <p style="text-align: left; color: #FBB13C;">
+        <img src="/assets/images/prelais.svg"> Voir le point relais le plus proche
+      </p>
     </div>
-    <img class="aliment" src="{{alimentPhoto}}">
-    <img class="favoris" src="/assets/images/heart.svg">
-    <h1>TODO ajouter un titre</h1>
-    <p style="text-align: left; color: #EF445D;">{{annonce.description}}</p>
-    <p style="text-align: left; color: #FBB13C;">
-      <img src="/assets/images/bxs_message-alt.svg"> Envoyer un message
-    </p>
-    <p style="text-align: left; color: #FBB13C;">
-      <img src="/assets/images/prelais.svg"> Voir le point relais le plus proche
-    </p>
   </div>
-</div>

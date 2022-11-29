@@ -42,7 +42,7 @@ verifyDays() {
 
   serviceProduit : serviceProduits = new serviceProduits(this.db)
   serviceUser : ServiceUsers =  new ServiceUsers(this.db)
-  products : [string, unknown][]
+  products : [string, unknown][] = []
   nameProducts : string[]  = []
   user : any = {}
   dateExpr : RegExp = /(1[0-3]|0[1-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/20[2-9][1-9]/ // Date en format DD/MM/AAAA de 2021 à 2099

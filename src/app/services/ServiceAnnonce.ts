@@ -9,11 +9,11 @@ export class ServiceAnnonce {
         this.db.object('annonce/' + id).set(annonce)
     }
 
-    async get(id : string) {
+    async get(id : string) : Promise<Annonce> {
         return (await this.db.database.ref("annonce/" + id).get()).val()
     }
 
-    async getAll() {
+    async getAll() : Promise<Annonce[]>{
         return (await this.db.database.ref('annonce/').get()).val()
     }
 }
