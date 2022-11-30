@@ -8,14 +8,16 @@ import { AccueilPageRoutingModule } from './accueil-routing.module';
 
 import { AccueilPage } from './accueil.page';
 import { AnnonceHomeComponent } from 'src/app/components/annonce-home/annonce-home.component';
+import { SharedModule } from 'src/app/module/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AccueilPageRoutingModule
+    AccueilPageRoutingModule,
+    SharedModule
   ],
-  declarations: [AccueilPage, AnnonceHomeComponent]
+  declarations: [AccueilPage]
 })
 export class AccueilPageModule {}
