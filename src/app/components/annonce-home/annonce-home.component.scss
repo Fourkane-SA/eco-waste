@@ -4,7 +4,7 @@ div {
 }
 
 .annonceImage {
-    width: 80%;
+    width: 100%;
     height: 100px;
     object-fit: cover;
     border-radius: 10px;
@@ -13,11 +13,30 @@ div {
 
 ion-avatar {
     margin: auto;
-    margin-top: -30px;
 }
 
+ion-grid {
+
+}
+
+.info-row{
+    margin-top: -50px;
+}
 .aliment {
     text-align: left;
     margin-left: 15%;
     margin-top: -40px;
+}
+
+ion-chip {
+    --background: #ffffff;
+    --color: #EF445D;
+}
+
+ion-icon{
+    font-size: 24px;
+    color: white;
+}
+ion-icon[name="star"]{
+    color: #ffb300;
 }

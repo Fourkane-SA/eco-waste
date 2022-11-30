@@ -1,7 +1,47 @@
 <div routerLink="/tab/annonce/{{annonce.id}}">
-  <img class="annonceImage" src="{{annonceImageURL}}">
-  <ion-avatar>
-    <img src="{{userImageURL}}">
-  </ion-avatar>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img class="annonceImage" src="{{annonceImageURL}}">
+
+      </ion-col>
+    </ion-row>
+    <ion-row class="info-row ion-align-items-start ion-justify-content-between">
+      <ion-col class="ion-align-self-start" style="text-align: left; margin-left: -6px;">
+        <ion-chip>Default</ion-chip>
+
+      </ion-col>
+      <ion-col >
+        <ion-avatar>
+          <img src="{{userImageURL}}">
+        </ion-avatar>
+      </ion-col>
+
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col style="text-align: right;">
+              <ion-icon name="heart-outline" ></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-start" style="text-align: right;">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+         
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
   <!--<div class="aliment">{{annonce.aliment}}</div>-->
+
 </div>
+
+

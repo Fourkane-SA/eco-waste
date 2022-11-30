@@ -1,4 +1,7 @@
 <br><br><br>
 <ion-content class="ion-padding">
-  <ion-title>TODO mes annonces</ion-title>
+  <div style="text-align: center;" *ngFor="let annonce of mesannonces">
+
+    <app-annonce-home annonceId="{{annonce.id}}"></app-annonce-home>
+  </div>
 </ion-content>
