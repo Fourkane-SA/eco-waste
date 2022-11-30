@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { FavorisPageRoutingModule } from './favoris-routing.module';
 
 import { FavorisPage } from './favoris.page';
+import { SharedModule } from 'src/app/module/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FavorisPageRoutingModule
+    FavorisPageRoutingModule,
+    SharedModule
   ],
   declarations: [FavorisPage]
 })

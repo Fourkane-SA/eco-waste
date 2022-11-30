@@ -1,4 +1,5 @@
-<br><br><br>
-<ion-content class="ion-padding">
-  <ion-title>TODO favoris</ion-title>
-</ion-content>
+<div class="content" style="padding-top: 75px;">
+  <div style="text-align: center;" *ngFor="let annonce of user.favoris">
+    <app-annonce-home annonceId="{{annonce}}"></app-annonce-home>
+  </div>
+</div>

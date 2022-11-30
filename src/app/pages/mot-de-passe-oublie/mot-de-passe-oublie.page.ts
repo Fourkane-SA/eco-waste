@@ -27,7 +27,6 @@ reset() {
 
   })
    .catch(e => {
-    console.log(e.code) // TODO gestion des erreurs
     switch (e.code) {
       case 'auth/invalid-email':
         this.errorMessage = "Veuillez entrez une adresse mail valide"

@@ -9,7 +9,7 @@
     </ion-row>
     <ion-row class="info-row ion-align-items-start ion-justify-content-between">
       <ion-col class="ion-align-self-start" style="text-align: left; margin-left: -6px;">
-        <ion-chip>Default</ion-chip>
+        <ion-chip>{{annonce.aliment}}</ion-chip>
 
       </ion-col>
       <ion-col >
@@ -22,7 +22,8 @@
         <ion-grid>
           <ion-row>
             <ion-col style="text-align: right;">
-              <ion-icon name="heart-outline" ></ion-icon>
+              <ion-icon *ngIf="fav" name="heart"></ion-icon>
+              <ion-icon *ngIf="!fav" name="heart-outline"></ion-icon>
             </ion-col>
           </ion-row>
           <ion-row>

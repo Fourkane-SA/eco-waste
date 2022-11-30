@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { TabPageRoutingModule } from './tab-routing.module';
 
 import { TabPage } from './tab.page';
+import { AnnonceHomeComponent } from 'src/app/components/annonce-home/annonce-home.component';
 
 @NgModule({
   imports: [

@@ -1,10 +1,17 @@
-<!--<p> text : {{text}}</p>
-<p> url image : {{src}}</p>
-<p> message lu : {{isRead}}</p>-->
 <div>
-  <ion-avatar>
-    <img class="src" src="{{src}}" />
-  </ion-avatar>
-  <p>{{text}}</p>
-  <img class="status" src="{{status}}">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-avatar>
+          <img src="{{src}}" />
+        </ion-avatar>
+      </ion-col>
+      <ion-col>
+        <p>{{text}}</p>
+      </ion-col>
+      <ion-col size="auto">
+        <img class="status" src="{{status}}">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </div>

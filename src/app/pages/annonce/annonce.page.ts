@@ -3,8 +3,10 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Annonce } from 'src/app/models/Annonce';
+import { User } from 'src/app/models/Users';
 import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 import { serviceProduits } from 'src/app/services/serviceProduits';
+import { ServiceUsers } from 'src/app/services/serviceUsers';
 
 @Component({
   selector: 'app-annonce',
@@ -12,13 +14,15 @@ import { serviceProduits } from 'src/app/services/serviceProduits';
   styleUrls: ['./annonce.page.scss'],
 })
 export class AnnoncePage implements OnInit {
-
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   sp : serviceProduits = new serviceProduits(this.db)
+  su : ServiceUsers = new ServiceUsers(this.db)
   annonce : Annonce = new Annonce('','','','','','')
   userPhoto : string = ""
   annoncePhoto: string = ""
   alimentPhoto: string = ""
+  fav : boolean = false
+  user: User;
 
   constructor(private db: AngularFireDatabase, private route: ActivatedRoute,public router: Router,private storage: AngularFireStorage) {
     
@@ -43,10 +47,29 @@ export class AnnoncePage implements OnInit {
         let tab = Object.values(res)
         let aliment = tab.find(al => al['name'] == this.annonce.aliment)
         this.alimentPhoto = aliment['image']
+        this.su.get(localStorage.getItem('uid')).then(res => {
+          this.user = res;
+          if(this.user.favoris == undefined)
+            this.user.favoris = []
+          if(this.user.favoris.includes(this.annonce.id))
+            this.fav = true
+          console.log(this.user)
+        })
       })
       
     })
     
+  }
+
+  updateFavoris() {
+    let index = this.user.favoris.indexOf(this.annonce.id)
+    if(index >= 0)
+      this.user.favoris.splice(index, 1)
+    else
+      this.user.favoris.push(this.annonce.id)
+    this.su.update(this.user, localStorage.getItem('uid'))
+    this.fav = !this.fav
+      
   }
 
 }

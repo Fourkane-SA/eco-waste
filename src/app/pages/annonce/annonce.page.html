@@ -14,7 +14,9 @@
       <div style="background-image: url({{annoncePhoto}});" class="photo">
       </div>
       <img class="aliment" src="{{alimentPhoto}}">
-      <img class="favoris" src="/assets/images/heart.svg">
+      <ion-icon class="favoris" style="color: #EF445D;" name="heart" (click)="updateFavoris()" *ngIf="fav"></ion-icon>
+      <ion-icon class="favoris" name="heart-outline" (click)="updateFavoris()" *ngIf="!fav"></ion-icon>
+
       <h1>{{annonce.title}}</h1>
       <p style="text-align: left; color: #EF445D;">{{annonce.description}}</p>
       <p style="text-align: left; color: #FBB13C;">
