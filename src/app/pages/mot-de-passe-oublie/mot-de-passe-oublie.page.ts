@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mot-de-passe-oublie',
@@ -14,8 +15,16 @@ error: any;
 errorMessage: any;
 reset() {
   this.ngFireAuth.sendPasswordResetEmail(this.form.value.email)
-  .then(res => {
-    console.log(res) // TODO afficher quelque chose pour dire qu'un mail a été envoyé
+  .then(async res => {
+    const alert = await this.alertController.create({
+      header: "Mail envoyé",
+      message: "Consulter votre boite mail pour réinitialiser votre mot de passe",
+      buttons: ['OK']
+    })
+
+    await alert.present()
+    console.log("alert.present()")
+
   })
    .catch(e => {
     console.log(e.code) // TODO gestion des erreurs
@@ -40,7 +49,8 @@ form: any;
 
   constructor(
     public router: Router,
-    public ngFireAuth: AngularFireAuth) { 
+    public ngFireAuth: AngularFireAuth,
+    private alertController: AlertController) { 
       this.form = new FormGroup({
         email : new FormControl()
     })

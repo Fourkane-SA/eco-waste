@@ -5,6 +5,9 @@
     </ion-buttons>
     <div class="body">
       <h1>Vous souhaitez poster une annonce ?</h1>
+      <ion-item>
+        <ion-input placeholder="Ecrivez un titre..." [(ngModel)]="title"></ion-input>
+      </ion-item>
       <p>Sélectionnez le type d'aliment que vous souhaitez distribuer</p>
       <ion-progress-bar value="100" color="danger"></ion-progress-bar>
       <ion-grid>

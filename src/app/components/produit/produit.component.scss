@@ -8,7 +8,8 @@ div {
         border: solid #FBB13C;
         border-radius: 50%;
         padding: 6px;
-        //background-color: white;
+        background-color: white;
+        top: 20px;
     }
     ion-input {
         --color: #EF445D;
@@ -40,4 +41,9 @@ ion-datetime-button {
 .date, .date:hover {
     --background: #EF445D;
     color: white;
+}
+
+
+ion-button {
+    --background: white;
 }

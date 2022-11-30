@@ -36,8 +36,9 @@ export class PosterAnnoncePage implements AfterViewInit {
   description: string;
   aliment : string = undefined
   photoSend: boolean = false;
+  title : string = ""
 
-  //Met à joru la position
+  //Met à jour la position
   setPosition(position) {
     this.posX = position.coords.latitude
     this.posY = position.coords.longitude
@@ -102,7 +103,7 @@ export class PosterAnnoncePage implements AfterViewInit {
 
   //Vérifie que tous les champs obligatoires ont été postés et crée une nouvelle annonce
   poster() {
-    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point)
+    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point, this.title)
     if(this.aliment === undefined) {
       alert("Veuillez choisir un aliment")
     } else if (this.description === undefined) {

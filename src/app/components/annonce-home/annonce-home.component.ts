@@ -13,7 +13,7 @@ export class AnnonceHomeComponent implements OnInit {
 
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   @Input() annonceId : string = ""
-  annonce : Annonce = new Annonce('','','','','')
+  annonce : Annonce = new Annonce('','','','','','')
   annonceImageURL : string = ""
   userImageURL : string = ""
   constructor(private db: AngularFireDatabase,private storage: AngularFireStorage) { }
