@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MesAnnoncesPageRoutingModule } from './mes-annonces-routing.module';
 
 import { MesAnnoncesPage } from './mes-annonces.page';
+import { AnnonceHomeComponent } from 'src/app/components/annonce-home/annonce-home.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { MesAnnoncesPage } from './mes-annonces.page';
     IonicModule,
     MesAnnoncesPageRoutingModule
   ],
-  declarations: [MesAnnoncesPage]
+  declarations: [MesAnnoncesPage, AnnonceHomeComponent]
 })
 export class MesAnnoncesPageModule {}
