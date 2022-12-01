@@ -62,8 +62,8 @@ export class EditProfilPage implements OnInit {
       
     if(user.postalCode != undefined)
       this.ville = user.postalCode
-    if(user.bio != undefined)
-      this.bio = user.bio
+    if(user.description != undefined)
+      this.bio = user.description
     if(user.bmessages)
       this.bmessages = true
     if(user.bnews)
@@ -86,7 +86,7 @@ export class EditProfilPage implements OnInit {
       u.lastname = this.form.value.lastname
       u.birth = this.form.value.birth
       u.postalCode = this.form.value.postalCode
-      u.bio = this.form.value.bio
+      u.description = this.form.value.bio
       u.bmessages = this.form.value.bmessages
       u.bnews = this.form.value.bnews
       u.bhonor = this.form.value.bhonor

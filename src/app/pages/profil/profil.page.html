@@ -1,0 +1,17 @@
+<ion-content>
+  <div class="ion-padding content">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-avatar>
+      <img src="{{photoURL}}" />
+    </ion-avatar>
+    <div class="attributs">
+      <p>{{user.firstname}}</p>
+      <p>{{user.lastname}}</p>
+      <p>{{age}}</p>
+      <p>{{user.postalCode}}</p>
+      <p class="bio">{{user.description}}</p>
+    </div>
+  </div>
+</ion-content>

@@ -12,7 +12,7 @@
       <ion-progress-bar value="100" color="danger"></ion-progress-bar>
       <ion-grid>
         <ion-row>
-          <ion-radio-group (ionChange)="updateRadioValue($event)" value="aliments">
+          <ion-radio-group (ionChange)="updateRadioValue($event,aliment)" value="aliments">
           <ion-col *ngFor="let aliment of aliments">
             <app-aliment-button image="{{aliment.image}}" name="{{aliment.name}}" ></app-aliment-button>
           </ion-col>

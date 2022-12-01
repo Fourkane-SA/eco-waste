@@ -2,7 +2,9 @@ ion-avatar {
     margin: auto;
     width: 120px;
     height: 120px;
-    outline: solid #EF445D;
+    border-radius: 50%;
+    // border: #EF445D solid;
+    // outline: solid #EF445D; // ne s'affiche pas correctement sur Safari
 }
 
 .photo {
@@ -62,4 +64,12 @@ p {
     top: 350px;
     width: 40px;
     height: 40px;
+}
+
+span {
+    top: -15px !important;
+    position: relative;
+}
+p img {
+    background-color: white;
 }

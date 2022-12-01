@@ -7,8 +7,9 @@ export class User {
    notifyDaysBeforeExpires: number;
    product = []
    favoris = []
+   postalCode: string;
 
-   constructor(email: string, firstname: string = "", lastname: string ="", photoURL: string = "", description: string = "", notifyDaysBeforeExpires: number = 0, product = [], favoris = []) {
+   constructor(email: string, firstname: string = "", lastname: string ="", photoURL: string = "", description: string = "", notifyDaysBeforeExpires: number = 0, product = [], favoris = [], postalCode = "") {
     this.email = email;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -17,6 +18,7 @@ export class User {
     this.notifyDaysBeforeExpires = notifyDaysBeforeExpires;
     this.product = product;
     this.favoris = favoris;
+    this.postalCode = postalCode
    }
 
 

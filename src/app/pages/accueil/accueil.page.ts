@@ -23,6 +23,7 @@ export class AccueilPage implements OnInit {
     this.sa.getAll()
     .then(res =>  {
       this.annonces = Object.values(res)
+      this.annonces = this.annonces.filter(annonce => annonce.uid != localStorage.getItem('uid'))
   })
   }
 }

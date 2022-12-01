@@ -4,10 +4,10 @@
     </ion-buttons>
     <div class="ion-padding" style="text-align: center;">
       <ion-avatar>
-        <img src="{{userPhoto}}">
+        <img src="{{userPhoto}}" routerLink="/tab/profil/{{annonce.uid}}">
       </ion-avatar>
       <div style="text-align: left; margin-top: -140px;">
-        <p class="profilLink" style="text-align: right;">Voir le profil</p>
+        <p class="profilLink" style="text-align: right;" routerLink="/tab/profil/{{annonce.uid}}">Voir le profil</p>
         <img class="pommy" src="/assets/images/Pommy 1.png">
         
       </div>
@@ -20,10 +20,10 @@
       <h1>{{annonce.title}}</h1>
       <p style="text-align: left; color: #EF445D;">{{annonce.description}}</p>
       <p style="text-align: left; color: #FBB13C;">
-        <img src="/assets/images/bxs_message-alt.svg"> Envoyer un message
+        <img src="/assets/images/mdi_bell-warning.svg"> <span>Je réserve le produit ! </span>
       </p>
       <p style="text-align: left; color: #FBB13C;">
-        <img src="/assets/images/prelais.svg"> Voir le point relais le plus proche
+        <img src="/assets/images/prelais.svg"> <span>Voir le point relais choisi </span>
       </p>
     </div>
   </div>

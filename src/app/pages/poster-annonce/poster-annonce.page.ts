@@ -16,8 +16,11 @@ import { Router } from '@angular/router';
 export class PosterAnnoncePage implements AfterViewInit {
   downloadURL: any;
   fb: any;
+  alimentsName: string[];
   
-  updateRadioValue($event: any) {
+  updateRadioValue($event: any, old : string) {
+    if(old != undefined && old == this.aliment)
+      document.getElementById(old).setAttribute('checked', 'false')
     this.aliment = $event.detail.value
   }
   
@@ -98,6 +101,7 @@ export class PosterAnnoncePage implements AfterViewInit {
     // Initialise la liste des aliments et la map
     let aliments = await this.sp.getAll()
     this.aliments = Object.values(aliments)
+    this.alimentsName = Object.keys(aliments)
     this.initMap();
   }
 
