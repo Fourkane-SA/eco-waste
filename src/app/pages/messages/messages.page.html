@@ -5,10 +5,8 @@
     </ion-buttons>
     <h1>Messages</h1>
     <p class="subtitle">Personnes avec qui vous avez déjà échangé</p>
-    <div>
-      <app-message-list text="Un faux message" isRead="false" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></app-message-list>
-      <app-message-list text="Une autre fausse conversation" isRead="true" src="https://i.pinimg.com/736x/27/cd/7f/27cd7f91d768f1e85aa8d7484f303fae.jpg"></app-message-list>
-      <app-message-list text="Encore une fausse conversation" isRead="false" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSqlpqZbGYN2V3TeJRArh052k-VdC7ABhKDBgduBMoLt9UHwtZ17hMjBBTP8VXw3CV7Xc&usqp=CAU"></app-message-list>
+    <div *ngFor="let message of messages">
+      <app-message-list routerLink="{{message.link}}" text="{{message.text}}" isRead="{{message.read}}" src="{{message.photoURL}}"></app-message-list>
     </div>
   </div>
 </ion-content>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Annonce } from 'src/app/models/Annonce';
 import { User } from 'src/app/models/Users';
 import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
@@ -14,6 +15,27 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
   styleUrls: ['./annonce.page.scss'],
 })
 export class AnnoncePage implements OnInit {
+  async goToConv() {
+    let me : User = await this.su.get(localStorage.getItem('uid'))
+    if(me.vendeurs == undefined)
+      me.vendeurs = []  
+    if(!me.vendeurs.includes(this.annonce.uid))
+      me.vendeurs.push(this.annonce.uid)
+    if(me.contactAnnonce == undefined)
+      me.contactAnnonce = []
+    if(!me.contactAnnonce.includes(this.route.snapshot.params['id']))
+      me.contactAnnonce.push(this.route.snapshot.params['id'])
+    this.su.update(me, localStorage.getItem('uid'))
+    this.router.navigate(['tab', 'conversation', this.annonce.uid])
+  }
+  async pointRelai() {
+    const relaiPoint = await this.db.database.ref('relaiPoint/').get()
+    const alert = await this.alertController.create({
+        header: "Point relais",
+        message: this.annonce.relaiId
+      })
+      await alert.present()
+  }
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   sp : serviceProduits = new serviceProduits(this.db)
   su : ServiceUsers = new ServiceUsers(this.db)
@@ -24,7 +46,7 @@ export class AnnoncePage implements OnInit {
   fav : boolean = false
   user: User;
 
-  constructor(private db: AngularFireDatabase, private route: ActivatedRoute,public router: Router,private storage: AngularFireStorage) {
+  constructor(private db: AngularFireDatabase, private route: ActivatedRoute,public router: Router,private storage: AngularFireStorage, private alertController: AlertController) {
     
    }
 

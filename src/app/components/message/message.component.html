@@ -1,0 +1,19 @@
+<div>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngIf="sendByUserLoggin" size="auto">
+                <ion-avatar>
+                    <img src="{{url1}}" />
+                </ion-avatar>
+            </ion-col>
+            <ion-col class="text">
+                <p>{{text}}</p>
+            </ion-col>
+            <ion-col *ngIf="!sendByUserLoggin" size="auto">
+                <ion-avatar>
+                    <img src="{{url2}}"  />
+                </ion-avatar>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

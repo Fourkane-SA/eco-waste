@@ -60,6 +60,10 @@ const routes: Routes = [
         path: 'profil/:id',
         loadChildren: () => import('../profil/profil.module').then( m => m.ProfilPageModule)
       },
+      {
+        path: 'conversation/:id',
+        loadChildren: () => import('../conversation/conversation.module').then( m => m.ConversationPageModule)
+      },
     ]
   },
     

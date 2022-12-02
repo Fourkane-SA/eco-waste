@@ -8,6 +8,9 @@ export class User {
    product = []
    favoris = []
    postalCode: string;
+   clients = []
+   vendeurs: string[];
+   contactAnnonce = []
 
    constructor(email: string, firstname: string = "", lastname: string ="", photoURL: string = "", description: string = "", notifyDaysBeforeExpires: number = 0, product = [], favoris = [], postalCode = "") {
     this.email = email;

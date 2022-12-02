@@ -1,0 +1,38 @@
+<ion-content id="content">
+  <div class="ion-padding content">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-avatar>
+      <img src="{{url}}" />
+    </ion-avatar>
+    <h1>
+      <strong>{{user.firstname}} {{user.lastname}}</strong>
+      <img routerLink="/tab/profil/{{uid}}" src="/assets/images/information.svg" class="info" />
+    </h1>
+    <div *ngFor="let message of conversation">
+      <app-message sender="{{message.sender}}" receiver="{{message.receiver}}" text="{{message.text}}" url1={{urlUser}} url2="{{url}}"></app-message>
+    </div>
+    <ion-button id="create-rdv" *ngIf="acheteur">Créer un rendez-vous</ion-button>
+    <ion-popover trigger="create-rdv" triggerAction="click">
+      <ng-template>
+        <div>
+          <h1>Créer un rendez vous</h1>
+        </div>
+      </ng-template>
+    </ion-popover>
+  </div>
+</ion-content>
+<div #footer></div>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input type="text" placeholder="Ecrire un message..." [(ngModel)]="text"></ion-input>
+      </ion-col>
+      <ion-col size="auto" (click)="send()">
+        <img src="/assets/images/send.svg">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

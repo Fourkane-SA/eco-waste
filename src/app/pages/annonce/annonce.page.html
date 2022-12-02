@@ -20,10 +20,10 @@
       <h1>{{annonce.title}}</h1>
       <p style="text-align: left; color: #EF445D;">{{annonce.description}}</p>
       <p style="text-align: left; color: #FBB13C;">
-        <img src="/assets/images/mdi_bell-warning.svg"> <span>Je réserve le produit ! </span>
+        <img src="/assets/images/mdi_bell-warning.svg"> <span (click)="goToConv()">Je réserve le produit ! </span>
       </p>
       <p style="text-align: left; color: #FBB13C;">
-        <img src="/assets/images/prelais.svg"> <span>Voir le point relais choisi </span>
+        <img src="/assets/images/prelais.svg"> <span (click)="pointRelai()">Voir le point relais choisi </span>
       </p>
     </div>
   </div>

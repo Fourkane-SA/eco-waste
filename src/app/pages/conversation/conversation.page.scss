@@ -1,0 +1,67 @@
+ion-content {
+    --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
+}
+
+.content {
+    margin-top: 60px;
+    text-align: center;
+}
+
+ion-avatar {
+    margin: auto;
+    width: 80px;
+    height: 80px;
+    border: solid #EF445D;
+}
+
+h1 {
+    color: #EF445D;
+    img {
+        position: relative;
+        top: 8px !important;
+        left: 4px !important;
+    }
+}
+
+.info {
+    cursor: pointer;
+}
+
+ion-button {
+    --background: #EF445D;
+    --background-hover: #EF445D;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+}
+
+ion-input {
+    --background: white;
+    border: solid #EF445D;
+    border-radius: 20px;
+    color: #EF445D;
+}
+
+.send {
+    position: relative;
+    top: 8px;
+}
+
+ion-popover::part(content) {
+    width: 90%;
+    position: absolute;
+    top: 100px;
+    margin-left: 5%;
+    background-color: white;
+}
+
+ion-popover ion-content {
+    --background: transparent;
+    border: solid #FBB13C;
+    border-width: 4px;
+
+}
+
+ion-popover {
+    --background: rgba(40, 173, 218, 0);
+    --backdrop-opacity: 0.6;
+    --width: 300px;
+}
