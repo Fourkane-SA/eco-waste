@@ -26,7 +26,7 @@ export class AnnoncePage implements OnInit {
     if(!me.contactAnnonce.includes(this.route.snapshot.params['id']))
       me.contactAnnonce.push(this.route.snapshot.params['id'])
     this.su.update(me, localStorage.getItem('uid'))
-    this.router.navigate(['tab', 'conversation', this.annonce.uid])
+    this.router.navigate(['tab', 'conversation', this.annonce.uid, this.route.snapshot.params['id']])
   }
   async pointRelai() {
     const relaiPoint = await this.db.database.ref('relaiPoint/').get()
@@ -75,7 +75,6 @@ export class AnnoncePage implements OnInit {
             this.user.favoris = []
           if(this.user.favoris.includes(this.annonce.id))
             this.fav = true
-          console.log(this.user)
         })
       })
       

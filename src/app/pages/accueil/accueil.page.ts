@@ -16,6 +16,8 @@ export class AccueilPage implements OnInit {
 
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   annonces : Annonce[] = []
+  allAnnonces : Annonce[] = []
+  search : string
 
   constructor(public router: Router,private db: AngularFireDatabase) { }
 
@@ -24,6 +26,10 @@ export class AccueilPage implements OnInit {
     .then(res =>  {
       this.annonces = Object.values(res)
       this.annonces = this.annonces.filter(annonce => annonce.uid != localStorage.getItem('uid'))
+      this.allAnnonces = this.annonces
   })
+  }
+  update() {
+    this.annonces = this.allAnnonces.filter(annonce => annonce.title.toLowerCase().includes(this.search.toLowerCase()))
   }
 }

@@ -3,7 +3,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="10">
-          <ion-searchbar search-icon="/assets/images/SearchIcon.svg" placeholder=""></ion-searchbar>
+          <ion-searchbar search-icon="/assets/images/SearchIcon.svg" placeholder="" [(ngModel)]="search" (ngModelChange)="update()"></ion-searchbar>
         </ion-col>
         <ion-col>
           <img class="location" (click)="goToMap()" src="/assets/images/Location.svg">

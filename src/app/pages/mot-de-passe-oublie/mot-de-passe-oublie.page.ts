@@ -39,8 +39,7 @@ reset() {
         break;
     }
     this.error = true
-    document.querySelector('h1').className = "error";
-    document.querySelectorAll('strong').forEach(res => res.className += " error")
+    //document.querySelectorAll('strong').forEach(res => res.className += " error")
       
    })
 }

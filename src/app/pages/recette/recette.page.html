@@ -1,4 +1,26 @@
-<br><br><br>
-<ion-content class="ion-padding">
-  <ion-title>TODO recette</ion-title>
+<ion-content>
+  <div class="ion-padding content">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="Rechercher une recette"></ion-searchbar>
+    <div class="scrolling-wrapper">
+      <app-tag></app-tag>
+      <app-tag></app-tag>
+      <app-tag></app-tag>
+      <app-tag></app-tag>
+      <app-tag></app-tag>
+      <app-tag></app-tag>
+    </div>
+    <div class="separateur"></div>
+    <h1>Life hack du moment</h1>
+    <div class="scrolling-wrapper">
+      <app-life-hack-card></app-life-hack-card>
+      <app-life-hack-card></app-life-hack-card>
+      <app-life-hack-card></app-life-hack-card>
+      <app-life-hack-card></app-life-hack-card>
+      <app-life-hack-card></app-life-hack-card>
+      <app-life-hack-card></app-life-hack-card>
+    </div>
+  </div>
 </ion-content>

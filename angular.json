@@ -31,9 +31,12 @@
               },
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss", "./node_modules/leaflet/dist/leaflet.css"],
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "./node_modules/leaflet/dist/leaflet.css"
+            ],
             "scripts": [],
-            "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -99,7 +102,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "styles": ["./node_modules/leaflet/dist/leaflet.css"],
+            "styles": [
+              "./node_modules/leaflet/dist/leaflet.css"
+            ],
             "scripts": [],
             "assets": [
               {

@@ -18,6 +18,8 @@ export class MessageListComponent implements OnInit {
       this.status = "/assets/images/read.svg"
     else
       this.status = "/assets/images/unread.svg"
+    if(this.text.length > 80)
+      this.text = this.text.substring(0, 80) + '...'
   }
 
 }

@@ -58,5 +58,14 @@ form {
 }
 
 .error {
-    color: #00AF54;
+    color: #8C00AF;
+}
+
+.errorBorder {
+    border: solid #8C00AF;
+}
+
+.errorButton {
+    --border-color: #8C00AF;
+    color: #8C00AF;
 }

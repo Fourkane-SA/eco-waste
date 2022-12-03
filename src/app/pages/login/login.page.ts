@@ -57,8 +57,10 @@ goToRegister() {this.router.navigateByUrl("/registration")}
       }
         
       this.error = true;
-      document.querySelector('h1').className = "error";
-      document.querySelectorAll('strong').forEach(res => res.className += " error")
+      
+      //document.querySelectorAll('ion-item').forEach(res => res.className = "errorBorder")
+      //document.querySelector('h1').className = "error";
+      //document.querySelectorAll('strong').forEach(res => res.className += " error")
     })
 
   }

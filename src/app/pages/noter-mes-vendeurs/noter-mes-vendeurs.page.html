@@ -1,4 +1,65 @@
-<br><br><br>
-<ion-content class="ion-padding">
-  <ion-title>TODO noter mes vendeurs</ion-title>
+<ion-content>
+  <div class="ion-padding content">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-avatar>
+      <img src="{{photoURL}}" />
+    </ion-avatar>
+    <p>Donnez votre avis sur {{user.firstname}} {{user.lastname}}</p>
+    <div id="stars">
+      <img (click)="note(1)" id="1" src="/assets/images/Star.svg">
+      <img (click)="note(2)" id="2" src="/assets/images/Star.svg">
+      <img (click)="note(3)" id="3" src="/assets/images/Star.svg">
+      <img (click)="note(4)" id="4" src="/assets/images/Star.svg">
+      <img (click)="note(5)" id="5" src="/assets/images/Star.svg">
+    </div>
+    <ion-textarea placeholder="Commenter" autoGrow [(ngModel)]="comment"></ion-textarea>
+    <ion-label>Bloquer l'utilisateur</ion-label>
+    <ion-toggle [(ngModel)]="bloquer"></ion-toggle> <br>
+    <ion-button id="click-trigger">Signaler</ion-button>
+    <ion-popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <div class="modal" *ngIf="!signaler">
+          <h1>Signaler le vendeur</h1>
+          <ion-list>
+            <ion-item>
+              <ion-label>Aliments de mauvaises <br> qualités</ion-label>
+              <ion-toggle></ion-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-label>Usurpation d'identité</ion-label>
+              <ion-toggle></ion-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-label>violence</ion-label>
+              <ion-toggle></ion-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-label>Propos haineux / racistes <br> / insultes</ion-label>
+              <ion-toggle></ion-toggle>
+            </ion-item>
+          </ion-list>
+          <ion-button (click)="signalOK()">Envoyer</ion-button>
+        </div>
+        <div class="modal" *ngIf="signaler" style="margin-bottom: 0;">
+          <h1>Votre demande à bien été prise en compte</h1>
+          <p style="text-align: left; margin-left: 15px; margin-right: 15px">
+            Madame, Monsieur,
+            <br><br>
+            Nous avons bien reçu votre demande de signalement et nous vous remercions d’avoir pris le temps de le faire.
+            <br><br>
+            Notre équipe va traiter votre demande dans les plus bref délais.
+            <br><br>
+            Bien à vous,
+            <br><br>
+            L’équipe EcoWaste.
+          </p>
+        </div>
+        
+      </ng-template>
+    </ion-popover>
+
+    <ion-button>Envoyer</ion-button>
+  </div>
 </ion-content>

@@ -23,21 +23,38 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-item style="margin-top: 0px;" id="email">
+      
+      <ion-item *ngIf="!error" style="margin-top: 0px;" id="email">
         <ion-label position="stacked"></ion-label>
         <ion-input type="email" formControlName="email" placeholder="Email*" [required]="true"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="!error">
         <ion-label position="stacked" id="password"></ion-label>
         <ion-input formControlName="password" placeholder="Mot de passe*" type="password" [required]="true">
         </ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="!error">
         <ion-label position="stacked" id="password2"></ion-label>
         <ion-input formControlName="password2" placeholder="Confirmer le mot de passe*" type="password" [required]="true">
         </ion-input>
       </ion-item>
-      <ion-button type="submit" [disabled]="!form.valid" fill="outline">Créer</ion-button>
+      <ion-button *ngIf="!error" type="submit" [disabled]="!form.valid" fill="outline">Créer</ion-button>
+
+      <ion-item *ngIf="error" style="margin-top: 0px;" id="email" class="errorBorder">
+        <ion-label position="stacked"></ion-label>
+        <ion-input type="email" formControlName="email" placeholder="Email*" [required]="true" class="error"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="error" class="errorBorder">
+        <ion-label position="stacked" id="password"></ion-label>
+        <ion-input formControlName="password" placeholder="Mot de passe*" type="password" [required]="true" class="error">
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="error" class="errorBorder">
+        <ion-label position="stacked" id="password2"></ion-label>
+        <ion-input formControlName="password2" placeholder="Confirmer le mot de passe*" type="password" [required]="true" class="error">
+        </ion-input>
+      </ion-item>
+      <ion-button *ngIf="error" type="submit" [disabled]="!form.valid" fill="outline" class="errorButton">Créer</ion-button>
     </form>
   </ion-list>
   <p style="text-align: center;">Vous avez déjà un compte ? <strong (click)="goToLogin()">Connectez-vous</strong></p>

@@ -1,0 +1,21 @@
+ion-content {
+    --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
+}
+
+.content {
+    padding-top: 75px;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.separateur {
+    width: 90%;
+    margin-left: 5%;
+    border: red solid 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

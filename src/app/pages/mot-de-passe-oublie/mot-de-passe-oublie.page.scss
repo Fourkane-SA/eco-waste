@@ -84,3 +84,16 @@ svg {
     border-radius: 10px;
     border: solid #EF445D;
 }
+
+.error {
+    color: #8C00AF;
+}
+
+.errorBorder {
+    border: solid #8C00AF;
+}
+
+.errorButton {
+    --border-color: #8C00AF;
+    color: #8C00AF;
+}

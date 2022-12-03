@@ -8,17 +8,64 @@
     </ion-avatar>
     <h1>
       <strong>{{user.firstname}} {{user.lastname}}</strong>
-      <img routerLink="/tab/profil/{{uid}}" src="/assets/images/information.svg" class="info" />
+      <img routerLink="/tab/noter/{{uid}}" src="/assets/images/information.svg" class="info" id="click-trigger" />
     </h1>
     <div *ngFor="let message of conversation">
       <app-message sender="{{message.sender}}" receiver="{{message.receiver}}" text="{{message.text}}" url1={{urlUser}} url2="{{url}}"></app-message>
     </div>
-    <ion-button id="create-rdv" *ngIf="acheteur">Créer un rendez-vous</ion-button>
+    <ion-button id="create-rdv" *ngIf="ctrdv">Créer un rendez-vous</ion-button>
     <ion-popover trigger="create-rdv" triggerAction="click">
       <ng-template>
-        <div>
-          <h1>Créer un rendez vous</h1>
+        <div class="modal">
+          <ion-list>
+            <h1>Créer un rendez vous</h1>
+            <ion-datetime [(ngModel)]="date">
+              <span slot="title">Choisissez la date de rendez vous</span>
+              <span slot="time-label">Heure</span>
+            </ion-datetime>
+            <ion-item>
+              <ion-label>
+                Valider le point relais <br> <strong>{{annonce.relaiId}} </strong>
+              </ion-label>
+              <ion-toggle [(ngModel)]="toggle"></ion-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-select [(ngModel)]="select" placeholder="Choisir un autre point relais">
+                <ion-select-option value=""></ion-select-option>
+                <ion-select-option value="todo1">todo1</ion-select-option>
+                <ion-select-option value="todo2">todo2</ion-select-option>
+                <ion-select-option value="todo3">todo3</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
         </div>
+        <ion-button class="submit" (click)="confirm()">Valider</ion-button>
+      </ng-template>
+    </ion-popover>
+    <ion-button id="confirm-rdv" *ngIf="ccrdv" > Valider le rendez-vous</ion-button>
+    <ion-popover trigger="confirm-rdv" triggerAction="click">
+      <ng-template>
+        <div class="modal">
+          <ion-list>
+            <h1>Valider le rendez-vous</h1>
+            <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-text>{{rendezVous.date}}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label>Lieu</ion-label>
+              <ion-text>{{rendezVous.pointRelai}}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Demander un autre <br> rendez-vous
+              </ion-label>
+              <ion-toggle [(ngModel)]="toggleConfirm"></ion-toggle>
+            </ion-item>
+            
+          </ion-list>
+        </div>
+        <ion-button class="submit" (click)="confirmRDV()">Valider</ion-button>
       </ng-template>
     </ion-popover>
   </div>

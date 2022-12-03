@@ -3,4 +3,5 @@ export class Message {
     receiver : string
     text : string
     date : number
+    annonceID : string
 }

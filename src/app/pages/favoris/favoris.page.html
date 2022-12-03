@@ -1,5 +1,7 @@
-<div class="content" style="padding-top: 75px;">
-  <div style="text-align: center;" *ngFor="let annonce of user.favoris">
-    <app-annonce-home annonceId="{{annonce}}"></app-annonce-home>
+<ion-content>
+  <div class="ion-padding content">
+    <div style="text-align: center;" *ngFor="let annonce of user.favoris">
+      <app-annonce-home annonceId="{{annonce}}"></app-annonce-home>
+    </div>
   </div>
-</div>
+</ion-content>

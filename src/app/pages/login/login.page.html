@@ -14,16 +14,26 @@
   <p class="error" *ngIf="error" style="margin-top: 60px;">{{errorMessage}}</p>
   <ion-list style="clear: right;">
     <form [formGroup]="form" (ngSubmit)="login()" style="margin-bottom: 3%">
-      <ion-item id="email">
+      <ion-item id="email" *ngIf="!error">
         <ion-label position="stacked"></ion-label>
         <ion-input formControlName="email" placeholder="Email" [required]="true"></ion-input>
       </ion-item>
-      <ion-item id="password">
+      <ion-item id="password" *ngIf="!error" >
         <ion-label position="stacked"></ion-label>
         <ion-input formControlName="password" placeholder="Mot de passe" type="password" [required]="true" >
         </ion-input>
       </ion-item>
-      <ion-button type="submit" class="center" fill="outline" [disabled]="!form.valid">Connexion</ion-button>
+      <ion-item id="email" *ngIf="error" class="errorBorder">
+        <ion-label position="stacked"></ion-label>
+        <ion-input class="error" formControlName="email" placeholder="Email" [required]="true"></ion-input>
+      </ion-item>
+      <ion-item id="password" *ngIf="error" class="errorBorder">
+        <ion-label position="stacked"></ion-label>
+        <ion-input class="error" formControlName="password" placeholder="Mot de passe" type="password" [required]="true">
+        </ion-input>
+      </ion-item>
+      <ion-button type="submit" class="center" fill="outline" [disabled]="!form.valid" *ngIf="!error">Connexion</ion-button>
+      <ion-button type="submit" class="center errorButton" fill="outline" [disabled]="!form.valid" *ngIf="error">Connexion</ion-button>
     </form>
   </ion-list>
   <p class="ion-text-center">Première connexion ? <strong (click)="goToRegister()">Créer votre compte</strong></p>

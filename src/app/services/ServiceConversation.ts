@@ -4,11 +4,11 @@ import { Message } from '../models/Message';
 export class ServiceConversation {
     constructor(private db: AngularFireDatabase){}
 
-    async getConv(uid1 : string, uid2 : string) : Promise<Message[]> {
-        return (await this.db.database.ref("conversation/" + uid1 + "/" + uid2).get()).val()
+    async getConv(uid1 : string, uid2 : string, aid : string) : Promise<Message[]> {
+        return (await this.db.database.ref("conversation/" + uid1 + "/" + uid2 + "/" + aid).get()).val()
     }
 
-    async updateConv(uid1 : string, uid2 : string, conversation : Message[]) {
-        this.db.object("conversation/" + uid1 + "/" + uid2).update(conversation)
+    async updateConv(uid1 : string, uid2 : string, conversation : Message[], aid : string) {
+        this.db.object("conversation/" + uid1 + "/" + uid2 + "/" + aid).update(conversation)
     }
 }

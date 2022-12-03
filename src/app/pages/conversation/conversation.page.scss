@@ -46,11 +46,11 @@ ion-input {
 }
 
 ion-popover::part(content) {
-    width: 90%;
+    width: 80%;
     position: absolute;
-    top: 100px;
-    margin-left: 5%;
-    background-color: white;
+    top: 40px;
+    margin: auto;
+    
 }
 
 ion-popover ion-content {
@@ -63,5 +63,22 @@ ion-popover ion-content {
 ion-popover {
     --background: rgba(40, 173, 218, 0);
     --backdrop-opacity: 0.6;
-    --width: 300px;
+}
+
+.modal {
+    text-align: center;
+    h1 {
+        color: #007CBE;
+    }
+    margin-bottom: 20px;
+    
+}
+
+.submit {
+    width: 70%;
+    margin: auto;
+}
+
+ion-list {
+    border-radius: 20px;
 }

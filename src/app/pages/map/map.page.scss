@@ -31,8 +31,8 @@ ion-list {
 }
 
 ion-popover ion-content {
-    --background: transparent;
-    border: solid #FBB13C;
+    --background: white;
+    border: solid #007CBE;
     border-width: 4px;
     
 }
@@ -43,15 +43,15 @@ ion-popover {
 }
 
 strong, ion-input, ion-label {
-    color: #FBB13C;
+    color: #007CBE;
 }
 
 ion-item ion-label {
-    --color: #FBB13C;
+    --color: #007CBE;
 }
 
 ion-button {
-    --background: #FBB13C;
+    --background: #007CBE;
 }
 
 ion-toggle {

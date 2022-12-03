@@ -1,0 +1,67 @@
+ion-content {
+    --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
+}
+
+.content {
+    margin-top: 60px;
+    text-align: center;
+}
+
+ion-avatar {
+    margin: auto;
+    width: 120px;
+    height: 120px;
+    border: solid #EF445D;
+}
+
+ion-textarea {
+    background-color: white;
+    border-radius: 20px;
+    border: solid #EF445D;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+ion-label, ion-item {
+    --background: transparent;
+    text-align: center;
+}
+
+ion-label {
+    top: -14px;
+    position: relative;
+    color: #EF445D;
+    
+}
+
+ion-popover::part(content) {
+    width: 80%;
+    position: absolute;
+    top: 40px;
+    margin: 10%;
+
+}
+
+ion-popover ion-content {
+    --background: transparent;
+    border: solid #FBB13C;
+    border-width: 4px;
+
+}
+
+ion-popover {
+    --background: rgba(40, 173, 218, 0);
+    --backdrop-opacity: 0.6;
+}
+
+.modal {
+    text-align: center;
+    background-color: white;
+
+    h1, p {
+        color: #007CBE;
+    }
+
+    margin-bottom: 20px;
+
+}

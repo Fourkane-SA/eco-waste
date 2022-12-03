@@ -7,11 +7,17 @@
   <ion-list style="clear: right;">
     <img class="pommy" *ngIf="!error" src="/assets/images/Pommy 8.png">
     <form [formGroup]="form" (ngSubmit)="reset()" style="margin-bottom: 3%">
-      <ion-item>
+      <ion-item *ngIf="!error">
         <ion-label position="stacked"></ion-label>
         <ion-input formControlName="email" placeholder="Email" [required]="true"></ion-input>
       </ion-item>
-      <ion-button type="submit" class="center" [disabled]="false" fill="outline">Envoyer le lien</ion-button>
+      <ion-button *ngIf="!error" type="submit" class="center" [disabled]="false" fill="outline">Envoyer le lien</ion-button>
+
+      <ion-item *ngIf="error" class="errorBorder">
+        <ion-label position="stacked"></ion-label>
+        <ion-input  formControlName="email" placeholder="Email" [required]="true" class="error"></ion-input>
+      </ion-item>
+      <ion-button *ngIf="error" type="submit" class="center errorButton" [disabled]="false" fill="outline">Envoyer le lien</ion-button>
     </form>
   </ion-list>
   <p class="ion-text-center">Vous avez déjà un compte  ? <strong (click)="goToLogin()"> Connectez vous!</strong></p>

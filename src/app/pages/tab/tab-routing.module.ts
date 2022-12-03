@@ -37,7 +37,7 @@ const routes: Routes = [
         loadChildren: () => import('../favoris/favoris.module').then( m => m.FavorisPageModule)
       },
       {
-        path: 'noter-mes-vendeurs',
+        path: 'noter/:uid',
         loadChildren: () => import('../noter-mes-vendeurs/noter-mes-vendeurs.module').then( m => m.NoterMesVendeursPageModule)
       },
       {
@@ -62,6 +62,10 @@ const routes: Routes = [
       },
       {
         path: 'conversation/:id',
+        loadChildren: () => import('../conversation/conversation.module').then( m => m.ConversationPageModule)
+      },
+      {
+        path: 'conversation/:uid/:aid',
         loadChildren: () => import('../conversation/conversation.module').then( m => m.ConversationPageModule)
       },
     ]
