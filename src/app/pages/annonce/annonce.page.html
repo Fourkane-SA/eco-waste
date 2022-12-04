@@ -11,12 +11,15 @@
         <img class="pommy" src="/assets/images/Pommy 1.png">
         
       </div>
-      <div style="background-image: url({{annoncePhoto}});" class="photo">
+      <div style="background-image: url({{annoncePhoto}}); background-size: cover; background-color: white;" class="photo">
       </div>
       <img class="aliment" src="{{alimentPhoto}}">
-      <ion-icon class="favoris" style="color: #EF445D;" name="heart" (click)="updateFavoris()" *ngIf="fav"></ion-icon>
-      <ion-icon class="favoris" name="heart-outline" (click)="updateFavoris()" *ngIf="!fav"></ion-icon>
-
+      <!--<ion-icon class="favoris" style="color: #EF445D;" name="heart" (click)="updateFavoris()" *ngIf="fav"></ion-icon>
+      <ion-icon class="favoris" name="heart-outline" (click)="updateFavoris()" *ngIf="!fav"></ion-icon>-->
+        <img src="/assets/images/Heart.svg" class="favoris" (click)="updateFavoris()" *ngIf="!fav">
+        <img src="/assets/images/HeartFilled.svg" class="favoris" (click)="updateFavoris()" *ngIf="fav">
+      <div id="ellipse">
+      </div>
       <h1>{{annonce.title}}</h1>
       <p style="text-align: left; color: #EF445D;">{{annonce.description}}</p>
       <p style="text-align: left; color: #FBB13C;">

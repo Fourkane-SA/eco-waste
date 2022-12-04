@@ -6,7 +6,7 @@ import { Annonce } from 'src/app/models/Annonce';
 import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-poster-annonce',
@@ -40,6 +40,7 @@ export class PosterAnnoncePage implements AfterViewInit {
   aliment : string = undefined
   photoSend: boolean = false;
   title : string = ""
+  url : string[] = []
 
   //Met à jour la position
   setPosition(position) {
@@ -89,7 +90,7 @@ export class PosterAnnoncePage implements AfterViewInit {
 
   }
 
-  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage,public router: Router) {
+  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage,public router: Router, private route: ActivatedRoute) {
     // Génération aléatoire de l'identifiant de l'annonce
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for(let i = 0; i < 20; i++) {
@@ -103,11 +104,13 @@ export class PosterAnnoncePage implements AfterViewInit {
     this.aliments = Object.values(aliments)
     this.alimentsName = Object.keys(aliments)
     this.initMap();
+    if(this.route.snapshot.params['id'] != undefined)
+      this.editAnnonce()
   }
 
   //Vérifie que tous les champs obligatoires ont été postés et crée une nouvelle annonce
   poster() {
-    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point, this.title)
+    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point, this.title, this.url)
     if(this.aliment === undefined) {
       alert("Veuillez choisir un aliment")
     } else if (this.description === undefined) {
@@ -125,10 +128,10 @@ export class PosterAnnoncePage implements AfterViewInit {
   // permet d'upload une image
   onFileSelected(event) {
     const file = event.target.files[0];
-    const filePath = `annonce/${this.id}`
+    const filePath = `annonce/${this.id + Date.now()}`
     const fileRef = this.storage.ref(filePath);
     
-    const task = this.storage.upload(`annonce/${this.id}`, file);
+    const task = this.storage.upload(`annonce/${this.id + Date.now()}`, file);
     task
       .snapshotChanges()
       .pipe(
@@ -137,17 +140,28 @@ export class PosterAnnoncePage implements AfterViewInit {
           this.downloadURL.subscribe(url => {
             if (url) {
               this.fb = url;
-              this.photoSend = true
+              
             }
-            console.log(this.fb);
           });
         })
       )
-      .subscribe(url => {
+      .subscribe(async url => {
         if (url) {
-          console.log(url);
+          this.photoSend = true
+          this.url.push(await url.ref.getDownloadURL())
         }
       });
+
+  }
+
+  async editAnnonce() {
+    this.id = this.route.snapshot.params['id']
+    let annonce : Annonce = await this.sa.get(this.id)
+    this.description = annonce.description
+    this.point = annonce.relaiId
+    this.url = annonce.photos
+    this.photoSend = true
+    this.title = annonce.title
   }
 
 }

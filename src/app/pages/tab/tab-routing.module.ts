@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: () => import('../poster-annonce/poster-annonce.module').then( m => m.PosterAnnoncePageModule)
       },
       {
+        path: 'editAnnonce/:id',
+        loadChildren: () => import('../poster-annonce/poster-annonce.module').then( m => m.PosterAnnoncePageModule)
+      },
+      {
         path: 'mes-annonces',
         loadChildren: () => import('../mes-annonces/mes-annonces.module').then( m => m.MesAnnoncesPageModule)
       },

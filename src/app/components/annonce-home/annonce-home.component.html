@@ -1,9 +1,9 @@
-<div routerLink="/tab/annonce/{{annonce.id}}">
+<div routerLink="/tab/annonce/{{annonce.id}}" *ngIf="annonce != undefined">
   
   <ion-grid>
     <ion-row>
       <ion-col>
-        <img class="annonceImage" src="{{annonceImageURL}}">
+        <img class="annonceImage" src="{{annonce.photos[0]}}">
 
       </ion-col>
     </ion-row>
@@ -27,11 +27,11 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="ion-align-self-start" style="text-align: right;">
+            <!-- <ion-col class="ion-align-self-start" style="text-align: right;">
               <img class="stars" src="/assets/images/StarFilled.svg">
               <img class="stars" src="/assets/images/StarFilled.svg">
               <img class="stars" src="/assets/images/StarFilled.svg">
-            </ion-col>
+            </ion-col> -->
           </ion-row>
         </ion-grid>
          

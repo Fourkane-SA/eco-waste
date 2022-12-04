@@ -1,0 +1,23 @@
+<div *ngIf="annonce != undefined">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img class="annonceImage" src="{{annonce.photos[0]}}">
+      </ion-col>
+    </ion-row>
+   <ion-row>
+    <ion-col>
+      <ion-button routerLink="/tab/editAnnonce/{{annonceId}}" expand="block" (click)="edit()">Modifier</ion-button>
+    </ion-col>
+    <ion-col size="1"></ion-col>
+    <ion-col>
+      <ion-button expand="block" (click)="delete()">Supprimer</ion-button>
+    </ion-col>
+   </ion-row>
+  </ion-grid>
+
+
+  <!--<div class="aliment">{{annonce.aliment}}</div>-->
+
+</div>

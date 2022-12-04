@@ -101,7 +101,6 @@ export class MapPage implements AfterViewInit, OnDestroy   {
     this.posY = 4.8883
   }
   ngOnDestroy(): void {
-    console.log("destroy")
   }
 
   ngAfterViewInit() {

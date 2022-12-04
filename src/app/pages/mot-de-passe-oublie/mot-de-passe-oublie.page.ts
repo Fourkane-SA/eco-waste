@@ -23,7 +23,6 @@ reset() {
     })
 
     await alert.present()
-    console.log("alert.present()")
 
   })
    .catch(e => {

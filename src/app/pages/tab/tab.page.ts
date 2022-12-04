@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-tab',
@@ -8,6 +11,8 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
   styleUrls: ['./tab.page.scss'],
 })
 export class TabPage implements OnInit {
+  messages: any;
+  count: number;
   goToEditProfil() {this.route.navigateByUrl('/tab/edit-profil')}
   goToMesVendeurs() {this.route.navigateByUrl('/tab/noter-mes-vendeurs')}
   goToAide() {this.route.navigateByUrl('/tab/aide')}
@@ -18,9 +23,11 @@ export class TabPage implements OnInit {
 
   url : string = "https://ionicframework.com/docs/img/demos/avatar.svg"
 
-  constructor(private route: Router,private storage: AngularFireStorage) { 
-    this.storage.ref(`profile/${localStorage.getItem('uid')}`).getDownloadURL()
+  constructor(private route: Router,private storage: AngularFireStorage, private db: AngularFireDatabase) { 
+    this.storage
+    .ref(`profile/${localStorage.getItem('uid')}`).getDownloadURL()
       .subscribe(e => this.url = e)
+      
     this.route.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
         document.getElementById("recette").setAttribute('name', "restaurant-outline")
@@ -39,10 +46,35 @@ export class TabPage implements OnInit {
   ngOnInit() {
     if(localStorage.getItem('uid') == null)
       this.route.navigateByUrl("/")
+    else
+      this.updateDataMessages()
   }
 
   logout() {
     localStorage.removeItem("uid");
     this.route.navigateByUrl("/login");
   }
+
+  updateDataMessages() {
+    this.db.database.ref('conversation/'+localStorage.getItem('uid'))
+    .on('value', (res) => {
+      this.count = 0
+      this.messages = []
+      let m : Message[]
+      res.forEach(conv => {
+        conv.forEach(mess => {
+          let conv : Message[] = []
+          conv = mess.val()
+          let indexLastMessageToRead = conv.map(el => el.receiver).lastIndexOf(localStorage.getItem('uid'))
+          if(conv[indexLastMessageToRead].read == false)
+            this.count++
+        })
+          
+        })
+        
+        
+      })
+      
+    }
+
 }

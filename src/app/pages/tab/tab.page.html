@@ -2,6 +2,7 @@
 
 <ion-menu contentId="main-content">
   <ion-header>
+    
     <ion-toolbar style="--background: #007CBE;">
       <img src="/assets/images/Logo 1.png">
     </ion-toolbar>
@@ -12,7 +13,7 @@
       <ion-menu-toggle>
         <ion-item nav-clear menu-close href="/tab/poster-annonce">Poster une annonce</ion-item>
         <ion-item nav-clear menu-close (click)="goToVoirMesAnnonces()">Voir mes annonces</ion-item>
-        <ion-item nav-clear menu-close (click)="goToMessages()">Messages</ion-item>
+        <ion-item nav-clear menu-close (click)="goToMessages()">Messages <ion-badge *ngIf="count > 0">{{count}}</ion-badge></ion-item>
         <ion-item nav-clear menu-close (click)="goToFavoris()">Mes favoris</ion-item>
         <ion-item nav-clear menu-close (click)="goToAide()">Aide</ion-item>
       </ion-menu-toggle>
@@ -33,6 +34,7 @@
       <ion-buttons slot="start">
         
         <ion-menu-button></ion-menu-button>
+        <p *ngIf="count > 0">{{count}}</p>
       </ion-buttons>
       
         <img src="/assets/images/Logo 1.png">

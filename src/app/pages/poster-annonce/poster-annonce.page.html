@@ -11,16 +11,23 @@
       <p>Sélectionnez le type d'aliment que vous souhaitez distribuer</p>
       <ion-progress-bar value="100" color="danger"></ion-progress-bar>
       <ion-grid>
+        <ion-radio-group (ionChange)="updateRadioValue($event,aliment)" value="aliments">
         <ion-row>
-          <ion-radio-group (ionChange)="updateRadioValue($event,aliment)" value="aliments">
-          <ion-col *ngFor="let aliment of aliments">
+          <ion-col size="6" *ngFor="let aliment of aliments" >
             <app-aliment-button image="{{aliment.image}}" name="{{aliment.name}}" ></app-aliment-button>
           </ion-col>
-          </ion-radio-group>
         </ion-row>
+        </ion-radio-group>
       </ion-grid>
-      <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
-      <ion-button disabled="true">Prendre une photo</ion-button>
+      <label>
+        <input style="display: none;" type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
+        <img src="/assets/images/uploadButton.svg">
+      </label>
+      <div class="images" *ngIf="photoSend">
+        <span *ngFor="let img of url">
+          <img class="contentImage" src="{{img}}">
+        </span>
+      </div>
       <ion-textarea rows="7" placeholder="Description obligatoire" required="true" [(ngModel)]="description"></ion-textarea>
       <div style="height: 250px; width: 100%; border: solid #EF445D; border-radius: 10px;" id="map"></div>
       <p>Point relais : </p>

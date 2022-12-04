@@ -37,36 +37,34 @@ export class MessagesPage implements OnInit {
                 text : res.text,
                 user : res.sender,
                 date : res.date,
-                read : false,
+                read : res.read,
                 contactedByUser : true, // L'utilisateur a contacté cette personne suite à une annonce
                 photoURL : photoURL,
                 link : "/tab/conversation/" + res.sender + "/" + res.annonceID,
               }
               this.messages.push(obj)
               this.messages = this.messages.sort((a, b) => a.date < b.date)
-              
             })
           } else {
             this.storage.ref(`profile/${res.receiver}`) 
             .getDownloadURL()
             .toPromise()
             .then(e => {
-              console.log(e)
               photoURL = e
               let obj = {
                 text : res.text,
                 user : res.receiver,
                 date : res.date,
-                read : false,
+                read : res.read,
                 contactedByUser : true, // L'utilisateur a contacté cette personne suite à une annonce
                 photoURL : photoURL,
                 link : "/tab/conversation/" + res.receiver + "/" + res.annonceID
               }
               this.messages.push(obj)
               this.messages = this.messages.sort((a, b) => a.date < b.date)
-              //console.log(this.messages)
             })
           }
+          
         })
         
         

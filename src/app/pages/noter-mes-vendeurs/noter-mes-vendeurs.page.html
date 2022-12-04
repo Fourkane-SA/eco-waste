@@ -60,6 +60,6 @@
       </ng-template>
     </ion-popover>
 
-    <ion-button>Envoyer</ion-button>
+    <ion-button [disabled]="!formValid()" (click)="envoyer()">Envoyer</ion-button>
   </div>
 </ion-content>

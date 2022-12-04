@@ -7,11 +7,11 @@ import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 import { ServiceUsers } from 'src/app/services/serviceUsers';
 
 @Component({
-  selector: 'app-annonce-home',
-  templateUrl: './annonce-home.component.html',
-  styleUrls: ['./annonce-home.component.scss'],
+  selector: 'app-annonce-edit',
+  templateUrl: './annonce-edit.component.html',
+  styleUrls: ['./annonce-edit.component.scss'],
 })
-export class AnnonceHomeComponent implements OnInit {
+export class AnnonceEditComponent implements OnInit {
 
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   su : ServiceUsers = new ServiceUsers(this.db)
@@ -20,7 +20,6 @@ export class AnnonceHomeComponent implements OnInit {
   userImageURL : string = ""
   fav : boolean = false
   user: User;
-  
   constructor(private db: AngularFireDatabase,private storage: AngularFireStorage) { }
 
   ngOnInit() {
@@ -41,4 +40,7 @@ export class AnnonceHomeComponent implements OnInit {
   })
   }
 
+  delete() {
+    this.sa.delete(this.annonceId)
+  }
 }

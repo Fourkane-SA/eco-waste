@@ -27,9 +27,7 @@ export class ServiceRendezVous {
 
     async delete(rdv: RendezVous) {
         let list = await this.getAll()
-        console.log(rdv, "rdv")
         list = list.filter(r => !(r.aid == rdv.aid && r.uidRececeur == rdv.uidRececeur && r.uidDonneur == rdv.uidDonneur))
-        console.log(list, "list2")
         this.db.object('rdv').set(list)
     }
 }

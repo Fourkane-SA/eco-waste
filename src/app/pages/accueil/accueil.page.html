@@ -2,10 +2,10 @@
   <div class="content">
     <ion-grid>
       <ion-row>
-        <ion-col size="10">
+        <ion-col>
           <ion-searchbar search-icon="/assets/images/SearchIcon.svg" placeholder="" [(ngModel)]="search" (ngModelChange)="update()"></ion-searchbar>
         </ion-col>
-        <ion-col>
+        <ion-col size="auto">
           <img class="location" (click)="goToMap()" src="/assets/images/Location.svg">
         </ion-col>
       </ion-row>

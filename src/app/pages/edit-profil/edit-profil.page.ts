@@ -114,9 +114,9 @@ export class EditProfilPage implements OnInit {
           });
         })
       )
-      .subscribe(url => {
+      .subscribe(async url => {
         if (url) {
-          console.log(url);
+          this.url = await url.ref.getDownloadURL()
         }
       });
   }

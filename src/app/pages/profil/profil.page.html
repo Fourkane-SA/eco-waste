@@ -12,6 +12,11 @@
       <p>{{age}}</p>
       <p>{{user.postalCode}}</p>
       <p class="bio">{{user.description}}</p>
+      <p>Commentaires ({{comments.length}})</p>
+      <div *ngFor="let comment of comments">
+        <app-commentaire uid="{{comment.uid}}" text="{{comment.text}}" note="{{comment.note}}"></app-commentaire>
+      </div>
     </div>
+    
   </div>
 </ion-content>

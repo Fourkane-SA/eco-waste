@@ -46,3 +46,22 @@ ion-item {
     --background: transparent;
     color: #EF445D;
 }
+
+label img {
+    margin-top: 20px;
+}
+
+.contentImage {
+    object-fit: cover;
+    width: 40%;
+    height: 100px;
+    margin: 5%;
+}
+
+.images {
+    text-align: left;
+    border: #EF445D solid;
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 0;
+}

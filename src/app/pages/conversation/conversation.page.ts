@@ -26,10 +26,10 @@ export class ConversationPage implements OnInit {
       m.text = this.text
       m.date = Date.now()
       m.annonceID = this.aid
+      m.read = false
       if(this.conversation == null)
         this.conversation = []
       this.conversation.push(m)
-      console.log(this.conversation)
       this.text = ""
       this.sc.updateConv(localStorage.getItem('uid'), this.uid, this.conversation, this.aid)
       this.sc.updateConv(this.uid,localStorage.getItem('uid'), this.conversation, this.aid)
@@ -48,7 +48,7 @@ export class ConversationPage implements OnInit {
   conversation : Message[] = []
   text: string
   acheteur : boolean = true
-  annonce : Annonce = new Annonce('','','','','','')
+  annonce : Annonce = new Annonce('','','','','','',[])
   date : any 
   toggle : any
   toggleConfirm : any
@@ -99,7 +99,20 @@ export class ConversationPage implements OnInit {
     this.db.database.ref('conversation/'+localStorage.getItem('uid')+'/'+this.uid + '/' + this.aid)
     .on('value', (v) => {
       this.conversation = v.val()
+      this.conversation.forEach(message => {
+        if(message.receiver == localStorage.getItem('uid')) {
+          if(location.href.includes('/tab/conversation')) {
+            message.read = true
+            this.sc.updateConv(localStorage.getItem('uid'), this.uid, this.conversation, this.aid)
+          }
+          
+        }
+          
+      })
+      
+      //this.sc.updateConv(this.uid,localStorage.getItem('uid'), this.conversation, this.aid)
     })
+    
 
     let rdvs : RendezVous[] = await this.sr.getAll()
     if(rdvs != null)
@@ -107,7 +120,7 @@ export class ConversationPage implements OnInit {
     if(this.rendezVous != null) {
       this.date = this.rendezVous.date
     }
-    if(this.annonce.uid == localStorage.getItem('uid')) {
+    if(this.annonce.uid == localStorage.getItem('uid') && rdvs != null) {
       this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidRececeur == this.uid)))
     }
     this.ctrdv = this.canTakeRdv()
@@ -115,7 +128,6 @@ export class ConversationPage implements OnInit {
   }
 
   confirm() {
-    console.log(this.date, this.toggle, this.select)
     let rdv : RendezVous = new RendezVous()
     rdv.aid = this.aid
     rdv.acceptee = false
@@ -142,7 +154,6 @@ export class ConversationPage implements OnInit {
   }
 
   canTakeRdv() {
-    console.log(this.rendezVous)
     return this.rendezVous == null && localStorage.getItem('uid') != this.annonce.uid
   }
 
@@ -151,7 +162,6 @@ export class ConversationPage implements OnInit {
   }
 
   confirmRDV() {
-    console.log(this.toggleConfirm)
     if(this.toggleConfirm) {
       this.sr.delete(this.rendezVous)
       this.rendezVous = null
@@ -165,4 +175,21 @@ export class ConversationPage implements OnInit {
     }
     this.ccrdv = this.canConfirmRdv()
   }
+
+  updateReadStatus() {
+    this.db.database.ref('conversation/'+localStorage.getItem('uid'))
+    .on('value', (res) => {
+      
+      res.forEach(conv => {
+        conv.forEach(mess => {
+          let conv : Message[] = []
+          
+        })
+          
+        })
+        
+        
+      })
+      
+    }
 }

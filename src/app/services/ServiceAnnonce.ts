@@ -16,4 +16,8 @@ export class ServiceAnnonce {
     async getAll() : Promise<Annonce[]>{
         return (await this.db.database.ref('annonce/').get()).val()
     }
+
+    delete(id : string) {
+        this.db.database.ref('annonce/' + id).remove()
+    }
 }

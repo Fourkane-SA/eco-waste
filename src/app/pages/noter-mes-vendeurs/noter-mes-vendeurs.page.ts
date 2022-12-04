@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ActivatedRoute } from '@angular/router';
+import { Comments } from 'src/app/models/Comments';
 import { User } from 'src/app/models/Users';
+import { ServiceComments } from 'src/app/services/ServiceComments';
 import { ServiceUsers } from 'src/app/services/serviceUsers';
 
 @Component({
@@ -18,6 +20,8 @@ export class NoterMesVendeursPage implements OnInit {
   comment: string
   bloquer: string
   signaler : boolean = false
+  score : number = 0
+  sc : ServiceComments = new ServiceComments(this.db)
   constructor(private storage: AngularFireStorage, private route: ActivatedRoute, private db: AngularFireDatabase) { }
 
   async ngOnInit() {
@@ -27,6 +31,7 @@ export class NoterMesVendeursPage implements OnInit {
   }
 
   note(n : number) {
+    this.score = n
     for(let i=1; i<=5; i++) {
       let doc = document.getElementById(i.toString())
       if(i <= n)
@@ -38,5 +43,17 @@ export class NoterMesVendeursPage implements OnInit {
 
   signalOK() {
     this.signaler = true
+  }
+
+  formValid() {
+    return this.score != 0
+  }
+
+  envoyer() {
+    let c : Comments = new Comments()
+    c.note = this.score
+    c.text = this.comment
+    c.uid = localStorage.getItem('uid')
+    this.sc.create(c, this.route.snapshot.params['uid'])
   }
 }

@@ -4,4 +4,5 @@ export class Message {
     text : string
     date : number
     annonceID : string
+    read : boolean
 }

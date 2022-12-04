@@ -39,16 +39,34 @@ export class AnnoncePage implements OnInit {
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   sp : serviceProduits = new serviceProduits(this.db)
   su : ServiceUsers = new ServiceUsers(this.db)
-  annonce : Annonce = new Annonce('','','','','','')
+  annonce : Annonce = new Annonce('','','','','','',[])
   userPhoto : string = ""
-  annoncePhoto: string = ""
   alimentPhoto: string = ""
+  annoncePhoto: string = ""
   fav : boolean = false
   user: User;
 
   constructor(private db: AngularFireDatabase, private route: ActivatedRoute,public router: Router,private storage: AngularFireStorage, private alertController: AlertController) {
     
    }
+
+  updateCircle(n : Number) {
+    this.annoncePhoto = this.annonce.photos[n.toString()]
+    let doc = document.getElementById('ellipse')
+    doc.innerHTML = ""
+    for(let i=0; i<this.annonce.photos.length; i++) {
+        let img = document.createElement('img')
+        img.width = 20
+        img.style.marginLeft = "5px"
+        img.style.marginTop = "10px"
+        img.onclick = () => this.updateCircle(i)
+        if(i == n)
+          img.src = "/assets/images/EllipseFilled.svg"
+        else
+          img.src = "/assets/images/Ellipse.svg"
+        doc.appendChild(img)
+      }
+  }
 
   ngOnInit() {
     this.sa.get(this.route.snapshot.params['id']) // Recupere l'annonce via l'url
@@ -60,10 +78,7 @@ export class AnnoncePage implements OnInit {
       .getDownloadURL()
       .toPromise()
       .then(e => this.userPhoto = e)
-      this.storage.ref(`annonce/${this.annonce.id}`) // On recupère l'image de la photo
-      .getDownloadURL()
-      .toPromise()
-      .then(e => this.annoncePhoto = e)
+      this.updateCircle(0)
       this.sp.getAll()
       .then(res => {
         let tab = Object.values(res)
