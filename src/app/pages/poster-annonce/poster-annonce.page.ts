@@ -121,7 +121,7 @@ export class PosterAnnoncePage implements AfterViewInit {
       alert("Veuillez choisir un point relais")
     } else{
       this.sa.create(annonce, this.id) // Crée une nouvelle annonce
-      this.router.navigate(['tab', 'annonce', this.id]) // redirige vers la nouvelle annonce
+      this.router.navigate(['tab', 'mes-annonces']) 
     }
   }
 

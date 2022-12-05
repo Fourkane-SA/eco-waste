@@ -11,15 +11,21 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
 })
 export class FavorisPage implements OnInit {
   su : ServiceUsers = new ServiceUsers(this.db)
+  sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   user : User = new User('')
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    setInterval(() => {
       this.su.get(localStorage.getItem('uid')).then(u => {
       this.user = u
+      let favoris = this.user.favoris
+      this.user.favoris = []
+      favoris.forEach(async f => {
+        let annonce = await this.sa.get(f)
+        if(annonce != undefined)
+          this.user.favoris.push(f)
+      })
     })
-    }, 1000)
     
   }
 

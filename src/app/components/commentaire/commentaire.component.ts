@@ -35,6 +35,10 @@ export class CommentaireComponent implements OnInit {
       imgStarFilled.width = 16
       doc.appendChild(imgStarFilled)
     }
+
+  if(this.src == "")
+    this.src = 'https://ionicframework.com/docs/img/demos/avatar.svg'
+  
   }
 
 }

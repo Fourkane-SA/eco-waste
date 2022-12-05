@@ -1,5 +1,6 @@
 ion-content {
     text-align: center;
+    margin-bottom: 50px;
 }
 
 div {
@@ -10,6 +11,7 @@ div {
 
 ion-content {
     --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
+    background-color: white;
 }
 
 h1 {
@@ -31,3 +33,4 @@ strong {
     border-radius: 5px;
     border: #EF445D solid;
 }
+

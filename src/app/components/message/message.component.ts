@@ -21,6 +21,10 @@ export class MessageComponent implements OnInit {
   ngOnInit() {
     if(this.sender == localStorage.getItem('uid'))
       this.sendByUserLoggin = true
+    if(this.url1 == '')
+      this.url1 = 'https://ionicframework.com/docs/img/demos/avatar.svg'
+    if(this.url2 == '')
+      this.url2 = 'https://ionicframework.com/docs/img/demos/avatar.svg'
   }
 
 }

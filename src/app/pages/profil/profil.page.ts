@@ -33,6 +33,8 @@ export class ProfilPage implements OnInit {
     .then(comments => {
       this.comments = Object.values(comments)
     })
+    .catch(() => this.photoURL = 'https://ionicframework.com/docs/img/demos/avatar.svg')
+
   }
 
   getAge(date) { 

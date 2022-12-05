@@ -17,7 +17,33 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
 export class AnnoncePage implements OnInit {
   async goToConv() {
     let me : User = await this.su.get(localStorage.getItem('uid'))
-    if(me.vendeurs == undefined)
+    if(me.firstname == "") {
+       const alert = await this.alertController.create({
+      header: 'Profil incomplet',
+      message: 'Remplissez votre profil afin de pouvoir réserver un produit',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {},
+        },
+        {
+          text: 'Remplir le profil',
+          role: 'confirm',
+          handler: () => {},
+        },
+      ],
+    });
+
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if(role == 'confirm') {
+      this.router.navigateByUrl('/tab/edit-profil')
+    }
+
+    }
+    else {
+      if(me.vendeurs == undefined)
       me.vendeurs = []  
     if(!me.vendeurs.includes(this.annonce.uid))
       me.vendeurs.push(this.annonce.uid)
@@ -27,6 +53,8 @@ export class AnnoncePage implements OnInit {
       me.contactAnnonce.push(this.route.snapshot.params['id'])
     this.su.update(me, localStorage.getItem('uid'))
     this.router.navigate(['tab', 'conversation', this.annonce.uid, this.route.snapshot.params['id']])
+    }
+    
   }
   async pointRelai() {
     const relaiPoint = await this.db.database.ref('relaiPoint/').get()
@@ -94,7 +122,9 @@ export class AnnoncePage implements OnInit {
       })
       
     })
-    
+  if(this.userPhoto == "")
+    this.userPhoto = 'https://ionicframework.com/docs/img/demos/avatar.svg'
+  
   }
 
   updateFavoris() {

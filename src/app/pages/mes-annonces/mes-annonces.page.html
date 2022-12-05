@@ -1,5 +1,9 @@
 <ion-content>
   <div class="ion-padding content">
+    <h1>Mes annonces</h1>
+    <div *ngIf="mesannonces.length == 0">
+      <h5>Vous n'avez posté aucune annonce</h5>
+    </div>
     <div style="text-align: center;" *ngFor="let annonce of mesannonces">
       <app-annonce-edit annonceId="{{annonce.id}}"></app-annonce-edit>
     </div>

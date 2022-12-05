@@ -2,7 +2,8 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
 import { Annonce } from 'src/app/models/Annonce';
 import { Message } from 'src/app/models/Message';
 import { RendezVous } from 'src/app/models/RendezVous';
@@ -50,22 +51,22 @@ export class ConversationPage implements OnInit {
   acheteur : boolean = true
   annonce : Annonce = new Annonce('','','','','','',[])
   date : any 
-  toggle : any
+  toggle : any = true
   toggleConfirm : any
   select : any 
   rendezVous : RendezVous = null
   demandeRendezVous : RendezVous = null
   ctrdv : boolean = true
   ccrdv : boolean = true
+  relaisList : string[] = []
 
-  constructor(private db: AngularFireDatabase, private route: ActivatedRoute,private storage: AngularFireStorage) { 
+  constructor(public router: Router, private db: AngularFireDatabase, private route: ActivatedRoute,private storage: AngularFireStorage, private popoverController: PopoverController) { 
     
   }
 
   // affichage différent des messages concernant l'état des rendez-vous 
 
   async ngOnInit() {
-    
     this.uid = this.route.snapshot.params['uid']
     this.aid = this.route.snapshot.params['aid']
     this.annonce = await this.sa.get(this.aid)
@@ -109,11 +110,23 @@ export class ConversationPage implements OnInit {
         }
           
       })
-      
+      this.initRdvStatus()
       //this.sc.updateConv(this.uid,localStorage.getItem('uid'), this.conversation, this.aid)
     })
     
+    this.initRdvStatus()
+    this.initRelaisList()
+  }
 
+  initRelaisList() {
+    this.db.database.ref('relaiPoint/').get()
+    .then(res => res.forEach(data => {
+      if(this.annonce.relaiId != data.val().name)
+        this.relaisList.push(data.val().name)
+    }))
+  }
+
+  async initRdvStatus() {
     let rdvs : RendezVous[] = await this.sr.getAll()
     if(rdvs != null)
       this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidRececeur == localStorage.getItem('uid'))))
@@ -127,7 +140,7 @@ export class ConversationPage implements OnInit {
     this.ccrdv = this.canConfirmRdv()
   }
 
-  confirm() {
+  async confirm() {
     let rdv : RendezVous = new RendezVous()
     rdv.aid = this.aid
     rdv.acceptee = false
@@ -150,7 +163,7 @@ export class ConversationPage implements OnInit {
     
     this.send()
     this.ctrdv = this.canTakeRdv()
-    
+    await this.popoverController.dismiss();
   }
 
   canTakeRdv() {
@@ -161,7 +174,7 @@ export class ConversationPage implements OnInit {
     return this.rendezVous != null && localStorage.getItem('uid') == this.annonce.uid && this.rendezVous.acceptee != true
   }
 
-  confirmRDV() {
+  async confirmRDV() {
     if(this.toggleConfirm) {
       this.sr.delete(this.rendezVous)
       this.rendezVous = null
@@ -174,6 +187,7 @@ export class ConversationPage implements OnInit {
       this.sr.update(this.rendezVous)
     }
     this.ccrdv = this.canConfirmRdv()
+    await this.popoverController.dismiss();
   }
 
   updateReadStatus() {

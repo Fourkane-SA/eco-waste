@@ -38,6 +38,9 @@ export class AnnonceEditComponent implements OnInit {
             this.fav = true
         })
   })
+  console.log(this.userImageURL, "img")
+  if(this.userImageURL == "")
+    this.userImageURL = 'https://ionicframework.com/docs/img/demos/avatar.svg'
   }
 
   delete() {

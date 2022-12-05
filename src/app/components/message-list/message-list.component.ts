@@ -20,6 +20,9 @@ export class MessageListComponent implements OnInit {
       this.status = "/assets/images/unread.svg"
     if(this.text.length > 80)
       this.text = this.text.substring(0, 80) + '...'
+    if(this.src == undefined) {
+      this.src = 'https://ionicframework.com/docs/img/demos/avatar.svg'
+    }
   }
 
 }

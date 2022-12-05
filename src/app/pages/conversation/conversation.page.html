@@ -32,9 +32,9 @@
             <ion-item>
               <ion-select [(ngModel)]="select" placeholder="Choisir un autre point relais">
                 <ion-select-option value=""></ion-select-option>
-                <ion-select-option value="todo1">todo1</ion-select-option>
-                <ion-select-option value="todo2">todo2</ion-select-option>
-                <ion-select-option value="todo3">todo3</ion-select-option>
+                <span *ngFor="let relais of relaisList">
+                  <ion-select-option value="{{relais}}">{{relais}}</ion-select-option>
+                </span>
               </ion-select>
             </ion-item>
           </ion-list>
