@@ -72,10 +72,11 @@ export class MapPage implements AfterViewInit, OnDestroy   {
     .then(res => res.forEach(data => {
       L.marker([data.val().lat,data.val().lng], {
         icon: this.icon,
-        title: data.val().name
+        title: data.val().name,
       })
       .on('click',clickMarker)
       .addTo(this.map)
+      
     }))
 
 
