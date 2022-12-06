@@ -22,8 +22,8 @@
         <ion-grid>
           <ion-row>
             <ion-col style="text-align: right;">
-              <ion-icon *ngIf="fav" name="heart"></ion-icon>
-              <ion-icon *ngIf="!fav" name="heart-outline"></ion-icon>
+              <img class="fav" *ngIf="fav" src="/assets/images/HeartFilled.svg">
+              <img class="fav" *ngIf="!fav" src="/assets/images/Heart.svg">
             </ion-col>
           </ion-row>
           <ion-row>

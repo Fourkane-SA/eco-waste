@@ -15,6 +15,11 @@
       <ion-button expand="block" (click)="delete()">Supprimer</ion-button>
     </ion-col>
    </ion-row>
+   <ion-col>
+      <ion-button *ngIf="annonce.reserve == true">
+        Remettre en réservation
+        </ion-button>
+      </ion-col>
   </ion-grid>
 
 

@@ -6,8 +6,9 @@ export class Annonce {
     relaiId : string
     title: string
     photos : string[]
+    reserve : boolean
 
-    constructor(aliment : string, description : string, id : string, uid : string, relaiId : string, title : string, photos : string[]) {
+    constructor(aliment : string, description : string, id : string, uid : string, relaiId : string, title : string, photos : string[], reserve : boolean) {
         this.aliment = aliment
         this.description = description
         this.id = id
@@ -15,5 +16,6 @@ export class Annonce {
         this.relaiId = relaiId
         this.title = title
         this.photos = photos
+        this.reserve = reserve
     }
 }

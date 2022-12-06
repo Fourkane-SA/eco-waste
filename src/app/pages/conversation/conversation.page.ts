@@ -49,7 +49,7 @@ export class ConversationPage implements OnInit {
   conversation : Message[] = []
   text: string
   acheteur : boolean = true
-  annonce : Annonce = new Annonce('','','','','','',[])
+  annonce : Annonce = new Annonce('','','','','','',[],false)
   date : any 
   toggle : any = true
   toggleConfirm : any
@@ -98,7 +98,12 @@ export class ConversationPage implements OnInit {
     
     // messagerie en temps réel
     this.db.database.ref('conversation/'+localStorage.getItem('uid')+'/'+this.uid + '/' + this.aid)
-    .on('value', (v) => {
+    .on('value', async (v) => {
+      let annonce : Annonce = await this.sa.get(this.aid)
+      if(annonce.reserve != true) {
+        annonce.reserve = true
+        this.sa.create(annonce, this.aid)
+      }
       this.conversation = v.val()
       this.conversation.forEach(message => {
         if(message.receiver == localStorage.getItem('uid')) {

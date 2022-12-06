@@ -81,8 +81,11 @@ export class TabPage implements OnInit {
         })
         if(!location.href.includes('/tab/conversation')) {
           this.messages = this.messages.sort((a, b) => a.date < b.date ? 1 : 0)
-          let sender : User = await this.su.get(this.messages[0].sender)
-          this.presentToast('Nouveau message de ' + sender.firstname + ' ' + sender.lastname)
+          if(this.messages[0] != undefined) {
+            let sender : User = await this.su.get(this.messages[0].sender)
+            this.presentToast('Nouveau message de ' + sender.firstname + ' ' + sender.lastname)
+          }
+          
         }
           
       })

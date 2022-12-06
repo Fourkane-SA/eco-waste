@@ -67,7 +67,7 @@ export class AnnoncePage implements OnInit {
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   sp : serviceProduits = new serviceProduits(this.db)
   su : ServiceUsers = new ServiceUsers(this.db)
-  annonce : Annonce = new Annonce('','','','','','',[])
+  annonce : Annonce = new Annonce('','','','','','',[],false)
   userPhoto : string = ""
   alimentPhoto: string = ""
   annoncePhoto: string = ""

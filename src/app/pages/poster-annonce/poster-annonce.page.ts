@@ -110,7 +110,7 @@ export class PosterAnnoncePage implements AfterViewInit {
 
   //Vérifie que tous les champs obligatoires ont été postés et crée une nouvelle annonce
   poster() {
-    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point, this.title, this.url)
+    let annonce : Annonce = new Annonce(this.aliment, this.description, this.id, localStorage.getItem('uid'), this.point, this.title, this.url,false)
     if(this.aliment === undefined) {
       alert("Veuillez choisir un aliment")
     } else if (this.description === undefined) {

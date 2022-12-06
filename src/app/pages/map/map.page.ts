@@ -66,23 +66,23 @@ export class MapPage implements AfterViewInit, OnDestroy   {
     this.icon = L.icon({
       iconUrl: '/assets/images/marker.svg',
       iconSize: [38, 95],
+      popupAnchor:  [0, -25]
     })
 
     this.db.database.ref('relaiPoint/').get()
     .then(res => res.forEach(data => {
-      L.marker([data.val().lat,data.val().lng], {
+      let marker = L.marker([data.val().lat,data.val().lng], {
         icon: this.icon,
         title: data.val().name,
       })
-      .on('click',clickMarker)
+      .bindPopup(data.val().name)
+      .on('click',function (e) {
+        marker.openPopup()
+      })
       .addTo(this.map)
-      
     }))
 
 
-    function clickMarker() {
-      alert(this.options.title)
-    }
 
     // Pour ajouter des points relais dans la BDD en cliquant sur la map
     /*this.map.on('click', e => {

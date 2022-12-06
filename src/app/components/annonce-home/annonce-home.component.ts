@@ -16,7 +16,7 @@ export class AnnonceHomeComponent implements OnInit {
   sa : ServiceAnnonce = new ServiceAnnonce(this.db)
   su : ServiceUsers = new ServiceUsers(this.db)
   @Input() annonceId : string = ""
-  annonce : Annonce = new Annonce('','','','','','',[])
+  annonce : Annonce = new Annonce('','','','','','',[],false)
   userImageURL : string = ""
   fav : boolean = false
   user: User;
