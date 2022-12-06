@@ -7,7 +7,7 @@ ion-searchbar {
     padding-inline: 0;
 }
 .content {
-    padding-top: 75px;
+    padding-block: 75px;
 }
 
 .tags-wrapper{
@@ -16,17 +16,20 @@ ion-searchbar {
 
 .cards-wrapper{
     height:230px;
-    
+    padding-bottom: 10px;
 }
-
-
 .scrolling-wrapper {
-    
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    vertical-align: top;
 }
+
 h1 {
     color: #EF445D;
 }
 .separateur {
+    background-color: #EF445D;
     margin-left: 5px;
     border: #EF445D solid 1px;
     margin-top: 20px;
@@ -34,7 +37,6 @@ h1 {
 }
 
 app-life-hack-card{
+    margin-right: 10px;
     
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-
 }

@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-searchbar placeholder="Rechercher une recette"></ion-searchbar>
     <div class="scrolling-wrapper tags-wrapper">
-      <app-tag title="Guacamole"></app-tag>
+      <app-tag title="Avocat"></app-tag>
       <app-tag title="Courgettes farcies"></app-tag>
       <app-tag title="Gâteau aux pommes"></app-tag>
 
@@ -13,11 +13,12 @@
     <div class="separateur"></div>
     <h1>Life hack du moment</h1>
     <div class="scrolling-wrapper cards-wrapper">
-      
         <app-life-hack-card *ngFor="let x of lifeHCards" img={{x.img}} title={{x.title}}></app-life-hack-card>
-
-
-
+    </div>
+    <div class="separateur"></div>
+    <h1>Recettes</h1>
+    <div class="scrolling-wrapper cards-wrapper">
+        <app-life-hack-card *ngFor="let x of lifeHCards" img={{x.img}} title={{x.title}}></app-life-hack-card>
     </div>
   </div>
 </ion-content>
