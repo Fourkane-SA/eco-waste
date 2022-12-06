@@ -2,21 +2,39 @@ ion-content {
     --background: url('/assets/images/Background.svg') 0 0/100% 100% no-repeat;
     background-color: white;
 }
+ion-searchbar {
 
+    padding-inline: 0;
+}
 .content {
     padding-top: 75px;
 }
 
-.scrolling-wrapper {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+.tags-wrapper{
+    height: 45px;
 }
 
+.cards-wrapper{
+    height:230px;
+    
+}
+
+
+.scrolling-wrapper {
+    
+}
+h1 {
+    color: #EF445D;
+}
 .separateur {
-    width: 90%;
-    margin-left: 5%;
-    border: red solid 1px;
+    margin-left: 5px;
+    border: #EF445D solid 1px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+app-life-hack-card{
+    
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+
 }

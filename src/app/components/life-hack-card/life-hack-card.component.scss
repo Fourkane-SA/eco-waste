@@ -1,5 +1,18 @@
+div{
+    vertical-align: top;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
 img {
-    width: 70%;
-    background-size: cover;
-    margin-right: 30px;
+    max-width: 200px;
+    margin-right: 20px;
+    height: 100%;
+    object-fit: cover;
+}
+ion-chip {
+    position: relative;
+    left: -200px;
+
 }

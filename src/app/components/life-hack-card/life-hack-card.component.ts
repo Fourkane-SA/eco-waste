@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-life-hack-card',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./life-hack-card.component.scss'],
 })
 export class LifeHackCardComponent implements OnInit {
-
+  @Input() img
+  @Input() title
   constructor() { }
 
   ngOnInit() {}
