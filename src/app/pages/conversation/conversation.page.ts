@@ -19,6 +19,7 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
   styleUrls: ['./conversation.page.scss'],
 })
 export class ConversationPage implements OnInit {
+rdveffectue: boolean = false
   send() {
     if(this.text != undefined) {
       let m : Message = new Message()
@@ -34,6 +35,13 @@ export class ConversationPage implements OnInit {
       this.text = ""
       this.sc.updateConv(localStorage.getItem('uid'), this.uid, this.conversation, this.aid)
       this.sc.updateConv(this.uid,localStorage.getItem('uid'), this.conversation, this.aid)
+      if(this.annonce.userReserveID == undefined)
+        this.annonce.userReserveID = []
+      console.log(this.annonce)
+      if(!this.annonce.userReserveID.includes(localStorage.getItem('uid'))) {
+        this.annonce.userReserveID.push(localStorage.getItem('uid'))
+        this.sa.update(this.annonce, this.aid)
+      }
     }
   }
 
@@ -121,6 +129,7 @@ export class ConversationPage implements OnInit {
     
     this.initRdvStatus()
     this.initRelaisList()
+    
   }
 
   initRelaisList() {
@@ -143,6 +152,7 @@ export class ConversationPage implements OnInit {
     }
     this.ctrdv = this.canTakeRdv()
     this.ccrdv = this.canConfirmRdv()
+    this.getRdvEffectue()
   }
 
   async confirm() {
@@ -152,6 +162,8 @@ export class ConversationPage implements OnInit {
     rdv.date = this.date
     rdv.uidDonneur = this.annonce.uid
     rdv.uidRececeur = localStorage.getItem('uid')
+    rdv.confirmDonneur = false
+    rdv.confirmReceveur = false
     if(this.toggle)
       rdv.pointRelai = this.annonce.relaiId
     else
@@ -168,7 +180,8 @@ export class ConversationPage implements OnInit {
     
     this.send()
     this.ctrdv = this.canTakeRdv()
-    await this.popoverController.dismiss();
+    await this.popoverController.dismiss()
+   
   }
 
   canTakeRdv() {
@@ -176,7 +189,20 @@ export class ConversationPage implements OnInit {
   }
 
   canConfirmRdv() {
+    if(this.rendezVous == null)
+      return false
     return this.rendezVous != null && localStorage.getItem('uid') == this.annonce.uid && this.rendezVous.acceptee != true
+  }
+
+  canValidRdv() {
+    if(this.rendezVous == null)
+      return false
+    let repondu = false
+    if(localStorage.getItem('uid') == this.rendezVous.uidDonneur)
+      repondu = this.rendezVous.confirmDonneur
+    else
+      repondu = this.rendezVous.confirmReceveur
+    return this.rendezVous.acceptee && !repondu && ((new Date(this.rendezVous.date)).getTime() - Date.now() <= 0)
   }
 
   async confirmRDV() {
@@ -211,4 +237,29 @@ export class ConversationPage implements OnInit {
       })
       
     }
+
+    async rdvLieu(val : boolean) {
+      if(val) {
+        await this.initRdvStatus()
+        if(localStorage.getItem('uid') == this.rendezVous.uidDonneur)
+          this.rendezVous.confirmDonneur = true
+        else if (localStorage.getItem('uid') == this.rendezVous.uidRececeur)
+          this.rendezVous.confirmReceveur = true
+        this.sr.update(this.rendezVous)
+      }
+      await this.popoverController.dismiss();
+    }
+
+    getRdvEffectue() {
+      let time = (new Date(this.rendezVous.date)).getTime()
+      if( time - Date.now() >= 0) {
+        setTimeout(() => {
+          this.rdveffectue = true
+        }, time - Date.now());
+      } else {
+        this.rdveffectue = true
+      }
+    }
+
+    
 }

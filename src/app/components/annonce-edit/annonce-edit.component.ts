@@ -23,6 +23,10 @@ export class AnnonceEditComponent implements OnInit {
   constructor(private db: AngularFireDatabase,private storage: AngularFireStorage) { }
 
   ngOnInit() {
+    this.updateData()
+  }
+
+  updateData() {
     this.sa.get(this.annonceId)
     .then(res =>  {
       this.annonce = res
@@ -38,12 +42,17 @@ export class AnnonceEditComponent implements OnInit {
             this.fav = true
         })
   })
-  console.log(this.userImageURL, "img")
   if(this.userImageURL == "")
     this.userImageURL = 'https://ionicframework.com/docs/img/demos/avatar.svg'
   }
 
   delete() {
     this.sa.delete(this.annonceId)
+    this.updateData()
+  }
+
+  remettre() {
+    this.annonce.reserve = false
+    this.sa.update(this.annonce, this.annonceId)
   }
 }

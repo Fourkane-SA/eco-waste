@@ -20,4 +20,8 @@ export class ServiceAnnonce {
     delete(id : string) {
         this.db.database.ref('annonce/' + id).remove()
     }
+
+    update(annonce : Annonce, id : string) {
+        this.db.object('annonce/' + id).update(annonce)
+    }
 }

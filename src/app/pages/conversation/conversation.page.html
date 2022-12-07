@@ -13,7 +13,7 @@
     <div *ngFor="let message of conversation">
       <app-message sender="{{message.sender}}" receiver="{{message.receiver}}" text="{{message.text}}" url1={{urlUser}} url2="{{url}}"></app-message>
     </div>
-    <ion-button id="create-rdv" *ngIf="ctrdv">Créer un rendez-vous</ion-button>
+    <ion-button id="create-rdv" [ngStyle]="{'display': canTakeRdv() ? 'block' : 'none'}">Créer un rendez-vous</ion-button>
     <ion-popover trigger="create-rdv" triggerAction="click">
       <ng-template>
         <div class="modal">
@@ -42,7 +42,8 @@
         <ion-button class="submit" (click)="confirm()">Valider</ion-button>
       </ng-template>
     </ion-popover>
-    <ion-button id="confirm-rdv" *ngIf="ccrdv" > Valider le rendez-vous</ion-button>
+
+    <ion-button id="confirm-rdv" [ngStyle]="{'display': canConfirmRdv() ? 'block' : 'none'}"> Valider le rendez-vous</ion-button>
     <ion-popover trigger="confirm-rdv" triggerAction="click">
       <ng-template>
         <div class="modal">
@@ -66,6 +67,19 @@
           </ion-list>
         </div>
         <ion-button class="submit" (click)="confirmRDV()">Valider</ion-button>
+      </ng-template>
+    </ion-popover>
+
+    <ion-button id="evalrdv" [ngStyle]="{'display': canValidRdv() ? 'block' : 'none'}"> Rendez-vous effectué ?</ion-button>
+    <ion-popover trigger="evalrdv" triggerAction="click">
+      <ng-template>
+        <div class="modal">
+          <ion-list>
+            <h1>Le rendez-vous a-t-il eu lieu ?</h1>
+            <ion-button (click)="rdvLieu(true)">Oui</ion-button>
+            <ion-button (click)="rdvLieu(false)">Non</ion-button>
+          </ion-list>
+        </div>
       </ng-template>
     </ion-popover>
   </div>

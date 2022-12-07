@@ -5,8 +5,11 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { async } from 'rxjs';
 import { Message } from 'src/app/models/Message';
+import { Notifications } from 'src/app/models/Notifications';
 import { User } from 'src/app/models/Users';
+import { ServiceNotificationService } from 'src/app/services/service-notification.service';
 import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
+import { ServiceRendezVous } from 'src/app/services/ServiceRendezVous';
 import { ServiceUsers } from 'src/app/services/serviceUsers';
 
 @Component({
@@ -18,17 +21,19 @@ export class TabPage implements OnInit {
   messages: Message[];
   count: number;
   su: ServiceUsers = new ServiceUsers(this.db)
+  sr: ServiceRendezVous = new ServiceRendezVous(this.db)
   goToEditProfil() {this.route.navigateByUrl('/tab/edit-profil')}
   goToMesVendeurs() {this.route.navigateByUrl('/tab/noter-mes-vendeurs')}
   goToAide() {this.route.navigateByUrl('/tab/aide')}
   goToFavoris() {this.route.navigateByUrl('/tab/favoris')}
   goToMessages() {this.route.navigateByUrl('/tab/messages')}
   goToVoirMesAnnonces() {this.route.navigateByUrl('/tab/mes-annonces')}
+  upcomingNotifs : Notification [] = []
   
 
   url : string = "https://ionicframework.com/docs/img/demos/avatar.svg"
 
-  constructor(private route: Router,private storage: AngularFireStorage, private db: AngularFireDatabase, private toastController: ToastController, private alertController: AlertController) { 
+  constructor(private route: Router,private storage: AngularFireStorage, private db: AngularFireDatabase, private toastController: ToastController, private alertController: AlertController, private sn: ServiceNotificationService) { 
     this.storage
     .ref(`profile/${localStorage.getItem('uid')}`).getDownloadURL()
       .subscribe(e => this.url = e)
@@ -51,8 +56,11 @@ export class TabPage implements OnInit {
   ngOnInit() {
     if(localStorage.getItem('uid') == null)
       this.route.navigateByUrl("/")
-    else
+    else {
       this.updateDataMessages()
+      this.sn.initAllUpcomingNotifs()
+    }
+      
   }
 
   logout() {

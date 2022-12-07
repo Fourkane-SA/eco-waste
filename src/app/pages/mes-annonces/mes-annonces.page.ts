@@ -22,8 +22,9 @@ export class MesAnnoncesPage implements OnInit {
   ngOnInit() {
     this.sa.getAll()
     .then(res =>  {
-      this.mesannonces = Object.values(res)
-      this.mesannonces = this.mesannonces.filter(annonce => annonce.uid === localStorage.uid)
+      console.log(res)
+      //this.mesannonces = Object.values(res)
+      this.mesannonces = Object.values(res).filter(annonce => annonce.uid === localStorage.uid)
   })
   }
 }

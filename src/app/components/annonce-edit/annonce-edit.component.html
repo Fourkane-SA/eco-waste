@@ -16,13 +16,9 @@
     </ion-col>
    </ion-row>
    <ion-col>
-      <ion-button *ngIf="annonce.reserve == true">
+      <ion-button *ngIf="annonce.reserve == true" (click)="remettre()">
         Remettre en réservation
         </ion-button>
       </ion-col>
   </ion-grid>
-
-
-  <!--<div class="aliment">{{annonce.aliment}}</div>-->
-
 </div>

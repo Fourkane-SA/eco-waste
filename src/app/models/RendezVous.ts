@@ -5,4 +5,6 @@ export class RendezVous {
     acceptee : boolean
     pointRelai : string
     date : string
+    confirmDonneur : boolean
+    confirmReceveur : boolean
 }

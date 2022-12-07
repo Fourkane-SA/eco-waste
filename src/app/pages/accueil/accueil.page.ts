@@ -28,7 +28,16 @@ export class AccueilPage implements OnInit {
       this.annonces = this.annonces
         .filter(annonce => annonce.uid != localStorage.getItem('uid'))
         .filter(annonce => annonce.reserve == false)
+        .filter(annonce => {
+          if(annonce.userReserveID == undefined)
+            return true
+          if(annonce.userReserveID.includes(localStorage.getItem('uid')))
+            return false
+          return true
+        })
+       //.filter(annonce => annonce.userReserveID == undefined)
       this.allAnnonces = this.annonces
+      console.log(this.annonces)
   })
   }
   update() {

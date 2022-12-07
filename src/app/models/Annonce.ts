@@ -7,6 +7,7 @@ export class Annonce {
     title: string
     photos : string[]
     reserve : boolean
+    userReserveID : string[]
 
     constructor(aliment : string, description : string, id : string, uid : string, relaiId : string, title : string, photos : string[], reserve : boolean) {
         this.aliment = aliment
@@ -17,5 +18,6 @@ export class Annonce {
         this.title = title
         this.photos = photos
         this.reserve = reserve
+        this.userReserveID = []
     }
 }
