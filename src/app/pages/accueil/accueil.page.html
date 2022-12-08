@@ -10,8 +10,9 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <div style="text-align: center;" *ngFor="let annonce of annonces">
+    <div style="text-align: center;" *ngFor="let annonce of annonces; let i = index;">
       <app-annonce-home annonceId="{{annonce.id}}"></app-annonce-home>
+      <app-pub *ngIf="i%3==2"></app-pub>
     </div>
   </div>
 </ion-content>

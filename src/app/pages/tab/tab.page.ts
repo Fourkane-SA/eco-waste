@@ -141,4 +141,15 @@ export class TabPage implements OnInit {
       //this.route.navigateByUrl('/tab/poster-annonce')
     }
   }
+
+  printBack() {
+    return !location.href.includes('accueil')
+  }
+
+  getHref() {
+    if(location.href.includes('conversation') || location.href.includes('noter'))
+      return "/tab/messages"
+    return "/tab/accueil"
+  }
 }
+

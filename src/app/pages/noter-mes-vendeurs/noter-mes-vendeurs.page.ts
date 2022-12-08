@@ -28,6 +28,8 @@ export class NoterMesVendeursPage implements OnInit {
     this.user = await this.su.get(this.route.snapshot.params['uid'])
     this.storage.ref(`profile/${this.route.snapshot.params['uid']}`).getDownloadURL()
       .subscribe(e => this.photoURL = e)
+    if(this.photoURL == "")
+      this.photoURL = 'https://ionicframework.com/docs/img/demos/avatar.svg'
   }
 
   note(n : number) {

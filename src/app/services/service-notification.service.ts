@@ -15,7 +15,7 @@ export class ServiceNotificationService {
   sc : ServiceConversation = new ServiceConversation(this.db)
   sr : ServiceRendezVous = new ServiceRendezVous(this.db)
   upcomingNotifs : Notification[] = []
-  idTimeouts :  NodeJS.Timeout[]
+  idTimeouts :  NodeJS.Timeout[] = []
   constructor(private db: AngularFireDatabase, private toastController: ToastController) { 
     this.initAllUpcomingNotifs()
   }
@@ -28,7 +28,7 @@ export class ServiceNotificationService {
   }
 
   addTimeoutRdv(rdv : RendezVous ) {
-    let time = new Date(rdv.date).getTime() - Date.now()
+    let time = new Date(rdv.date).getTime() - Date.now() + 60000
     if(time >= 0) {
       if(rdv.uidDonneur == localStorage.getItem('uid')) {
         let idTim = setTimeout(() => {

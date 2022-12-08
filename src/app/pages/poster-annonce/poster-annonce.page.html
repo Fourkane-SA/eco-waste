@@ -1,8 +1,5 @@
 <ion-content>
   <div class="content" style="padding-top: 60px;">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab/accueil" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
-    </ion-buttons>
     <div class="body">
       <h1>Vous souhaitez poster une annonce ?</h1>
       <ion-item>
@@ -31,8 +28,9 @@
       <ion-textarea rows="7" placeholder="Description obligatoire" required="true" [(ngModel)]="description"></ion-textarea>
       <div style="height: 250px; width: 100%; border: solid #EF445D; border-radius: 10px;" id="map"></div>
       <p>Point relais : </p>
-      <p>{{point}}</p>
-      <ion-accordion-group>
+      <p *ngIf="point != undefined">{{point}}</p>
+      <p *ngIf="point == undefined"> Aucun point relais selectionné</p>
+      <!--<ion-accordion-group>
         <ion-accordion value="first">
           <ion-item slot="header" color="light">
             <ion-label>Filtre</ion-label>
@@ -53,7 +51,7 @@
             </ion-item>
           </div>
         </ion-accordion>
-        </ion-accordion-group>
+        </ion-accordion-group>-->
         <ion-button (click)="poster()">Poster</ion-button>
       </div>
   </div>

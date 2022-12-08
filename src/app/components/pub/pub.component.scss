@@ -1,0 +1,50 @@
+div {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.annonceImage {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
+}
+
+ion-avatar {
+    margin: auto;
+}
+
+
+.info-row {
+    margin-top: -50px;
+}
+
+.aliment {
+    text-align: left;
+    margin-left: 15%;
+    margin-top: -40px;
+}
+
+ion-chip {
+    --background: #ffffff;
+    --color: #EF445D;
+}
+
+ion-icon {
+    font-size: 24px;
+    color: white;
+
+}
+
+ion-icon[name="star"] {
+    color: #ffb300;
+}
+
+.stars {
+    width: 24px;
+}
+
+.fav {
+    width: 25px;
+}

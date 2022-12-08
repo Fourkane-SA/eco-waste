@@ -9,6 +9,7 @@ import { AccueilPageRoutingModule } from './accueil-routing.module';
 import { AccueilPage } from './accueil.page';
 import { AnnonceHomeComponent } from 'src/app/components/annonce-home/annonce-home.component';
 import { SharedModule } from 'src/app/module/shared/shared.module';
+import { PubComponent } from 'src/app/components/pub/pub.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { SharedModule } from 'src/app/module/shared/shared.module';
     AccueilPageRoutingModule,
     SharedModule
   ],
-  declarations: [AccueilPage]
+  declarations: [AccueilPage, PubComponent]
 })
 export class AccueilPageModule {}

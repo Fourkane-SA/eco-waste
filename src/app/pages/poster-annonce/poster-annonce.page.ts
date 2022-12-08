@@ -7,6 +7,7 @@ import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-poster-annonce',
@@ -81,8 +82,30 @@ export class PosterAnnoncePage implements AfterViewInit {
         icon: this.icon,
         title: data.val().name
       })
-      .on('click',(evt) => {
-        this.point = evt.target.options.title
+      .on('click',async (evt) => {
+        const alert = await this.alertController.create({
+          header: 'Point relais',
+          subHeader: 'Voulez vous choisir ce point relais ?',
+          message: evt.target.options.title,
+          buttons: [
+            {
+              text: 'Annuler',
+              role: 'cancel',
+              handler: () => {},
+            },
+            {
+              text: 'Valider',
+              role: 'confirm',
+              handler: () => {},
+            },
+          ],
+        });
+        await alert.present();
+        const { role } = await alert.onDidDismiss();
+        if(role == 'confirm') {
+          this.point = evt.target.options.title
+        }
+        
       })
       .addTo(this.map)
     }))
@@ -90,7 +113,7 @@ export class PosterAnnoncePage implements AfterViewInit {
 
   }
 
-  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage,public router: Router, private route: ActivatedRoute) {
+  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage,public router: Router, private route: ActivatedRoute,private alertController: AlertController) {
     // Génération aléatoire de l'identifiant de l'annonce
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for(let i = 0; i < 20; i++) {

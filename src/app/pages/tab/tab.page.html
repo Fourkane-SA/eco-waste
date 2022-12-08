@@ -38,9 +38,12 @@
       </ion-buttons>
       
         <img src="/assets/images/Logo 1.png">
-        <ion-avatar slot="end" >
+        <ion-avatar slot="end" *ngIf="!printBack()">
           <img class="image" (click)="goToEditProfil()" src="{{url}}" />
         </ion-avatar>
+        <ion-buttons slot="end" *ngIf="printBack()">
+          <ion-back-button [defaultHref]="getHref()" icon="/assets/images/Retour en arriere.svg" text=""></ion-back-button>
+        </ion-buttons>
     </ion-toolbar>
     
   </ion-header>

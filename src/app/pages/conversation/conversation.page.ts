@@ -8,6 +8,7 @@ import { Annonce } from 'src/app/models/Annonce';
 import { Message } from 'src/app/models/Message';
 import { RendezVous } from 'src/app/models/RendezVous';
 import { User } from 'src/app/models/Users';
+import { ServiceNotificationService } from 'src/app/services/service-notification.service';
 import { ServiceAnnonce } from 'src/app/services/ServiceAnnonce';
 import { ServiceConversation } from 'src/app/services/ServiceConversation';
 import { ServiceRendezVous } from 'src/app/services/ServiceRendezVous';
@@ -68,7 +69,7 @@ rdveffectue: boolean = false
   ccrdv : boolean = true
   relaisList : string[] = []
 
-  constructor(public router: Router, private db: AngularFireDatabase, private route: ActivatedRoute,private storage: AngularFireStorage, private popoverController: PopoverController) { 
+  constructor(public router: Router, private db: AngularFireDatabase, private route: ActivatedRoute,private storage: AngularFireStorage, private popoverController: PopoverController, private sn: ServiceNotificationService) { 
     
   }
 
@@ -104,9 +105,14 @@ rdveffectue: boolean = false
       .toPromise()
       .then(e => this.urlUser = e)
     
+    if(this.url == "")
+      this.url = 'https://ionicframework.com/docs/img/demos/avatar.svg'
+    
     // messagerie en temps réel
     this.db.database.ref('conversation/'+localStorage.getItem('uid')+'/'+this.uid + '/' + this.aid)
     .on('value', async (v) => {
+      this.sn.eraseAllTimeout()
+      this.sn.initAllUpcomingNotifs()
       let annonce : Annonce = await this.sa.get(this.aid)
       if(annonce.reserve != true) {
         annonce.reserve = true
@@ -129,6 +135,8 @@ rdveffectue: boolean = false
     
     this.initRdvStatus()
     this.initRelaisList()
+
+    
     
   }
 
@@ -167,7 +175,7 @@ rdveffectue: boolean = false
     if(this.toggle)
       rdv.pointRelai = this.annonce.relaiId
     else
-      rdv.pointRelai = this.toggle
+      rdv.pointRelai = this.select
     if(this.rendezVous == null)
       this.sr.create(rdv)
     else
@@ -215,9 +223,8 @@ rdveffectue: boolean = false
       this.rendezVous.acceptee = true
       this.text = "Votre demande de rendez-vous a été acceptée"
       this.send()
-      this.sr.update(this.rendezVous)
+      await this.sr.update(this.rendezVous)
     }
-    this.ccrdv = this.canConfirmRdv()
     await this.popoverController.dismiss();
   }
 
@@ -241,17 +248,21 @@ rdveffectue: boolean = false
     async rdvLieu(val : boolean) {
       if(val) {
         await this.initRdvStatus()
-        if(localStorage.getItem('uid') == this.rendezVous.uidDonneur)
+        if(localStorage.getItem('uid') == this.rendezVous.uidDonneur) 
           this.rendezVous.confirmDonneur = true
         else if (localStorage.getItem('uid') == this.rendezVous.uidRececeur)
           this.rendezVous.confirmReceveur = true
         this.sr.update(this.rendezVous)
+      } else {
+        this.sr.delete(this.rendezVous)
+        this.text = "Le rendez-vous n'a pas eu lieu"
+        this.send()
       }
       await this.popoverController.dismiss();
     }
 
     getRdvEffectue() {
-      let time = (new Date(this.rendezVous.date)).getTime()
+      let time = (new Date(this.rendezVous.date)).getTime()+60000
       if( time - Date.now() >= 0) {
         setTimeout(() => {
           this.rdveffectue = true
@@ -261,5 +272,9 @@ rdveffectue: boolean = false
       }
     }
 
-    
+    noter() {
+      if(this.rendezVous != null)
+        return this.rendezVous.confirmDonneur || this.rendezVous.confirmReceveur
+      return false
+    }
 }
