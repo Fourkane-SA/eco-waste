@@ -16,10 +16,15 @@
         <div class="modal">
           <ion-list>
             <h1>Créer un rendez vous</h1>
-            <ion-datetime [(ngModel)]="date">
+                  <ion-item>
+                    <ion-datetime [(ngModel)]="date" (ngModelChange)="update()" display-format="YYYY-MM-DD">
+                    </ion-datetime>
+                  </ion-item>
+                  <p class="error"> {{errorMessage}} </p>
+            <!--<ion-datetime [(ngModel)]="date">
               <span slot="title">Choisissez la date de rendez vous</span>
               <span slot="time-label">Heure</span>
-            </ion-datetime>
+            </ion-datetime>-->
             <ion-item>
               <ion-label>
                 Valider le point relais <br> <strong>{{annonce.relaiId}} </strong>
@@ -36,11 +41,11 @@
             </ion-item>
           </ion-list>
         </div>
-        <ion-button class="submit" (click)="confirm()">Valider</ion-button>
+        <ion-button class="submit" (click)="confirm()" [disabled]="date == null || (toggle == false && (select == undefined || select == '')) || errorMessage != undefined">Valider</ion-button>
       </ng-template>
     </ion-popover>
 
-    <ion-button id="confirm-rdv" [ngStyle]="{'display': canConfirmRdv() ? 'block' : 'none'}"> Valider le rendez-vous</ion-button>
+    <ion-button id="confirm-rdv" [ngStyle]="{'display': canConfirmRdv() ? 'block' : 'none'}" *ngIf="validerRendezVousPossible()"> Valider le rendez-vous</ion-button>
     <ion-popover trigger="confirm-rdv" triggerAction="click">
       <ng-template>
         <div class="modal">

@@ -19,7 +19,7 @@ export class ServiceRendezVous {
 
     async update(rdv : RendezVous) {
         let list = await this.getAll()
-        let index = list.findIndex(r => (r.aid == rdv.aid && r.uidRececeur == rdv.uidRececeur && r.uidDonneur == rdv.uidDonneur))
+        let index = list.findIndex(r => (r.aid == rdv.aid && r.uidRecoieRdv == rdv.uidRecoieRdv && r.uidDemandeRdv == rdv.uidDemandeRdv))
         if(index >= 0)
             list[index] = rdv
         this.db.object('rdv').update(list)
@@ -27,7 +27,7 @@ export class ServiceRendezVous {
 
     async delete(rdv: RendezVous) {
         let list = await this.getAll()
-        list = list.filter(r => !(r.aid == rdv.aid && r.uidRececeur == rdv.uidRececeur && r.uidDonneur == rdv.uidDonneur))
+        list = list.filter(r => !(r.aid == rdv.aid && r.uidRecoieRdv == rdv.uidRecoieRdv && r.uidDemandeRdv == rdv.uidDemandeRdv))
         this.db.object('rdv').set(list)
     }
 }

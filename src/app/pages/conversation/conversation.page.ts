@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -21,6 +20,7 @@ import { ServiceUsers } from 'src/app/services/serviceUsers';
 })
 export class ConversationPage implements OnInit {
 rdveffectue: boolean = false
+  errorMessage: string;
   send() {
     if(this.text != undefined) {
       let m : Message = new Message()
@@ -38,7 +38,6 @@ rdveffectue: boolean = false
       this.sc.updateConv(this.uid,localStorage.getItem('uid'), this.conversation, this.aid)
       if(this.annonce.userReserveID == undefined)
         this.annonce.userReserveID = []
-      console.log(this.annonce)
       if(!this.annonce.userReserveID.includes(localStorage.getItem('uid'))) {
         this.annonce.userReserveID.push(localStorage.getItem('uid'))
         this.sa.update(this.annonce, this.aid)
@@ -60,7 +59,7 @@ rdveffectue: boolean = false
   acheteur : boolean = true
   annonce : Annonce = new Annonce('','','','','','',[],false)
   date : any 
-  toggle : any = true
+  toggle : any = false
   toggleConfirm : any
   select : any 
   rendezVous : RendezVous = null
@@ -68,6 +67,7 @@ rdveffectue: boolean = false
   ctrdv : boolean = true
   ccrdv : boolean = true
   relaisList : string[] = []
+  startTime : any
 
   constructor(public router: Router, private db: AngularFireDatabase, private route: ActivatedRoute,private storage: AngularFireStorage, private popoverController: PopoverController, private sn: ServiceNotificationService) { 
     
@@ -130,6 +130,8 @@ rdveffectue: boolean = false
           
       })
       this.initRdvStatus()
+      if(this.conversation[this.conversation.length-1].text == 'Votre demande de rendez-vous a été acceptée' )
+        this.sn.presentToast('Rendez-vous confirmé')
       //this.sc.updateConv(this.uid,localStorage.getItem('uid'), this.conversation, this.aid)
     })
     
@@ -151,12 +153,15 @@ rdveffectue: boolean = false
   async initRdvStatus() {
     let rdvs : RendezVous[] = await this.sr.getAll()
     if(rdvs != null)
-      this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidRececeur == localStorage.getItem('uid'))))
+      this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidDemandeRdv == localStorage.getItem('uid'))))
+    if(this.rendezVous == undefined)
+      this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidRecoieRdv == localStorage.getItem('uid'))))
+    console.log(this.rendezVous)
     if(this.rendezVous != null) {
       this.date = this.rendezVous.date
     }
     if(this.annonce.uid == localStorage.getItem('uid') && rdvs != null) {
-      this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidRececeur == this.uid)))
+      this.rendezVous = (rdvs.find(e => (e.aid == this.aid && e.uidRecoieRdv == this.uid)))
     }
     this.ctrdv = this.canTakeRdv()
     this.ccrdv = this.canConfirmRdv()
@@ -168,8 +173,8 @@ rdveffectue: boolean = false
     rdv.aid = this.aid
     rdv.acceptee = false
     rdv.date = this.date
-    rdv.uidDonneur = this.annonce.uid
-    rdv.uidRececeur = localStorage.getItem('uid')
+    rdv.uidDemandeRdv = localStorage.getItem('uid')
+    rdv.uidRecoieRdv = this.uid
     rdv.confirmDonneur = false
     rdv.confirmReceveur = false
     if(this.toggle)
@@ -193,20 +198,20 @@ rdveffectue: boolean = false
   }
 
   canTakeRdv() {
-    return this.rendezVous == null && localStorage.getItem('uid') != this.annonce.uid
+    return this.rendezVous == null
   }
 
   canConfirmRdv() {
     if(this.rendezVous == null)
       return false
-    return this.rendezVous != null && localStorage.getItem('uid') == this.annonce.uid && this.rendezVous.acceptee != true
+    return this.rendezVous != null && localStorage.getItem('uid') == this.rendezVous.uidRecoieRdv && this.rendezVous.acceptee != true
   }
 
   canValidRdv() {
     if(this.rendezVous == null)
       return false
     let repondu = false
-    if(localStorage.getItem('uid') == this.rendezVous.uidDonneur)
+    if(localStorage.getItem('uid') == this.rendezVous.uidDemandeRdv)
       repondu = this.rendezVous.confirmDonneur
     else
       repondu = this.rendezVous.confirmReceveur
@@ -226,31 +231,15 @@ rdveffectue: boolean = false
       await this.sr.update(this.rendezVous)
     }
     await this.popoverController.dismiss();
+    this.validerRendezVousPossible()
   }
-
-  updateReadStatus() {
-    this.db.database.ref('conversation/'+localStorage.getItem('uid'))
-    .on('value', (res) => {
-      
-      res.forEach(conv => {
-        conv.forEach(mess => {
-          let conv : Message[] = []
-          
-        })
-          
-        })
-        
-        
-      })
-      
-    }
 
     async rdvLieu(val : boolean) {
       if(val) {
         await this.initRdvStatus()
-        if(localStorage.getItem('uid') == this.rendezVous.uidDonneur) 
+        if(localStorage.getItem('uid') == this.rendezVous.uidDemandeRdv) 
           this.rendezVous.confirmDonneur = true
-        else if (localStorage.getItem('uid') == this.rendezVous.uidRececeur)
+        else if (localStorage.getItem('uid') == this.rendezVous.uidRecoieRdv)
           this.rendezVous.confirmReceveur = true
         this.sr.update(this.rendezVous)
       } else {
@@ -276,5 +265,20 @@ rdveffectue: boolean = false
       if(this.rendezVous != null)
         return this.rendezVous.confirmDonneur || this.rendezVous.confirmReceveur
       return false
+    }
+
+    validerRendezVousPossible() {
+      if(this.rendezVous == null)
+        return true
+      return this.rendezVous.acceptee != true
+    }
+
+    update() {
+      let hours = new Date(this.date).getHours()
+      if(hours < 8 || hours > 19) {
+        this.errorMessage = "Entrez une heure comprise entre 8h et 19h"
+      } else {
+        this.errorMessage = undefined
+      }
     }
 }

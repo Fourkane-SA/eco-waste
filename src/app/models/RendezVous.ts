@@ -1,7 +1,7 @@
 export class RendezVous {
     aid : string
-    uidRececeur : string
-    uidDonneur : string
+    uidDemandeRdv : string
+    uidRecoieRdv : string
     acceptee : boolean
     pointRelai : string
     date : string

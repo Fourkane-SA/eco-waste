@@ -30,14 +30,14 @@ export class ServiceNotificationService {
   addTimeoutRdv(rdv : RendezVous ) {
     let time = new Date(rdv.date).getTime() - Date.now() + 60000
     if(time >= 0) {
-      if(rdv.uidDonneur == localStorage.getItem('uid')) {
+      if(rdv.uidDemandeRdv == localStorage.getItem('uid')) {
         let idTim = setTimeout(() => {
           if(rdv.confirmDonneur != true)
             this.presentToast("Avez-vous effectué votre donation ?")
         }, time);
         this.idTimeouts.push(idTim)
       }
-      else if(rdv.uidRececeur == localStorage.getItem('uid')) {
+      else if(rdv.uidRecoieRdv == localStorage.getItem('uid')) {
         let idTim = setTimeout(() => {
           if(rdv.confirmReceveur != true)
             this.presentToast("Avez-vous reçu votre produit ?")

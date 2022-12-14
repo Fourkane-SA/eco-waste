@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, MenuController } from '@ionic/angular';
 import { async } from 'rxjs';
 import { Message } from 'src/app/models/Message';
 import { Notifications } from 'src/app/models/Notifications';
@@ -33,7 +33,8 @@ export class TabPage implements OnInit {
 
   url : string = "https://ionicframework.com/docs/img/demos/avatar.svg"
 
-  constructor(private route: Router,private storage: AngularFireStorage, private db: AngularFireDatabase, private toastController: ToastController, private alertController: AlertController, private sn: ServiceNotificationService) { 
+  constructor(private route: Router,private storage: AngularFireStorage, private db: AngularFireDatabase, private toastController: ToastController, private alertController: AlertController, private sn: ServiceNotificationService, private menu: MenuController) { 
+    menu.close()
     this.storage
     .ref(`profile/${localStorage.getItem('uid')}`).getDownloadURL()
       .subscribe(e => this.url = e)
