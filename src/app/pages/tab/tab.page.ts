@@ -150,6 +150,8 @@ export class TabPage implements OnInit {
   getHref() {
     if(location.href.includes('conversation') || location.href.includes('noter'))
       return "/tab/messages"
+    if(location.href.includes('life-hack-detail') || location.href.includes('recette-detail'))
+      return "/tab/recette"
     return "/tab/accueil"
   }
 }

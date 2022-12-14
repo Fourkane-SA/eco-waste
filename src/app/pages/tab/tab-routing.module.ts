@@ -72,6 +72,14 @@ const routes: Routes = [
         path: 'conversation/:uid/:aid',
         loadChildren: () => import('../conversation/conversation.module').then( m => m.ConversationPageModule)
       },
+    {
+      path: 'recette-detail/:title',
+      loadChildren: () => import('../recette-detail/recette-detail.module').then( m => m.RecetteDetailPageModule)
+    },
+    {
+      path: 'life-hack-detail/:title',
+      loadChildren: () => import('../life-hack-detail/life-hack-detail.module').then( m => m.LifeHackDetailPageModule)
+    },
     ]
   },
     

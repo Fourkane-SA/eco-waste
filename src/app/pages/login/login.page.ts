@@ -37,7 +37,8 @@ goToRegister() {this.router.navigateByUrl("/registration")}
     this.ngFireAuth.signInWithEmailAndPassword(email, password)
     .then((u) => {
       localStorage.setItem('uid', u.user.uid)
-          this.router.navigateByUrl('/tab/accueil')
+        window.location.href = window.location.origin + '/tab/accueil'
+          //this.router.navigateByUrl('/tab/accueil')
     })
     .catch(e => {
       if(e.message.includes("(auth/wrong-password)")) {

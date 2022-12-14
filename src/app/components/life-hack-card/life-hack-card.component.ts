@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-life-hack-card',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LifeHackCardComponent implements OnInit {
   @Input() img
   @Input() title
-  constructor() { }
+  constructor(private route : Router) { }
 
   ngOnInit() {}
 

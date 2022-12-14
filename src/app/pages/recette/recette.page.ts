@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecettesService } from 'src/app/services/recettes.service';
 
 @Component({
   selector: 'app-recette',
@@ -6,21 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recette.page.scss'],
 })
 export class RecettePage implements OnInit {
-  allRecettes = [
-    {title: "Guacamole", img: "https://www.papillesetpupilles.fr/wp-content/uploads/2020/08/Guacamole-%C2%A9cookingalamel-Licence-CC-BY-NC-ND-2.0.jpg"},
-    {title: "Gateau aux pommes", img: "https://www.mesrecettes.info/wp-content/uploads/2020/04/gateau-aux-pommes-ultra-moelleux-de-grand-mere.jpg"},
-    {title: "Exemple", img: "https://via.placeholder.com/200x150"},
-  ]
+  
   recettes = []
+  lifehack = []
 
   search
 
-  constructor() { }
+  constructor(private rec : RecettesService) {
+    this.recettes = this.rec.allRecettes
+    this.lifehack = this.rec.allLifeHack
+    console.log(this.recettes)
+   }
 
   ngOnInit() {
     
   }
   update() {
-    this.recettes = this.allRecettes.filter(recette => recette.title.toLowerCase().includes(this.search.toLowerCase()))
+    this.recettes = this.rec.allRecettes.filter(recette => recette.title.toLowerCase().includes(this.search.toLowerCase()))
+    this.lifehack = this.rec.allLifeHack.filter(lifehack => lifehack.title.toLowerCase().includes(this.search.toLowerCase()))
   }
 }
